@@ -2,14 +2,14 @@ import { Box, CssBaseline } from '@mui/material';
 import { Children } from 'react';
 const MainLayout = ({ children }) => {
     return (
-        <Box sx={{ display: 'flex', minHeight: '100vh' }}>
+        <Box sx={{ display: 'flex', minHeight: '100vh', width: '100vw' }}>
             <CssBaseline />
 
-            {/*SideBar */}
+            {/*Left side-Side bar */}
             <Box sx={{
                 width: '240px',
                 bgcolor: '#ffffff',
-                borderRight: '1px solid #e0e0e0',
+                borderRight: '2px solid #e0e0e0',
                 display: 'flex',
                 flexDirection:'column',
                 justifyContent: 'space-between',
@@ -61,9 +61,38 @@ const MainLayout = ({ children }) => {
 
             </Box>
 
-            {/*'Main' Body */}
-            <Box sx={{ flexGrow:1, bgcolor: 'white' }}>
-                {children}
+            {/*Right side-Header+Main*/}
+            <Box sx={{
+                flexGrow:1,
+                height: '100vh',
+                display: 'flex',
+                flexDirection: 'column',
+                overflow: 'hidden'
+                }}>
+                
+                {/*Right side-Header*/}
+                <Box sx={{
+                    height: '64px',
+                    bgcolor: 'white',
+                    borderBottom: '2px solid #e0e0e0',
+                    display: 'flex',
+                    alignItems: 'center',
+                    px: 4,
+                    zIndex: 1100
+                    }}>
+                        Toolbar (Job Applications)
+                </Box>
+
+                {/*Right side Bottom- Main */}
+                <Box component="main" sx={{
+                    flexGrow:1,
+                    p: 4,
+                    bgcolor: '#ffffff',
+                    overflowY:'auto'
+                }}>
+                  {children}  
+                
+                </Box>
             </Box>
 
         </Box>
