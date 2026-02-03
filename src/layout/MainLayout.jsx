@@ -1,5 +1,6 @@
 import { Box, CssBaseline } from '@mui/material';
-import { Children } from 'react';
+
+
 const MainLayout = ({ children }) => {
     return (
         <Box sx={{ display: 'flex', minHeight: '100vh', width: '100vw' }}>
@@ -8,8 +9,9 @@ const MainLayout = ({ children }) => {
             {/*Left side-Side bar */}
             <Box sx={{
                 width: '240px',
-                bgcolor: '#ffffff',
-                borderRight: '2px solid #e0e0e0',
+                bgcolor: 'background.paper',
+                borderRight: '2px solid',
+                borderColor: 'divider',
                 display: 'flex',
                 flexDirection:'column',
                 justifyContent: 'space-between',
@@ -26,7 +28,7 @@ const MainLayout = ({ children }) => {
                         gap: 1,
                         mb: 10,
                         fontWeight: 'bold',
-                        color: '#1976d2',
+                        color: 'primary.main',
                         fontSize: '1.2rem'
                     }}>
                         NextStep
@@ -35,7 +37,7 @@ const MainLayout = ({ children }) => {
                     <Box sx={{ 
                         fontSize: '0.75rem', 
                         fontWeight: '600', 
-                        color: '#98A2B3', 
+                        color: 'text.secondary', 
                         mb: 2, 
                         letterSpacing: '0.05em' 
                         }}>
@@ -43,7 +45,7 @@ const MainLayout = ({ children }) => {
                     </Box>
 
                     {/*Navigation - for now raw data later will be tabs*/}
-                    <Box sx={{display: 'flex', flexDirection: 'column', gap: 3, color: '#5f6368'}}>
+                    <Box sx={{display: 'flex', flexDirection: 'column', gap: 3, color: 'text.primary'}}>
                         <Box>Job Application</Box>
                         <Box>Resume</Box>
                         <Box>Subscriptions</Box>
@@ -54,7 +56,7 @@ const MainLayout = ({ children }) => {
             </Box>
 
             {/*Settings-raw data */}
-            <Box sx={{display: 'flex', alignItems: 'center', gap: 1, color: '#5f6368'}}>
+            <Box sx={{display: 'flex', alignItems: 'center', gap: 1, color: 'text.primary'}}>
                  Settings
             </Box>
 
@@ -73,8 +75,9 @@ const MainLayout = ({ children }) => {
                 {/*Right side-Header*/}
                 <Box sx={{
                     height: '64px',
-                    bgcolor: 'white',
-                    borderBottom: '2px solid #e0e0e0',
+                    bgcolor: 'background.paper',
+                    borderBottom: '2px solid',
+                    borderColor: 'divider',
                     display: 'flex',
                     alignItems: 'center',
                     px: 4,
@@ -87,7 +90,7 @@ const MainLayout = ({ children }) => {
                 <Box component="main" sx={{
                     flexGrow:1,
                     p: 4,
-                    bgcolor: '#ffffff',
+                    bgcolor: 'background.default',
                     overflowY:'auto'
                 }}>
                   {children}  
