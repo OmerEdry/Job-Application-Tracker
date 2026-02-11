@@ -1,5 +1,6 @@
 import { Box, CssBaseline } from '@mui/material';
 import Sidebar from './SideBar';
+import Header from './Header';
 
 
 const MainLayout = ({ children }) => {
@@ -20,18 +21,7 @@ const MainLayout = ({ children }) => {
                 }}>
                 
                 {/*Right side-Header*/}
-                <Box sx={{
-                    height: '64px',
-                    bgcolor: 'background.paper',
-                    borderBottom: '2px solid',
-                    borderColor: 'divider',
-                    display: 'flex',
-                    alignItems: 'center',
-                    px: 4,
-                    zIndex: 1100
-                    }}>
-                        Toolbar (Job Applications)
-                </Box>
+                <Header/>
 
                 {/*Right side Bottom- Main */}
                 <Box component="main" sx={{
