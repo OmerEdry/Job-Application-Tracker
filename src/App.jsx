@@ -8,7 +8,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <MainLayout>
-         <div>Main</div>
+        <div>Main</div>
       </MainLayout>
     </ThemeProvider>
   );
