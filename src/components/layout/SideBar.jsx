@@ -1,5 +1,7 @@
 import React from 'react';
 import { Drawer, List, ListItem, ListItemButton, ListItemText, Toolbar, Box, Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
+import { sidebarItems } from '../../utils/sidebarConfig';
 
 const drawerWidth = 240;
 
@@ -26,10 +28,10 @@ const Sidebar = () => {
                 </Typography>
 
                 <List>
-                    {['Job Applications', 'Resumes', 'Subscription', 'Archive'].map((text) => (
-                        <ListItem key={text} disablePadding>
-                            <ListItemButton>
-                                <ListItemText primary={text}/>
+                    {sidebarItems.map((item) => (
+                        <ListItem key={item.path} disablePadding>
+                            <ListItemButton component={Link} to={item.path}>
+                                <ListItemText primary={item.text}/>
                             </ListItemButton>
                         </ListItem>
                     ))}
@@ -38,7 +40,7 @@ const Sidebar = () => {
 
             <List>
                 <ListItem disablePadding>
-                    <ListItemButton>
+                    <ListItemButton component={Link} to="/settings">
                         <ListItemText primary="Settings" />
                     </ListItemButton>
                 </ListItem>
