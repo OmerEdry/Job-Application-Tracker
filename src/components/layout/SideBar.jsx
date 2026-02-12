@@ -11,7 +11,7 @@ const Sidebar = () => {
             sx={{
                 width: drawerWidth,
                 flexShrink: 0,
-                [`& .MuiDrawer-paper`]: {width: drawerWidth, boxSizing: `border-box`,display:'flex',flexDirection: 'column'},
+                [`& .MuiDrawer-paper`]: {width: drawerWidth, boxSizing: 'border-box',display:'flex',flexDirection: 'column'},
             }} >
                 <Toolbar>
                     <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
@@ -19,9 +19,9 @@ const Sidebar = () => {
                     </Typography>
                 </Toolbar>
 
-                <Box sx={{ flexGrow: 1, overflow: 'auto' , mt: 12}}>
+                <Box component="nav" sx={{ flexGrow: 1, overflow: 'auto' , mt: 12}}>
                 
-                <Typography variant="caption" sx={{ pl: 2, color: 'gray' }}>
+                <Typography variant="caption" sx={{ pl: 2, color: 'text.secondary' }}>
                     JOBS
                 </Typography>
 
