@@ -1,11 +1,69 @@
 import React from 'react';
-import { Drawer, List, ListItem, ListItemButton, ListItemText, Toolbar, Box, Typography } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Drawer, List, ListItem, ListItemButton, ListItemText, Toolbar, Box, Typography, useTheme, } from '@mui/material';
+import { Link, useLocation } from 'react-router-dom';
 import { sidebarItems } from '../../utils/sidebarConfig';
+import theme from '../../styles/theme';
 
-const drawerWidth = 240;
+const drawerWidth = 340;
+
+//style logic
+const navItemsStyles = (isSelected, theme) => ({
+    mx: 2,
+    borderRadius: '12px',
+    mb: 0.5,
+    position: 'relative',
+    py: 0.5,
+    minHeight: '40px',
+    transition: 'all 0.2s ease',
+    //floating side blue line 
+    '&::before': {
+        content: isSelected ? '""' : 'none',
+        position: 'absolute',
+        left: 0,
+        top: '30%',
+        height: '40%',
+        width: '3px',
+        background: isSelected ? theme.fadeBlue.primaryGradient : 'none',
+        borderRadius: '0 4px 4px 0',
+        zIndex: 1,
+    },
+    //Selected state
+    '&.Mui-selected': {
+        backgroundColor: 'action.selected',
+        '&:hover': {
+            backgroundColor: 'action.hover',
+        },
+    },
+    //Hover
+    '&:hover': {
+        backgroundColor: 'action.hover',
+    },
+});
+const getNavTextStyle = (isSelected, theme) => ({
+    pl: 1.5,
+    '& .MuiTypography-root': {
+        fontFamily: '"Inter", "Roboto", "Helvetica", "Arial", sans-serif',
+        fontSize: '1.25rem',
+        fontWeight: 400,
+        letterSpacing: '0',
+        lineHeight: '1',
+        WebkitFontSmoothing: 'antialiased',
+        MozOsxFontSmoothing: 'grayscale',
+        background: isSelected ? theme.fadeBlue.primaryGradient : 'none',
+        WebkitBackgroundClip: isSelected ? 'text' : 'unset',
+        WebkitTextFillColor: isSelected ? 'transparent' : 'inherit',
+        display: 'inline-block',
+        color: isSelected ? 'transparent' : 'text.primary',
+        display: 'inline-block',
+    },
+
+});
 
 const Sidebar = () => {
+    const location = useLocation();
+    const theme = useTheme();
+    const isSettingSelected = location.pathname === '/settings';
+
     return (
         <Drawer
             variant='permanent'
@@ -13,39 +71,56 @@ const Sidebar = () => {
             sx={{
                 width: drawerWidth,
                 flexShrink: 0,
-                [`& .MuiDrawer-paper`]: {width: drawerWidth, boxSizing: 'border-box',display:'flex',flexDirection: 'column'},
+                [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box', display: 'flex', flexDirection: 'column' },
             }} >
-                <Toolbar>
-                    <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-                        NextStep
-                    </Typography>
-                </Toolbar>
+            <Toolbar>
+                <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+                    NextStep
+                </Typography>
+            </Toolbar>
 
-                <Box component="nav" sx={{ flexGrow: 1, overflow: 'auto' , mt: 12}}>
-                
-                <Typography variant="caption" sx={{ pl: 2, color: 'text.secondary' }}>
+            <Box component="nav" sx={{ flexGrow: 1, overflow: 'auto', mt: 12 }}>
+
+                <Typography variant="caption" sx={{ pl: 2, color: 'text.secondary', fontFamily: 'Space Grotesk', fontWeight: 400, fontSize: '1rem', lineHeight: '100%' }}>
                     JOBS
                 </Typography>
 
                 <List>
-                    {sidebarItems.map((item) => (
-                        <ListItem key={item.path} disablePadding>
-                            <ListItemButton component={Link} to={item.path}>
-                                <ListItemText primary={item.text}/>
-                            </ListItemButton>
-                        </ListItem>
-                    ))}
+                    {sidebarItems.map((item) => {
+                        const isSelected = location.pathname === item.path;
+
+                        return (
+                            <ListItem key={item.path} disablePadding>
+                                <ListItemButton
+                                    component={Link}
+                                    to={item.path}
+                                    selected={isSelected}
+                                    sx={navItemsStyles(isSelected, theme)}
+                                >
+                                    <ListItemText
+                                        primary={item.text}
+                                        sx={getNavTextStyle(isSelected, theme)}
+                                    />
+                                </ListItemButton>
+                            </ListItem>
+                        );
+                    })}
                 </List>
             </Box>
 
             <List>
                 <ListItem disablePadding>
-                    <ListItemButton component={Link} to="/settings">
-                        <ListItemText primary="Settings" />
+                    <ListItemButton
+                        component={Link}
+                        to="/settings"
+                        selected={isSettingSelected}
+                        sx={navItemsStyles(isSettingSelected, theme)}
+                    >
+                        <ListItemText primary="Settings" sx={getNavTextStyle(isSettingSelected, theme)} />
                     </ListItemButton>
                 </ListItem>
             </List>
-            </Drawer>
+        </Drawer>
     );
 };
 
