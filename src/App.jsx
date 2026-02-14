@@ -4,7 +4,7 @@ import theme from './styles/theme';
 import MainLayout from './components/layout/MainLayout';
 import { useRoutes } from 'react-router-dom';
 import { routes } from './utils/routesConfig';
-import { sidebarItems } from './utils/sidebarConfig';
+import IconStyle from './styles/IconStyle';
 
 function App() {
   const routing = useRoutes(routes);
@@ -12,6 +12,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
+      <IconStyle />
       <MainLayout>
          {routing}
       </MainLayout>

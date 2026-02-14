@@ -1,8 +1,9 @@
 import React from 'react';
-import { Drawer, List, ListItem, ListItemButton, ListItemText, Toolbar, Box, Typography, useTheme, } from '@mui/material';
+import { Drawer, List, ListItem, ListItemButton, ListItemText, Toolbar, Box, Typography, useTheme,ListItemIcon } from '@mui/material';
 import { Link, useLocation } from 'react-router-dom';
 import { sidebarItems } from '../../utils/sidebarConfig';
-import theme from '../../styles/theme';
+import { SidebarIcons } from '../../assets/icons';
+
 
 const drawerWidth = 340;
 
@@ -15,7 +16,7 @@ const navItemsStyles = (isSelected, theme) => ({
     py: 0.5,
     minHeight: '40px',
     transition: 'all 0.2s ease',
-    //floating side blue line 
+    //Floating side blue line 
     '&::before': {
         content: isSelected ? '""' : 'none',
         position: 'absolute',
@@ -27,14 +28,12 @@ const navItemsStyles = (isSelected, theme) => ({
         borderRadius: '0 4px 4px 0',
         zIndex: 1,
     },
-    //Selected state
     '&.Mui-selected': {
         backgroundColor: 'action.selected',
         '&:hover': {
             backgroundColor: 'action.hover',
         },
     },
-    //Hover
     '&:hover': {
         backgroundColor: 'action.hover',
     },
@@ -54,9 +53,31 @@ const getNavTextStyle = (isSelected, theme) => ({
         WebkitTextFillColor: isSelected ? 'transparent' : 'inherit',
         display: 'inline-block',
         color: isSelected ? 'transparent' : 'text.primary',
-        display: 'inline-block',
     },
-
+});
+const getIconStyle = (isSelected, theme) => ({
+    minWidth: '30px',
+    display: 'flex',
+    justifyContent: 'center',
+    marginRight: '10px',
+    '& .MuiSvgIcon-root, & svg': {
+        fontSize: '26px',
+        transition: 'all 0.3s ease',
+        color: isSelected ? 'inherit' : theme.palette.text.secondary,
+    },
+    // Points to the SVG gradient defined globally in 'src/styles/IconStyle.jsx'
+    // CSS 'color' property doesn't support gradients on SVGs
+    '& path': {
+        fill: isSelected ? 'url(#icon-gradient)' : 'currentColor',
+    },
+    '& .iconify--solar': {
+        '& path': {
+            fill: 'none !important',
+            stroke: isSelected ? 'url(#icon-gradient)' : 'currentColor',
+            strokeWidth: '1.5px',
+        }
+    }
+    
 });
 
 const Sidebar = () => {
@@ -88,7 +109,7 @@ const Sidebar = () => {
                 <List>
                     {sidebarItems.map((item) => {
                         const isSelected = location.pathname === item.path;
-
+                        const IconComponent = item.icon;
                         return (
                             <ListItem key={item.path} disablePadding>
                                 <ListItemButton
@@ -97,6 +118,9 @@ const Sidebar = () => {
                                     selected={isSelected}
                                     sx={navItemsStyles(isSelected, theme)}
                                 >
+                                    <ListItemIcon sx={getIconStyle(isSelected, theme)}>
+                                        <IconComponent />
+                                    </ListItemIcon>
                                     <ListItemText
                                         primary={item.text}
                                         sx={getNavTextStyle(isSelected, theme)}
@@ -116,6 +140,9 @@ const Sidebar = () => {
                         selected={isSettingSelected}
                         sx={navItemsStyles(isSettingSelected, theme)}
                     >
+                        <ListItemIcon sx={getIconStyle(isSettingSelected, theme)}>
+                            <SidebarIcons.Settings />
+                        </ListItemIcon>
                         <ListItemText primary="Settings" sx={getNavTextStyle(isSettingSelected, theme)} />
                     </ListItemButton>
                 </ListItem>
