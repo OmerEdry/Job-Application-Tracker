@@ -22,18 +22,38 @@ const theme = createTheme({
     divider: '#e0e0e0',
   },
   typography: {
-    fontFamily: 'Roboto, sans-serif',
+    fontFamily: '"Inter", "Roboto", "Helvetica", "Arial", sans-serif',
+    h4: {
+      fontWeight: 700,
+      fontSize: '1.5rem',
+      letterSpacing: '-0.02em',
+      lineHeight: 1,
+    },
+    //Sidebar Menu text
+    body1: {
+      fontSize: '1.25rem',
+      fontWeight: 400,
+      lineHeight: 1,
+    },
+    caption: {
+      fontFamily:'"Space Grotesk", sans-serif',
+      fontSize: '16px',
+      lineHeight: '100%',
+      letterSpacing: '0%',
+      fontWeight: 400,
+      display: 'block',
+    }
   },
-  fadeBlue: {
+  gradientBlue: {
     primaryGradient: 'linear-gradient(to bottom, #1B85E9 10%, #88C7FC 80%)'
   },
   components: {
     MuiTypography: {
       variants: [
         {
-        props: { variant: 'blueGradient' },
+        props: { variant: 'gradientBlueText' },
         style: ({ theme }) => ({
-          background: theme.fadeBlue.primaryGradient,
+          background: theme.gradientBlue.primaryGradient,
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent',
           display: 'inline-block',
@@ -43,7 +63,14 @@ const theme = createTheme({
       ],
     },
   },
-  
-});
+  MuiListItemText: {
+        styleOverrides: {
+            root: {
+                margin: 0, 
+            }
+        }
+    }
+  },
+);
 
 export default theme;

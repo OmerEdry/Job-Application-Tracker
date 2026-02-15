@@ -25,7 +25,7 @@ const navItemsStyles = (isSelected, theme) => ({
         top: '30%',
         height: '40%',
         width: '3px',
-        background: isSelected ? theme.fadeBlue.primaryGradient : 'none',
+        background: isSelected ? theme.gradientBlue.primaryGradient : 'none',
         borderRadius: '0 4px 4px 0',
         zIndex: 1,
     },
@@ -42,11 +42,6 @@ const navItemsStyles = (isSelected, theme) => ({
 const getNavTextStyle = (isSelected, theme) => ({
     pl: 1.5,
     '& .MuiTypography-root': {
-        fontFamily: '"Inter", "Roboto", "Helvetica", "Arial", sans-serif',
-        fontSize: '1.25rem',
-        fontWeight: 400,
-        letterSpacing: '0',
-        lineHeight: '1',
         WebkitFontSmoothing: 'antialiased',
         MozOsxFontSmoothing: 'grayscale',
         ...(isSelected ? theme.components.MuiTypography.variants[0].style({ theme }) : { color: 'text.primary' })
@@ -107,15 +102,10 @@ const Sidebar = () => {
                 </Box>
 
                 <Typography
-                    variant="blueGradient"
+                    variant="gradientBlueText"
                     noWrap
                     sx={{
                         ml: '10px',
-                        fontFamily: '"Inter", sans-serif',
-                        fontWeight: 700,
-                        fontSize: '1.5rem',
-                        letterSpacing: '-0.02em',
-                        lineHeight: 1,
                         userSelect: 'none'
                     }}>
                         NextStep
@@ -124,7 +114,7 @@ const Sidebar = () => {
 
             <Box component="nav" sx={{ flexGrow: 1, overflow: 'auto', mt: 4 }}>
 
-                <Typography variant="caption" sx={{ pl: 2, color: 'text.secondary', fontFamily: 'Space Grotesk', fontWeight: 400, fontSize: '1rem', lineHeight: '100%' }}>
+                <Typography variant="caption" sx={{ pl: 2, color: 'text.secondary',}}>
                     JOBS
                 </Typography>
 
