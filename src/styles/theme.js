@@ -23,9 +23,10 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: '"Inter", "Roboto", "Helvetica", "Arial", sans-serif',
+    //non gradient text tilte usage
     h4: {
       fontWeight: 700,
-      fontSize: '1.5rem',
+      fontSize: '1.65rem',
       letterSpacing: '-0.02em',
       lineHeight: 1,
     },
@@ -58,7 +59,28 @@ const theme = createTheme({
           WebkitTextFillColor: 'transparent',
           display: 'inline-block',
           color: 'transparent',
-        }),
+          fontFamily: 'inherit',
+          fontSize: 'inherit',
+          fontWeight: 'inherit',
+          lineHeight: 'inherit',
+          letterSpacing: 'inherit',
+          }),
+        },
+        //Logo text-Titles to prevent OverRide
+        {
+        props: { variant: 'logoGradient' },
+        style: ({ theme }) => ({
+          background: theme.gradientBlue.primaryGradient,
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          display: 'inline-block',
+          color: 'transparent',
+          fontFamily: '"Inter", sans-serif',
+          fontSize: '1.65rem', 
+          fontWeight: 700,      
+          letterSpacing: '-0.02em',
+          lineHeight: 1,
+          }),
         },
       ],
     },
