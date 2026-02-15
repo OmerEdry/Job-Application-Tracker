@@ -49,11 +49,7 @@ const getNavTextStyle = (isSelected, theme) => ({
         lineHeight: '1',
         WebkitFontSmoothing: 'antialiased',
         MozOsxFontSmoothing: 'grayscale',
-        background: isSelected ? theme.fadeBlue.primaryGradient : 'none',
-        WebkitBackgroundClip: isSelected ? 'text' : 'unset',
-        WebkitTextFillColor: isSelected ? 'transparent' : 'inherit',
-        display: 'inline-block',
-        color: isSelected ? 'transparent' : 'text.primary',
+        ...(isSelected ? theme.components.MuiTypography.variants[0].style({ theme }) : { color: 'text.primary' })
     },
 });
 const getIconStyle = (isSelected, theme) => ({
@@ -111,7 +107,7 @@ const Sidebar = () => {
                 </Box>
 
                 <Typography
-                    variant="h4"
+                    variant="blueGradient"
                     noWrap
                     sx={{
                         ml: '10px',
@@ -119,10 +115,6 @@ const Sidebar = () => {
                         fontWeight: 700,
                         fontSize: '1.5rem',
                         letterSpacing: '-0.02em',
-                        background: theme.fadeBlue.primaryGradient,
-                        WebkitBackgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent',
-                        display: 'block',
                         lineHeight: 1,
                         userSelect: 'none'
                     }}>

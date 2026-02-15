@@ -26,7 +26,24 @@ const theme = createTheme({
   },
   fadeBlue: {
     primaryGradient: 'linear-gradient(to bottom, #1B85E9 10%, #88C7FC 80%)'
-  }
+  },
+  components: {
+    MuiTypography: {
+      variants: [
+        {
+        props: { variant: 'blueGradient' },
+        style: ({ theme }) => ({
+          background: theme.fadeBlue.primaryGradient,
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          display: 'inline-block',
+          color: 'transparent',
+        }),
+        },
+      ],
+    },
+  },
+  
 });
 
 export default theme;
