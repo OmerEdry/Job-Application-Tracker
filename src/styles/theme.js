@@ -3,7 +3,13 @@ import { createTheme } from '@mui/material/styles';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#1976d2',
+      main: '#1B85E9', 
+      light: '#88C7FC',
+      dark: '#0E5AA1',
+    },
+    action: {
+      selected: '#F2F4F7', 
+      selectedOpacity: 1,
     },
     background: {
       default: '#F9FAFC',
@@ -16,8 +22,77 @@ const theme = createTheme({
     divider: '#e0e0e0',
   },
   typography: {
-    fontFamily: 'Roboto, sans-serif',
+    fontFamily: '"Inter", "Roboto", "Helvetica", "Arial", sans-serif',
+    //non gradient text tilte usage
+    h4: {
+      fontWeight: 700,
+      fontSize: '1.65rem',
+      letterSpacing: '-0.02em',
+      lineHeight: 1,
+    },
+    //Sidebar Menu text
+    body1: {
+      fontSize: '1.25rem',
+      fontWeight: 400,
+      lineHeight: 1,
+    },
+    caption: {
+      fontFamily:'"Space Grotesk", sans-serif',
+      fontSize: '16px',
+      lineHeight: '100%',
+      letterSpacing: '0%',
+      fontWeight: 400,
+      display: 'block',
+    }
   },
-});
+  gradientBlue: {
+    primaryGradient: 'linear-gradient(to bottom, #1B85E9 10%, #88C7FC 80%)'
+  },
+  components: {
+    MuiTypography: {
+      variants: [
+        {
+        props: { variant: 'gradientBlueText' },
+        style: ({ theme }) => ({
+          background: theme.gradientBlue.primaryGradient,
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          display: 'inline-block',
+          color: 'transparent',
+          fontFamily: 'inherit',
+          fontSize: 'inherit',
+          fontWeight: 'inherit',
+          lineHeight: 'inherit',
+          letterSpacing: 'inherit',
+          }),
+        },
+        //Logo text-Titles to prevent OverRide
+        {
+        props: { variant: 'logoGradient' },
+        style: ({ theme }) => ({
+          background: theme.gradientBlue.primaryGradient,
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          display: 'inline-block',
+          color: 'transparent',
+          fontFamily: '"Inter", sans-serif',
+          fontSize: '1.65rem', 
+          fontWeight: 700,      
+          letterSpacing: '-0.02em',
+          lineHeight: 1,
+          }),
+        },
+      ],
+    },
+  },
+  MuiListItemText: {
+        styleOverrides: {
+            root: {
+                margin: 0, 
+            }
+        }
+    }
+  },
+);
 
 export default theme;

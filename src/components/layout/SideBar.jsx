@@ -1,9 +1,19 @@
 import React from 'react';
-import { Drawer, List, ListItem, ListItemButton, ListItemText, Toolbar, Box, Typography } from '@mui/material';
+import { Drawer, List, ListItem, ListItemButton, ListItemText, Toolbar, Box, Typography, useTheme,ListItemIcon } from '@mui/material';
+import { Link, useLocation } from 'react-router-dom';
+import { sidebarItems } from '../../utils/sidebarConfig';
+import { SidebarIcons } from '../../assets/icons';
+import Logo from '../../assets/Logo';
+import { navItemsStyles, getNavTextStyle, getIconStyle } from '../../styles/sidebarStyle';
 
-const drawerWidth = 240;
+
+const drawerWidth = 340;
 
 const Sidebar = () => {
+    const location = useLocation();
+    const theme = useTheme();
+    const isSettingSelected = location.pathname === '/settings';
+
     return (
         <Drawer
             variant='permanent'
@@ -11,39 +21,78 @@ const Sidebar = () => {
             sx={{
                 width: drawerWidth,
                 flexShrink: 0,
-                [`& .MuiDrawer-paper`]: {width: drawerWidth, boxSizing: 'border-box',display:'flex',flexDirection: 'column'},
+                [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box', display: 'flex', flexDirection: 'column' },
             }} >
-                <Toolbar>
-                    <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-                        NextStep
-                    </Typography>
-                </Toolbar>
 
-                <Box component="nav" sx={{ flexGrow: 1, overflow: 'auto' , mt: 12}}>
-                
-                <Typography variant="caption" sx={{ pl: 2, color: 'text.secondary' }}>
+            <Toolbar sx={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                pt: 4, 
+                px: 3, 
+                mb: 5,
+                minHeight: '64px',
+            }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', flexShrink: 0 }}>
+                    <Logo style={{ width: 60, height: 60 }} />
+                </Box>
+
+                <Typography
+                    variant="logoGradient"
+                    component="h4"
+                    noWrap
+                    sx={{ml: '10px',userSelect: 'none'}}>
+                        NextStep
+                </Typography>
+            </Toolbar>
+
+            <Box component="nav" sx={{ flexGrow: 1, overflow: 'auto', mt: 4 }}>
+
+                <Typography variant="caption" sx={{ pl: 2, color: 'text.secondary',}}>
                     JOBS
                 </Typography>
 
                 <List>
-                    {['Job Applications', 'Resumes', 'Subscription', 'Archive'].map((text) => (
-                        <ListItem key={text} disablePadding>
-                            <ListItemButton>
-                                <ListItemText primary={text}/>
-                            </ListItemButton>
-                        </ListItem>
-                    ))}
+                    {sidebarItems.map((item) => {
+                        const isSelected = location.pathname === item.path;
+                        const IconComponent = item.icon;
+                        return (
+                            <ListItem key={item.path} disablePadding>
+                                <ListItemButton
+                                    component={Link}
+                                    to={item.path}
+                                    selected={isSelected}
+                                    sx={navItemsStyles(isSelected, theme)}
+                                >
+                                    <ListItemIcon sx={getIconStyle(isSelected, theme)}>
+                                        <IconComponent />
+                                    </ListItemIcon>
+                                    <ListItemText
+                                        primary={item.text}
+                                        sx={getNavTextStyle(isSelected, theme)}
+                                    />
+                                </ListItemButton>
+                            </ListItem>
+                        );
+                    })}
                 </List>
             </Box>
 
             <List>
                 <ListItem disablePadding>
-                    <ListItemButton>
-                        <ListItemText primary="Settings" />
+                    <ListItemButton
+                        component={Link}
+                        to="/settings"
+                        selected={isSettingSelected}
+                        sx={navItemsStyles(isSettingSelected, theme)}
+                    >
+                        <ListItemIcon sx={getIconStyle(isSettingSelected, theme)}>
+                            <SidebarIcons.Settings />
+                        </ListItemIcon>
+                        <ListItemText primary="Settings" sx={getNavTextStyle(isSettingSelected, theme)} />
                     </ListItemButton>
                 </ListItem>
             </List>
-            </Drawer>
+        </Drawer>
     );
 };
 
