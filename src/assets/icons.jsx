@@ -3,7 +3,6 @@ import { Icon } from '@iconify/react';
 import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
 import FileCopyOutlinedIcon from '@mui/icons-material/FileCopyOutlined';
 
-// פונקציה שעוזרת לנו לשמור על עקביות ודקות האייקון
 const IconWrapper = ({ icon, ...props }) => (
     <Icon 
         icon={icon} 
@@ -19,7 +18,7 @@ const SolarSettingsIcon = (props) => (
         width="24" 
         height="24" 
         {...props} 
-        style={{ fill: 'none' }} // זה יבטיח שהגלגל לא יהיה אפור אלא שקוף
+        style={{ fill: 'none' }} 
     />
 );
 
