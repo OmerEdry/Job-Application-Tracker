@@ -1,0 +1,119 @@
+// The companyLogo uses undocumented way to get the icons, should be switched.
+
+export const mockJobsData = [
+    {
+        id: 1,
+        companyName: 'Google',
+        companyLoho: 'https://www.google.com{google.com}',
+        jobTitle: 'Full Stack Developer',
+        location: 'Tel Aviv, Israel',
+        workType: 'on site',
+        status: 'wishlist',
+        tags: ['Rest API', 'React', 'Node.js', 'Full Stack Development', 'MongoDB'],
+        createdAt: '2026-02-23T09:30:00.000z',
+        updatedAt: '2026-02-23T09:30:00.000z',
+        notes: 'referred by G.Yafit',
+    },
+
+    {
+        id: 2,
+        companyName: 'Spotify',
+        companyLoho: 'https://www.google.com{spotify.com}',
+        jobTitle: 'Frontend Engineer Intern',
+        location: '',
+        workType: 'Remote',
+        status: 'wishlist',
+        tags: ['Remote', 'React', 'HTML5', 'Software Engineering', 'TypeScript'],
+        createdAt: '2026-02-21T09:30:00.000z',
+        updatedAt: '2026-02-22T10:34:00.000z',
+    },
+
+    {
+        id: 3,
+        companyName: 'Discord',
+        companyLoho: 'https://www.google.com{discord.com}',
+        jobTitle: 'Software Engineering Intern',
+        location: 'Tel Aviv, Israel',
+        workType: 'on site',
+        status: 'wishlist',
+        tags: ['UI/UX', 'Vue', 'PostgreSQL', 'Amazon Web Services', 'Java'],
+        createdAt: '2026-02-17T09:30:00.000z',
+        updatedAt: '2026-02-27T09:30:00.000z',
+    },
+
+    {
+        id: 4,
+        companyName: 'Youtube',
+        companyLoho: 'https://www.google.com{youtube.com}',
+        jobTitle: 'Full Stack Developer',
+        location: '',
+        workType: 'Remote',
+        status: 'wishlist',
+        tags: ['Rest API', 'React', 'Node.js', 'Full Stack Development', 'MongoDB'],
+        createdAt: '2026-02-11T09:30:00.000z',
+        updatedAt: '2026-02-17T09:30:00.000z',
+    },
+
+    {
+        id: 5,
+        companyName: 'Amazon',
+        companyLoho: 'https://www.google.com{amazon.com}',
+        jobTitle: 'Full Stack Developer',
+        location: 'Netanya, Israel',
+        workType: 'on site',
+        status: 'applied',
+        tags: ['Redis', 'React', 'HTML5', 'Software Engineering', 'TypeScript'],
+        createdAt: '2026-02-13T09:30:00.000z',
+        updatedAt: '2026-02-15T09:30:00.000z',
+        appliedDate: '2026-02-13T09:30:00.000z',
+        notes: 'referred by G.Yafit'
+    },
+
+    {
+        id: 6,
+        companyName: 'Tiktok',
+        companyLoho: 'https://www.google.com{tiktok.com}',
+        jobTitle: 'Software Engineer',
+        workType: 'Remote',
+        status: 'applied',
+        tags: ['Remote', 'Angular', 'Spring Boot', 'Full Stack Development', 'Rest API'],
+        createdAt: '2026-02-01T09:30:00.000z',
+        updatedAt: '2026-02-01T09:30:00.000z',
+        appliedDate: '2026-02-01T09:30:00.000z',
+    },
+
+    {
+        id: 7,
+        companyName: 'Apple',
+        companyLoho: 'https://www.google.com{apple.com}',
+        jobTitle: 'Full Stack Developer',
+        location: 'Rehovot, Israel',
+        workType: 'on site',
+        status: 'interviewing',
+        tags: ['Kubernetes', 'React', 'Azure', 'Microservices', 'Node.js'],
+        createdAt: '2026-02-23T09:30:00.000z',
+        updatedAt: '2026-02-23T09:30:00.000z',
+        appliedDate: '2026-02-23T09:30:00.000z',
+    },
+
+    {
+        id: 7,
+        companyName: 'Apple',
+        companyLoho: 'https://www.google.com{x.com}',
+        jobTitle: 'Full Stack Developer',
+        workType: 'Remote',
+        status: 'interviewing',
+        tags: ['Kubernetes', 'React', 'Azure', 'Microservices', 'Node.js'],
+        createdAt: '2026-01-01T09:30:00.000z',
+        updatedAt: '2026-02-01T09:30:00.000z',
+        appliedDate: '2026-01-01T09:30:00.000z',
+        answerDeadline: '2026-02-28T:23:59:59.000z',
+        offerAmount: 32000,
+    },
+
+
+
+
+
+
+]
