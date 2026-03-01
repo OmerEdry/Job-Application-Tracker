@@ -1,22 +1,16 @@
-import { useState } from 'react';
 import { Box, Grow, } from '@mui/material';
 import KanbanColumn from './KanbanColumn';
+import mockJobsData from '../../mockJobs/mockJobs';
 
 
-
-
-
+const Headers = [
+    { name: 'Wishlist' },
+    { name: "Applied" },
+    { name: 'Interviewing' },
+    { name: 'Offer' },
+];
 
 const KanbanBoard = () => {
-    /* Should make each headerself contained, should include: name,color */
-    const Headers = [
-        { name: 'Wishlist', color: '#7950F2' },
-        { name: "Applied", color: '#FA5252' },
-        { name: 'Interviewing', color: '#FAB005' },
-        { name: 'Offer', color: '#22E656' },
-    ];
-
-    const colWidth = 100 / Headers.length;
 
 
     return (
@@ -26,20 +20,21 @@ const KanbanBoard = () => {
                 flexDirection: 'row',
                 width: '100%',
                 height: '100%',
-                gap: '0.5%',
+                gap: '41px',
                 overflowX: 'auto',
                 borderRadius: 2,
-                bgcolor: 'white',
-
-
+                bgcolor: 'background.paper',
+                '&::-webkit-scrollbar': { display: 'none' },
+                msOverflowStyle: 'none',
+                scrollbarWidth: 'none',
 
             }}>
+
             {Headers.map(head => (
                 <KanbanColumn
                     key={head.name}
                     header={head}
-                    colWidthProp={`${colWidth}%`}
-
+                    jobCards={mockJobsData}
                 />
             ))}
         </Box>

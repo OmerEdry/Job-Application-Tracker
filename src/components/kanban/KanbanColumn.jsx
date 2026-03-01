@@ -1,37 +1,15 @@
-import { Box, Stack } from '@mui/material';
-import KanbanHeader from './KanbanHeader';
-/* add import jobCard here */
+import { Box } from '@mui/material';
+import KanbanHeader from './HeaderCard';
+import KanbanJobStack from './KanbanJobStack';
 
-const KanbanColumn = ({ header, jobCards, colWidthProp }) => {
+
+const KanbanColumn = ({ header, jobCards }) => {
     return (
-        <Box
-            sx={{
-                width: colWidthProp,
-                minWidth: 250,
-                height: '100%',
-                display: 'flex',
-                flexDirection: 'column',
-                mx: 1,
-                py: 1,
-                px: 0,
-                gap: 2,
-            }}
-        >
-
-            <KanbanHeader
-                name={header.name}
-                color={header.color}
-            />
-
-            <Stack
-                sx={{
-                    minHeight: 0,
-                    flexGrow: 1, overflow: 'auto',
-                    p: 0,
-                    bgcolor: 'transparent'
-                }}>
-
-            </Stack>
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, py: 2, px: 2 }}>
+            <KanbanHeader name={header.name} />
+            <KanbanJobStack>
+                {jobCards}
+            </KanbanJobStack>
         </Box>
     )
 }
