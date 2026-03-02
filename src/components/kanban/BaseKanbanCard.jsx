@@ -1,6 +1,6 @@
 import { Card } from '@mui/material';
 
-const BaseKanbanCard = ({ children, sxOverrides }) => {
+const BaseKanbanCard = ({ children, sx = [] }) => {
 
     return (
         <Card
@@ -15,7 +15,7 @@ const BaseKanbanCard = ({ children, sxOverrides }) => {
                     backgroundColor: 'background.paper',
                     flexShrink: 0,
                 },
-                ...(Array.isArray(sxOverrides) ? sxOverrides : [sxOverrides])
+                ...(Array.isArray(sx) ? sx : [sx])
             ]}
         >
             {children}
