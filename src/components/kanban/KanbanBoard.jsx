@@ -1,18 +1,12 @@
-import { Box, Grow, } from '@mui/material';
+import { Box, } from '@mui/material';
 import KanbanColumn from './KanbanColumn';
-import mockJobsData from '../../mockJobs/mockJobs';
+import { mockJobsData } from '../../mockJobs/mockJobs';
+import { Headers } from '../../utils/kanbanConfig';
 
 
-const Headers = [
-    { name: 'Wishlist' },
-    { name: "Applied" },
-    { name: 'Interviewing' },
-    { name: 'Offer' },
-];
+
 
 const KanbanBoard = () => {
-
-
     return (
         <Box
             sx={{
@@ -20,6 +14,7 @@ const KanbanBoard = () => {
                 flexDirection: 'row',
                 width: '100%',
                 height: '100%',
+                padding: 2,
                 gap: '41px',
                 overflowX: 'auto',
                 borderRadius: 2,
@@ -29,7 +24,6 @@ const KanbanBoard = () => {
                 scrollbarWidth: 'none',
 
             }}>
-
             {Headers.map(head => (
                 <KanbanColumn
                     key={head.name}
