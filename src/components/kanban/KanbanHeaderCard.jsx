@@ -28,7 +28,8 @@ const HeaderCard = ({ header }) => {
                 title={header.name}
                 action={
 
-                    <IconButton aria-label="add task" color="inherit">
+                    <IconButton aria-label="add task"
+                        sx={{ color: "inherit", '&:focus:not(:focus-visible)': { outline: 'none' } }}>
                         <AddIcon />
                     </IconButton>
                 }
@@ -39,7 +40,7 @@ const HeaderCard = ({ header }) => {
                         variant: "h5",
                     },
                     action: {
-                        sx: { alignSelf: 'center' }
+                        sx: { alignSelf: 'center', }
                     }
                 }
                 }
