@@ -1,4 +1,4 @@
-import { CardHeader, Box, IconButton } from '@mui/material';
+import { CardHeader, IconButton } from '@mui/material';
 import BaseKanbanCard from './BaseKanbanCard';
 import { AddIcon } from '../../assets/icons';
 
@@ -18,7 +18,7 @@ const HeaderCard = ({ header }) => {
                 sx={{
                     padding: '8px 16px',
                     height: '100%',
-                    '& .MuiCardHeaeder-content': {
+                    '& .MuiCardHeader-content': {
                         display: 'flex',
                         alignItems: 'center',
                         height: '100%',
@@ -44,8 +44,8 @@ const HeaderCard = ({ header }) => {
                     }
                 }
                 }
-            >
-            </CardHeader>
+            />
+
         </BaseKanbanCard >
     )
 }
