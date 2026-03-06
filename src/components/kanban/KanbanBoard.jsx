@@ -28,7 +28,7 @@ const KanbanBoard = () => {
                 <KanbanColumn
                     key={head.name}
                     header={head}
-                    jobCards={mockJobsData}
+                    jobCards={mockJobsData.filter(job => job.status == head.name.toLowerCase())}
                 />
             ))}
         </Box>

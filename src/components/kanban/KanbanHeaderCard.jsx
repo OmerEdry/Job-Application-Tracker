@@ -10,7 +10,6 @@ const HeaderCard = ({ header }) => {
             sx={{
                 color: themeColorPath,
                 borderColor: themeColorPath,
-                border: '1px solid',
                 bgcolor: 'transparent',
                 height: 54
             }}>
