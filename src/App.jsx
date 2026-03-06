@@ -14,7 +14,7 @@ function App() {
       <CssBaseline />
       <IconStyle />
       <MainLayout>
-         {routing}
+        {routing}
       </MainLayout>
     </ThemeProvider>
   );

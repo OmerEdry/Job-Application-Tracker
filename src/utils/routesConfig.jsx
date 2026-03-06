@@ -1,11 +1,12 @@
 import { Navigate } from 'react-router-dom';
+import KanbanBoard from '../components/kanban/KanbanBoard'
 
 export const routes = [
   // Defual Page
   { path: '/', element: <Navigate to="/jobs" replace /> },
-  
+
   //Pages routes
-  { path: '/jobs', element: <div>Job Applications Page</div> },
+  { path: '/jobs', element: <KanbanBoard /> },
   { path: '/resumes', element: <div>Resumes Page</div> },
   { path: '/subscription', element: <div>Subscription Page</div> },
   { path: '/archive', element: <div>Archive Page</div> },
