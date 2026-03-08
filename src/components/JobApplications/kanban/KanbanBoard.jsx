@@ -11,14 +11,10 @@ const KanbanBoard = ({ jobsData }) => {
             sx={{
                 display: 'flex',
                 flexDirection: 'row',
-
-                height: '100%',
                 gap: '41px',
-                overflow: 'auto',
+                height: '100%',
                 borderRadius: 2,
-                bgcolor: 'background.paper',
-
-
+                overflow: 'auto',
             }}>
             {Headers.map(head => (
                 <KanbanColumn
