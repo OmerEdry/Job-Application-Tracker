@@ -2,6 +2,9 @@
   "name": "job-applications-management-tool",
   "private": true,
   "version": "0.0.0",
+  "imports": {
+    "#@/*": "./src/"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",
