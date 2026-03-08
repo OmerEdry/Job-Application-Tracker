@@ -97,7 +97,7 @@ export const mockJobsData = [
     },
 
     {
-        id: 7,
+        id: 8,
         companyName: 'Apple',
         companyLoho: 'https://www.google.com{x.com}',
         jobTitle: 'Full Stack Developer',
