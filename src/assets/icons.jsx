@@ -71,6 +71,15 @@ export const AddIcon = (props) => (
 );
 
 
+const BlocksIcon = (props) => (
+    <IconWrapper icon="tabler:blocks" {...props} />
+);
+
+const ListIcon = (props) => (
+    <IconWrapper icon="mdi:format-list-bulleted" {...props} />
+);
+
+
 
 export const KanbanHeadersIcons = {
     Wishlist: <WishlistIcon />,
@@ -87,4 +96,11 @@ export const SidebarIcons = {
     Settings: SolarSettingsIcon,
     Spark: PhosphorSparkIcon,
     Archive: ArchiveIcon
+};
+
+
+
+export const ToggleViewIcons = {
+    ListView: ListIcon,
+    KanbanView: BlocksIcon,
 };
