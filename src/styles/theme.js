@@ -6,6 +6,7 @@ const theme = createTheme({
       main: '#1B85E9',
       light: '#88C7FC',
       dark: '#0E5AA1',
+      gradient: 'linear-gradient( #1B85E9 , #88C7FC)',
     },
     action: {
       selected: '#F2F4F7',
@@ -14,6 +15,9 @@ const theme = createTheme({
     background: {
       default: '#F9FAFC',
       paper: '#ffffff',
+    },
+    background2: {
+      default: '#F5F5F5',
     },
     text: {
       primary: '#5f6368',

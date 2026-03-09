@@ -9,29 +9,29 @@ const MainLayout = ({ children }) => {
             <CssBaseline />
 
             {/*Left side-Side bar */}
-            <Sidebar/>
+            <Sidebar />
 
             {/*Right side-Header+Main*/}
             <Box sx={{
-                flexGrow:1,
+                flexGrow: 1,
                 height: '100vh',
                 display: 'flex',
                 flexDirection: 'column',
                 overflow: 'hidden'
-                }}>
-                
+            }}>
+
                 {/*Right side-Header*/}
-                <Header/>
+                <Header />
 
                 {/*Right side Bottom- Main */}
                 <Box component="main" sx={{
-                    flexGrow:1,
+                    flexGrow: 1,
                     p: 4,
                     bgcolor: 'background.default',
-                    overflowY:'auto'
+                    overflowY: 'auto'
                 }}>
-                  {children}  
-                
+                    {children}
+
                 </Box>
             </Box>
 

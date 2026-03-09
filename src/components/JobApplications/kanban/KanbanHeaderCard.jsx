@@ -1,6 +1,6 @@
 import { CardHeader, IconButton } from '@mui/material';
 import BaseKanbanCard from './BaseKanbanCard';
-import { AddIcon } from '../../assets/icons';
+import { AddIcon } from '#@/assets/icons';
 
 
 const HeaderCard = ({ header }) => {
