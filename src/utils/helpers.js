@@ -5,7 +5,6 @@ export const getRelativeTime = (dateString) => {
     const now = new Date();
     const diffInSeconds = Math.floor((now - created) / 1000);
     
-    // הגדרת מדרגות הזמן בשניות
     const minutes = Math.floor(diffInSeconds / 60);
     const hours = Math.floor(minutes / 60);
     const days = Math.floor(hours / 24);

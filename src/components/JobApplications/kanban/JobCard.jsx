@@ -1,6 +1,8 @@
 import { Box, Typography } from '@mui/material';
 import BaseKanbanCard from "./BaseKanbanCard";
 import SkillTag from "./SkillTag";
+import { getRelativeTime } from '../../../utils/helpers';
+import { TimeIcon } from "../../../assets/icons";
 
 const JobCard = ({ job }) => {
     return (
@@ -32,16 +34,15 @@ const JobCard = ({ job }) => {
                     }}
                     onError={(e) => {
                         e.target.onerror = null;
-                        {/*Google's favicons use with comapny name as backup*/}
                         e.target.src = `https://www.google.com/s2/favicons?domain=${job.companyName.toLowerCase().replace(/\s+/g, '')}.com&sz=128`;
                     }}
                 />
                 {/*Job info*/}
-                <Box sx={{ display: 'flex', flexDirection: 'column', minWidth: 0,gap: 0.5}}>
+                <Box sx={{ display: 'flex', flexDirection: 'column', minWidth: 0, gap: 0.5 }}>
                     <Typography variant="jobCardCompany">
                         {job.companyName}
                     </Typography>
-                
+
                     <Typography variant="jobCardInfo" noWrap>
                         {job.jobTitle}{job.location ? `, ${job.location}` : ''}
                     </Typography>
@@ -53,6 +54,28 @@ const JobCard = ({ job }) => {
                 {job.tags?.map((tag, index) => (
                     <SkillTag key={index} label={tag} />
                 ))}
+            </Box>
+
+            {/* Footer: Time stamps */}
+            <Box sx={{
+                mt: 'auto',
+                pt: 2,
+                display: 'flex',
+                alignItems: 'center',
+                gap: 0.5
+            }}>
+                
+                <TimeIcon sx={{ color: 'text.secondary', fontSize: '18px' }} />
+
+                <Typography
+                    variant="jobCardInfo" 
+                    sx={{
+                        color: 'text.secondary',
+                        lineHeight: 1
+                    }}
+                >
+                    {getRelativeTime(job.createdAt)}
+                </Typography>
             </Box>
         </BaseKanbanCard>
     )
