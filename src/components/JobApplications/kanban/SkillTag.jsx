@@ -8,8 +8,8 @@ const SkillTag = ({ label }) => {
             sx={{ 
                 backgroundColor:'background.paper',
                 borderRadius: '8px',
-                fontWeight: 500,
-                fontSize: '12px',
+                fontWeight: 400,
+                fontSize: '14px',
                 color: 'common.black',
             }} 
         />

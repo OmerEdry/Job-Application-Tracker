@@ -2,7 +2,7 @@ import { Box } from '@mui/material';
 import KanbanHeaderCard from './KanbanHeaderCard';
 import KanbanJobStack from './KanbanJobStack';
 import EmptyJobCard from './EmptyJobCard';
-import OfferEmptyState from './OfferEmptyState'; // הקומפוננטה החדשה
+import OfferEmptyState from './OfferEmptyState';
 
 const KanbanColumn = ({ header, jobCards }) => {
     const isOfferColumn = header.name.toLowerCase() === 'offer';
