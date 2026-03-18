@@ -16,7 +16,7 @@ const JobCard = ({ job }) => {
         >
             {/* Header: Company info */}
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                {/* Logo*/}
+                {/*Logo*/}
                 <Box
                     component="img"
                     src={job.companyLogo}
@@ -25,17 +25,23 @@ const JobCard = ({ job }) => {
                         width: 40,
                         height: 40,
                         borderRadius: '8px',
-                        bgcolor: 'white',
+                        bgcolor: 'transparent',
                         objectFit: 'contain',
-                        flexShrink: 0
+                        flexShrink: 0,
+                        p: 0.5
+                    }}
+                    onError={(e) => {
+                        e.target.onerror = null;
+                        {/*Google's favicons use with comapny name as backup*/}
+                        e.target.src = `https://www.google.com/s2/favicons?domain=${job.companyName.toLowerCase().replace(/\s+/g, '')}.com&sz=128`;
                     }}
                 />
-
-                <Box sx={{ display: 'flex', flexDirection: 'column', minWidth: 0 }}>
+                {/*Job info*/}
+                <Box sx={{ display: 'flex', flexDirection: 'column', minWidth: 0,gap: 0.5}}>
                     <Typography variant="jobCardCompany">
                         {job.companyName}
                     </Typography>
-
+                
                     <Typography variant="jobCardInfo" noWrap>
                         {job.jobTitle}{job.location ? `, ${job.location}` : ''}
                     </Typography>
