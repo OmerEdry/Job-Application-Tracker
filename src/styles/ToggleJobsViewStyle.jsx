@@ -26,7 +26,7 @@ export const ToggleGroupStyles = {
         "& .MuiTypography-root": {
             fontFamily: '"Space Grotesk", sans-serif',
             fontWeight: 400,
-            fontSize: '16px',
+            fontSize: '0.875rem',
             letterSpacing: 0,
         },
 
@@ -36,7 +36,7 @@ export const ToggleGroupStyles = {
 
             "& .MuiTypography-root": {
                 fontWeight: 700,
-                backgroundImage: (theme) => theme.palette.primary.gradient,
+                backgroundImage: (theme) => `linear-gradient(${theme.palette.primary[100]}, ${theme.palette.primary[400]})`,
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
 

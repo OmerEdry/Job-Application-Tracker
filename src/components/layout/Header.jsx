@@ -7,10 +7,10 @@ const Header = () => {
             position="static"
             color="transparent"
             elevation={0}
-            sx={{ borderBottom: '1px solid', borderColor: 'divider'}}>
-            
-            <Toolbar sx={{px: 4}}>
-                <Typography variant="h6" component="div" sx={{ color: 'text.primary', fontWeight: 'bold' }}>
+            sx={{ borderBottom: '1px solid', borderColor: 'divider' }}>
+
+            <Toolbar sx={{ px: 4 }}>
+                <Typography variant="h1" component="div" sx={{ color: '#1B0338', fontWeight: 'bold' }}>
                     Job Applications
                 </Typography>
             </Toolbar>

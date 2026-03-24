@@ -1,10 +1,10 @@
 import React from 'react';
-import { Drawer, List, ListItem, ListItemButton, ListItemText, Toolbar, Box, Typography, useTheme,ListItemIcon } from '@mui/material';
+import { Drawer, List, ListItem, ListItemButton, ListItemText, Toolbar, Box, Typography, useTheme, ListItemIcon } from '@mui/material';
 import { Link, useLocation } from 'react-router-dom';
 import { sidebarItems } from '../../utils/sidebarConfig';
 import { SidebarIcons } from '../../assets/icons';
 import Logo from '../../assets/Logo';
-import { navItemsStyles, getNavTextStyle, getIconStyle } from '../../styles/sidebarStyle';
+import { navItemsStyles, getNavTextStyle, getIconStyle } from '../../styles/SidebarStyle';
 
 
 const drawerWidth = 340;
@@ -24,11 +24,11 @@ const Sidebar = () => {
                 [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box', display: 'flex', flexDirection: 'column' },
             }} >
 
-            <Toolbar sx={{ 
-                display: 'flex', 
-                alignItems: 'center', 
-                pt: 4, 
-                px: 3, 
+            <Toolbar sx={{
+                display: 'flex',
+                alignItems: 'center',
+                pt: 4,
+                px: 3,
                 mb: 5,
                 minHeight: '64px',
             }}>
@@ -38,16 +38,23 @@ const Sidebar = () => {
 
                 <Typography
                     variant="logoGradient"
-                    component="h4"
                     noWrap
-                    sx={{ml: '10px',userSelect: 'none'}}>
-                        NextStep
+                    sx={{
+                        fontFamily: '"Space Grotesk", "sans-serif"',
+                        fontWeight: 700,
+                        fontSize: '25.36px',
+                        letterSpacing: 0,
+                        lineHeight: 1,
+                        ml: '10px',
+                        userSelect: 'none'
+                    }}>
+                    NextStep
                 </Typography>
             </Toolbar>
 
             <Box component="nav" sx={{ flexGrow: 1, overflow: 'auto', mt: 4 }}>
 
-                <Typography variant="caption" sx={{ pl: 2, color: 'text.secondary',}}>
+                <Typography variant="caption" sx={{ pl: 2, color: 'text.secondary', }}>
                     JOBS
                 </Typography>
 
