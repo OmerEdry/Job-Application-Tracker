@@ -77,6 +77,22 @@ const theme = createTheme({
       lineHeight: 1.2,
       letterSpacing: '0%',
     },
+    jobCardCompany: {
+      fontFamily: '"Space Grotesk", sans-serif',
+      fontWeight: 700,
+      fontSize: '14px',
+      lineHeight: 1,
+      color: '#191919',
+      display: 'block',
+    },
+    jobCardInfo: {
+      fontFamily: '"Inter", sans-serif',
+      fontWeight: 400,
+      fontSize: '14px',
+      lineHeight: 1,
+      color: 'text.primary',
+      display: 'block',
+    },
   },
 
   gradientBlue: {
@@ -125,7 +141,7 @@ const theme = createTheme({
         margin: 0,
       }
     }
-  }
+  },
 },
 );
 

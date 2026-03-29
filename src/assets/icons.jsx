@@ -3,6 +3,7 @@ import { Icon } from '@iconify/react';
 import { SvgIcon } from '@mui/material';
 import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
 import FileCopyOutlinedIcon from '@mui/icons-material/FileCopyOutlined';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
 const IconWrapper = ({ icon, ...props }) => (
     <Icon
@@ -104,3 +105,13 @@ export const ToggleViewIcons = {
     ListView: ListIcon,
     KanbanView: BlocksIcon,
 };
+
+export const TimeIcon = (props) => (
+    <AccessTimeIcon 
+        {...props} 
+        sx={{ 
+            fontSize: '18px',
+            ...props.sx 
+        }} 
+    />
+);
