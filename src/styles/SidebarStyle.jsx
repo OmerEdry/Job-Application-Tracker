@@ -14,7 +14,7 @@ export const navItemsStyles = (isSelected, theme) => ({
         top: '30%',
         height: '40%',
         width: '3px',
-        background: isSelected ? theme.gradientBlue.primaryGradient : 'none',
+        background: isSelected ? theme.gradients.primary : 'none',
         borderRadius: '0 4px 4px 0',
         zIndex: 1,
     },
