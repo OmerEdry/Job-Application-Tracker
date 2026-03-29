@@ -3,14 +3,35 @@ import { createTheme } from '@mui/material/styles';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#1B85E9',
-      light: '#88C7FC',
-      dark: '#0E5AA1',
-      gradient: 'linear-gradient( #1B85E9 , #88C7FC)',
+      //Based on default MUI colors (only main is on figma)
+      main: '#1976D2',
+      light: '#42A5F5',
+      dark: '#1565C0',
+
+      //Light mode colors
+      '50': '#88C7FC',
+      '100': '#339AF0',
+      '200': '#1B8FE9',
+      '300': '#1976D2',
+      '400': '#1864AB',
+
+      //Dark mode colors (also used in the logo)
+      '500': '#7AA4C9',
+      '600': '#5C86AE',
+      '700': '#4C739A',
+      '800': '#3B5F85',
+      '900': '#2A4A6F',
     },
+
+    //Status colors
+    wishlist: { main: '#7950F2' },
+    applied: { main: '#FA5252' },
+    interviewing: { main: '#FAB005' },
+    offer: { main: '#22E656' },
+
     action: {
       selected: '#F2F4F7',
-      selectedOpacity: 0.8, //Had to change it, if it is set to 1, you get an out-of range error because you add it to the default opacity.
+      selectedOpacity: 0.8,
     },
     background: {
       default: '#F9FAFC',
@@ -20,42 +41,82 @@ const theme = createTheme({
       default: '#F5F5F5',
     },
     text: {
-      primary: '#5f6368',
+      primary: '#191919',
       secondary: '#98A2B3',
     },
+
     divider: '#e0e0e0',
-
-    wishlist: {
-      primary: '#7950F2',
-      gradient: 'linear-gradient( #EBE4FF , #F4F2FA)',
-    },
-
-    applied: {
-      primary: '#FA5252',
-      gradient: 'linear-gradient(#FFD3D3, #FAF6F2)',
-    },
-
-    interviewing: {
-      primary: '#FAB005',
-      gradient: 'linear-gradient(#FFEACC,#FAFAF2)',
-    },
-
-    offer: {
-      primary: '#22E656',
-      gradient: 'linear-gradient(#D8FFD6, #F2FAF3)',
-    },
 
 
   },
   typography: {
     fontFamily: '"Inter", "Roboto", "Helvetica", "Arial", sans-serif',
     //non gradient text tilte usage
-    h4: {
+
+    h1: {
+      fontFamily: '"Space Grotesk", "sans-serif"',
       fontWeight: 700,
-      fontSize: '1.65rem',
-      letterSpacing: '-0.02em',
+      fontSize: '1.5rem',
+      letterSpacing: 0,
       lineHeight: 1,
     },
+
+    h2: {
+      fontFamily: '"Space Grotesk", "sans-serif"',
+      fontWeight: 700,
+      fontSize: '1.25rem',
+      letterSpacing: 0,
+      lineHeight: 1,
+    },
+
+    h3: {
+      fontFamily: '"Space Grotesk", "sans-serif"',
+      fontWeight: 700,
+      fontSize: '1.125rem',
+      letterSpacing: 0,
+      lineHeight: 1,
+    },
+
+
+    h4: {
+      fontFamily: '"Space Grotesk", "sans-serif"',
+      fontWeight: 700,
+      fontSize: '1rem',
+      letterSpacing: 0,
+      lineHeight: 1,
+    },
+    h5: {
+      fontFamily: '"Space Grotesk", "sans-serif"',
+      fontWeight: 500,
+      fontSize: '0.875rem',
+      letterSpacing: 0,
+      lineHeight: 1,
+    },
+
+    subtitle1: {
+      fontFamily: '"Inter", "sans-serif"',
+      fontWeight: 400,
+      fontSize: '1.25rem',
+      letterSpacing: 0,
+      lineHeight: 1,
+    },
+
+    subtitle2: {
+      fontFamily: '"Inter", "sans-serif"',
+      fontWeight: 400,
+      fontSize: '1rem',
+      letterSpacing: 0,
+      lineHeight: 1,
+    },
+
+    subtitle3: {
+      fontFamily: '"Inter", "sans-serif"',
+      fontWeight: 400,
+      fontSize: '0.875rem',
+      letterSpacing: 0,
+      lineHeight: 1,
+    },
+
     //Sidebar Menu text
     body1: {
       fontSize: '1.25rem',
@@ -63,19 +124,15 @@ const theme = createTheme({
       lineHeight: 1,
     },
     caption: {
-      fontFamily: '"Space Grotesk", sans-serif',
-      fontSize: '16px',
-      lineHeight: '100%',
-      letterSpacing: '0%',
-      fontWeight: 400,
       display: 'block',
-    },
-    h5: {
       fontFamily: '"Space Grotesk", sans-serif',
-      fontWeight: 500,
-      fontSize: '28.7px',
-      lineHeight: 1.2,
-      letterSpacing: '0%',
+      fontWeight: 400,
+      fontSize: '1rem',
+      letterSpacing: 0,
+      lineHeight: 1,
+
+
+
     },
     jobCardCompany: {
       fontFamily: '"Space Grotesk", sans-serif',
@@ -95,16 +152,21 @@ const theme = createTheme({
     },
   },
 
-  gradientBlue: {
-    primaryGradient: 'linear-gradient(to bottom, #1B85E9 10%, #88C7FC 80%)'
+  gradients: {
+    primary: 'linear-gradient(to bottom, #1B85E9 10%, #88C7FC 80%)',
+    wishlist: 'linear-gradient( #EBE4FF , #F4F2FA)',
+    applied: 'linear-gradient( #FFD3D3, #FAF6F2)',
+    interviewing: 'linear-gradient( #FFEACC, #FAFAF2)',
+    offer: 'linear-gradient( #D8FFD6, #F2FAF3)',
   },
+
   components: {
     MuiTypography: {
       variants: [
         {
           props: { variant: 'gradientBlueText' },
           style: ({ theme }) => ({
-            background: theme.gradientBlue.primaryGradient,
+            background: theme.gradients.primary,
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
             display: 'inline-block',
@@ -120,7 +182,7 @@ const theme = createTheme({
         {
           props: { variant: 'logoGradient' },
           style: ({ theme }) => ({
-            background: theme.gradientBlue.primaryGradient,
+            background: theme.gradients.primary,
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
             display: 'inline-block',
@@ -134,14 +196,16 @@ const theme = createTheme({
         },
       ],
     },
-  },
-  MuiListItemText: {
-    styleOverrides: {
-      root: {
-        margin: 0,
+    //Moved it inside 'components'. MUI will ignore this part otherwise.
+    MuiListItemText: {
+      styleOverrides: {
+        root: {
+          margin: 0,
+        }
       }
     }
   },
+
 },
 );
 

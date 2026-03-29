@@ -8,7 +8,7 @@ const JobCard = ({ job }) => {
     return (
         <BaseKanbanCard
             sx={(theme) => ({
-                background: theme.palette[job.status].gradient,
+                background: theme.gradients[job.status],
                 border: 0,
                 display: 'flex',
                 flexDirection: 'column',

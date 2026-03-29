@@ -14,7 +14,7 @@ export const navItemsStyles = (isSelected, theme) => ({
         top: '30%',
         height: '40%',
         width: '3px',
-        background: isSelected ? theme.gradientBlue.primaryGradient : 'none',
+        background: isSelected ? theme.gradients.primary : 'none',
         borderRadius: '0 4px 4px 0',
         zIndex: 1,
     },
@@ -45,7 +45,7 @@ export const getIconStyle = (isSelected, theme) => ({
     '& .MuiSvgIcon-root, & svg': {
         fontSize: '26px',
         transition: 'all 0.3s ease',
-        color: isSelected ? 'inherit' : theme.palette.text.secondary,
+        color: isSelected ? 'inherit' : theme.palette.text.primary,
     },
     /** Points to the SVG gradient defined globally in 'src/styles/IconStyle.jsx'
         CSS 'color' property doesn't support gradients on SVGs */

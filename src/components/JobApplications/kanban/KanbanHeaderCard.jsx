@@ -4,7 +4,9 @@ import { AddIcon } from '#@/assets/icons';
 
 
 const HeaderCard = ({ header }) => {
-    const themeColorPath = `${header.name.toLowerCase()}.primary`
+    const themeColorPath = `${header.name.toLowerCase()}.main`;
+    console.log(themeColorPath);
+
     return (
         <BaseKanbanCard
             sx={{
@@ -36,7 +38,13 @@ const HeaderCard = ({ header }) => {
 
                 slotProps={{
                     title: {
-                        variant: "h5",
+                        sx: {
+                            fontFamily: '"Space Grotesk", "sans-serif"',
+                            fontWeight: 500,
+                            fontSize: '28.7px',
+                            letterSpacing: 0,
+                            lineHeight: 1,
+                        }
                     },
                     action: {
                         sx: { alignSelf: 'center', }
