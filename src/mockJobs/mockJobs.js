@@ -4,7 +4,7 @@ export const mockJobsData = [
     {
         id: 1,
         companyName: 'Google',
-        companyLoho: 'https://www.google.com{google.com}',
+        companyLogo: 'https://www.google.com{google.com}',
         jobTitle: 'Full Stack Developer',
         location: 'Tel Aviv, Israel',
         workType: 'on site',
@@ -18,7 +18,7 @@ export const mockJobsData = [
     {
         id: 2,
         companyName: 'Spotify',
-        companyLoho: 'https://www.google.com{spotify.com}',
+        companyLogo: 'https://www.google.com{spotify.com}',
         jobTitle: 'Frontend Engineer Intern',
         location: '',
         workType: 'Remote',
@@ -31,7 +31,7 @@ export const mockJobsData = [
     {
         id: 3,
         companyName: 'Discord',
-        companyLoho: 'https://www.google.com{discord.com}',
+        companyLogo: 'https://www.google.com{discord.com}',
         jobTitle: 'Software Engineering Intern',
         location: 'Tel Aviv, Israel',
         workType: 'on site',
@@ -44,7 +44,7 @@ export const mockJobsData = [
     {
         id: 4,
         companyName: 'Youtube',
-        companyLoho: 'https://www.google.com{youtube.com}',
+        companyLogo: 'https://www.google.com{youtube.com}',
         jobTitle: 'Full Stack Developer',
         location: '',
         workType: 'Remote',
@@ -57,7 +57,7 @@ export const mockJobsData = [
     {
         id: 5,
         companyName: 'Amazon',
-        companyLoho: 'https://www.google.com{amazon.com}',
+        companyLogo: 'https://www.google.com{amazon.com}',
         jobTitle: 'Full Stack Developer',
         location: 'Netanya, Israel',
         workType: 'on site',
@@ -72,7 +72,7 @@ export const mockJobsData = [
     {
         id: 6,
         companyName: 'Tiktok',
-        companyLoho: 'https://www.google.com{tiktok.com}',
+        companyLogo: 'https://www.google.com{tiktok.com}',
         jobTitle: 'Software Engineer',
         workType: 'Remote',
         status: 'applied',
@@ -85,7 +85,7 @@ export const mockJobsData = [
     {
         id: 7,
         companyName: 'Apple',
-        companyLoho: 'https://www.google.com{apple.com}',
+        companyLogo: 'https://www.google.com{apple.com}',
         jobTitle: 'Full Stack Developer',
         location: 'Rehovot, Israel',
         workType: 'on site',
@@ -99,7 +99,7 @@ export const mockJobsData = [
     {
         id: 8,
         companyName: 'Apple',
-        companyLoho: 'https://www.google.com{x.com}',
+        companyLogo: 'https://www.google.com{x.com}',
         jobTitle: 'Full Stack Developer',
         workType: 'Remote',
         status: 'interviewing',
