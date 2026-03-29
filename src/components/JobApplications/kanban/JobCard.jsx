@@ -1,8 +1,8 @@
 import { Box, Typography } from '@mui/material';
 import BaseKanbanCard from "./BaseKanbanCard";
 import SkillTag from "./SkillTag";
-import { getRelativeTime } from '../../../utils/helpers';
-import { TimeIcon } from "../../../assets/icons";
+import { getRelativeTime, isFollowUpRecommended } from '../../../utils/helpers';
+import { TimeIcon, FollowUpIcon } from "../../../assets/icons";
 
 const JobCard = ({ job }) => {
     return (
@@ -64,11 +64,11 @@ const JobCard = ({ job }) => {
                 alignItems: 'center',
                 gap: 0.5
             }}>
-                
+
                 <TimeIcon sx={{ color: 'text.secondary', fontSize: '18px' }} />
 
                 <Typography
-                    variant="jobCardInfo" 
+                    variant="jobCardInfo"
                     sx={{
                         color: 'text.secondary',
                         lineHeight: 1
@@ -76,6 +76,9 @@ const JobCard = ({ job }) => {
                 >
                     {getRelativeTime(job.createdAt)}
                 </Typography>
+        
+                {isFollowUpRecommended(job.createdAt) && (<FollowUpIcon sx={{ color: 'error.main', ml: 1 }} />)}
+            
             </Box>
         </BaseKanbanCard>
     )
