@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, Tooltip } from '@mui/material';
 import BaseKanbanCard from "./BaseKanbanCard";
 import SkillTag from "./SkillTag";
 import { getRelativeTime, isFollowUpRecommended } from '../../../utils/helpers';
@@ -76,9 +76,28 @@ const JobCard = ({ job }) => {
                 >
                     {getRelativeTime(job.createdAt)}
                 </Typography>
-        
-                {isFollowUpRecommended(job.createdAt) && (<FollowUpIcon sx={{ color: 'error.main', ml: 1 }} />)}
-            
+
+                {isFollowUpRecommended(job.createdAt) && (
+                    <Tooltip
+                        title="Follow Up Recommended"
+                        arrow
+                        placement="bottom"
+                        slotProps={{
+                            tooltip: {
+                                sx: {
+                                    bgcolor: 'alert.main', 
+                                    padding: '6px 18px',     
+                                    fontWeight: 700,
+                                    fontSize: '13.71px',  
+                                    '& .MuiTooltip-arrow': { color: 'alert.main',},
+                                },
+                            },
+                        }}>
+                        <Box sx={{ display: 'flex', ml: 1,}}>
+                            <FollowUpIcon sx={{ color: 'alert.main' }} />
+                        </Box>
+                    </Tooltip>
+                )}
             </Box>
         </BaseKanbanCard>
     )
