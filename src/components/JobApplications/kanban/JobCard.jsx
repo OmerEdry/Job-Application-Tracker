@@ -51,8 +51,8 @@ const JobCard = ({ job }) => {
 
             {/* Body: Skill Tags */}
             <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
-                {job.tags?.map((tag, index) => (
-                    <SkillTag key={index} label={tag} />
+                {job.tags?.map((tag) => (
+                    <SkillTag key={tag} label={tag} />
                 ))}
             </Box>
 
