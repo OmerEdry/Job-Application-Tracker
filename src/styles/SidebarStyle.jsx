@@ -3,11 +3,12 @@ export const navItemsStyles = (isSelected, theme, isCollapsed) => ({
     width: isCollapsed ? '56px' : 'auto',
     borderRadius: '12px',
     mb: 0.5,
-    position: 'relative', // חובה עבור הקו הכחול
+    position: 'relative',
     display: 'flex',
     justifyContent: isCollapsed ? 'center' : 'flex-start',
     transition: 'all 0.3s ease',
 
+     //Floating side blue line
     '&::before': {
         content: isSelected ? '""' : 'none',
         position: 'absolute',
@@ -19,10 +20,10 @@ export const navItemsStyles = (isSelected, theme, isCollapsed) => ({
         borderRadius: '0 4px 4px 0',
     },
 
-    // איחוד מצבי בחירה וריחוף
     '&.Mui-selected, &:hover': {
         backgroundColor: isSelected ? 'action.selected' : 'action.hover',
     },
+
 });
 
 export const getNavTextStyle = (isSelected, theme, isCollapsed) => ({

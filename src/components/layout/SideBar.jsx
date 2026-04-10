@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Drawer, List, ListItem, ListItemButton, ListItemText, Toolbar, Box, Typography, useTheme, ListItemIcon } from '@mui/material';
+import { Drawer, List, ListItem, ListItemButton, ListItemText, Toolbar, Box, Typography, useTheme, ListItemIcon, IconButton } from '@mui/material';
 import { Link, useLocation } from 'react-router-dom';
 import { sidebarItems, SIDEBAR_WIDTH, SIDEBAR_COLLAPSED_WIDTH } from '../../utils/sidebarConfig';
 import { SidebarIcons } from '../../assets/icons';
@@ -8,7 +8,7 @@ import { navItemsStyles, getNavTextStyle, getIconStyle } from '../../styles/Side
 
 
 const Sidebar = () => {
-    const [isCollapsed, setIsCollapsed] = useState(true);
+    const [isCollapsed, setIsCollapsed] = useState(false); //Defualt SideBar Open (not collapsed)
     const currentWidth = isCollapsed ? SIDEBAR_COLLAPSED_WIDTH : SIDEBAR_WIDTH;
     const location = useLocation();
     const theme = useTheme();
@@ -23,7 +23,7 @@ const Sidebar = () => {
                 flexShrink: 0,
                 [`& .MuiDrawer-paper`]: { width: currentWidth, boxSizing: 'border-box', display: 'flex', flexDirection: 'column' },
             }} >
-
+            {/*Toolbar*/}
             <Toolbar sx={{
                 display: 'flex',
                 alignItems: 'center',
@@ -52,6 +52,7 @@ const Sidebar = () => {
                 </Typography>
             </Toolbar>
 
+            {/*Main Navigation*/}
             <Box component="nav" sx={{ flexGrow: 1, overflow: 'auto', mt: 4 }}>
 
                 <Typography variant="caption" sx={{ pl: 2, color: 'text.secondary', }}>
@@ -70,7 +71,7 @@ const Sidebar = () => {
                                     selected={isSelected}
                                     sx={navItemsStyles(isSelected, theme, isCollapsed)}
                                 >
-                                    <ListItemIcon sx={getIconStyle(isSelected, theme,isCollapsed)}>
+                                    <ListItemIcon sx={getIconStyle(isSelected, theme, isCollapsed)}>
                                         <IconComponent />
                                     </ListItemIcon>
                                     <ListItemText
@@ -83,9 +84,21 @@ const Sidebar = () => {
                     })}
                 </List>
             </Box>
-
-            <List>
-                <ListItem disablePadding>
+            {/* Footer: Settings & SideBar Toggle Button */}
+            <Box sx={{
+                mt: 'auto',
+                display: 'flex',
+                flexDirection: isCollapsed ? 'column' : 'row',
+                alignItems: 'center',
+                justifyContent: isCollapsed ? 'center' : 'space-between',
+                px: isCollapsed ? 0 : 2,
+                py: 2,
+                borderTop: '1px solid',
+                borderColor: 'divider',
+                transition: 'all 0.3s ease',
+            }}>
+                {/* Settings Item */}
+                <ListItem disablePadding sx={{ width: 'auto' }}>
                     <ListItemButton
                         component={Link}
                         to="/settings"
@@ -95,10 +108,35 @@ const Sidebar = () => {
                         <ListItemIcon sx={getIconStyle(isSettingSelected, theme, isCollapsed)}>
                             <SidebarIcons.Settings />
                         </ListItemIcon>
-                        <ListItemText primary="Settings" sx={getNavTextStyle(isSettingSelected, theme, isCollapsed)} />
+                        {!isCollapsed && (
+                            <ListItemText
+                                primary="Settings"
+                                sx={getNavTextStyle(isSettingSelected, theme, isCollapsed)}
+                            />
+                        )}
                     </ListItemButton>
                 </ListItem>
-            </List>
+
+                {/* Toggle Button (Arrow) */}
+                <IconButton
+                    onClick={() => setIsCollapsed(!isCollapsed)}
+                    sx={{
+                        color: 'text.primary',
+                        mt: isCollapsed ? 1 : 0,
+                        p: 1,
+                        '& svg': {
+                            fontSize: isCollapsed ? '30' :'25'
+                        },
+                        '&:focus, &:active, &.Mui-focusVisible': {
+                            outline: 'none',
+                            boxShadow: 'none',
+                            backgroundColor: 'transparent',
+                        },
+                    }}
+                >
+                    {isCollapsed ? <SidebarIcons.SideBarOpen /> : <SidebarIcons.SideBarClose />}
+                </IconButton>
+            </Box>
         </Drawer>
     );
 };
