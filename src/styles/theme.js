@@ -29,6 +29,10 @@ const theme = createTheme({
     interviewing: { main: '#FAB005' },
     offer: { main: '#22E656' },
 
+    alert: { 
+      main: '#FA5252',
+    },
+
     action: {
       selected: '#F2F4F7',
       selectedOpacity: 0.8,

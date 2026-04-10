@@ -8,7 +8,7 @@ const BaseKanbanCard = ({ children, sx = [] }) => {
             sx={[
                 {
                     width: 338,
-                    height: 196,
+                    height: 'auto',
                     padding: 0,
                     border: '1px solid',
                     borderRadius: 2,

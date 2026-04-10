@@ -19,3 +19,14 @@ export const getRelativeTime = (dateString) => {
     }
     return 'Added today';
 };
+
+export const isFollowUpRecommended = (dateString) => {
+    if (!dateString) return false;
+
+    const created = new Date(dateString);
+    const now = new Date();
+    const diffInMs = now - created;
+    const diffInDays = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
+
+    return diffInDays >= 21;
+};
