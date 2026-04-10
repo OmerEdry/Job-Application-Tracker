@@ -85,21 +85,25 @@ const JobCard = ({ job }) => {
                         slotProps={{
                             tooltip: {
                                 sx: {
-                                    bgcolor: 'alert.main', 
-                                    padding: '6px 18px',     
+                                    bgcolor: 'alert.main',
+                                    padding: '6px 18px',
                                     fontWeight: 700,
-                                    fontSize: '13.71px',  
-                                    '& .MuiTooltip-arrow': { color: 'alert.main',},
+                                    fontSize: '13.71px',
                                 },
                             },
-                        }}>
-                        <Box sx={{ display: 'flex', ml: 1,}}>
-                            <FollowUpIcon sx={{ color: 'alert.main' }} />
-                        </Box>
+                            arrow: {
+                                sx: {
+                                    color: 'alert.main',
+                                },
+                            }
+                        }} >
+                            <Box sx={{ display: 'flex', ml: 1, }}>
+                                <FollowUpIcon sx={{ color: 'alert.main' }} />
+                            </Box>
                     </Tooltip>
                 )}
-            </Box>
-        </BaseKanbanCard>
+        </Box>
+        </BaseKanbanCard >
     )
 }
 
