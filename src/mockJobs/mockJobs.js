@@ -6,6 +6,7 @@ export const mockJobsData = [
         companyName: 'Google',
         companyLogo: 'https://www.google.com/s2/favicons?domain=google.com&sz=256',
         jobTitle: 'Full Stack Developer',
+        jobUrl: "https://technova.com/careers/frontend-developer",
         location: 'Tel Aviv, Israel',
         workType: 'on site',
         status: 'wishlist',
@@ -116,4 +117,8 @@ export const mockJobsData = [
 
 
 
-]
+];
+
+export const uniqueSkills = [...new Set(mockJobsData.flatMap(job => job.tags).filter(Boolean))];
+
+export const uniqueJobs = [... new Set(mockJobsData.map(job => job.companyName).filter(Boolean))];
