@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Drawer, List, ListItem, ListItemButton, ListItemText, Toolbar, Box, Typography, useTheme, ListItemIcon } from '@mui/material';
 import { Link, useLocation } from 'react-router-dom';
-import { sidebarItems } from '../../utils/sidebarConfig';
+import { sidebarItems, SIDEBAR_WIDTH, SIDEBAR_COLLAPSED_WIDTH } from '../../utils/sidebarConfig';
 import { SidebarIcons } from '../../assets/icons';
 import Logo from '../../assets/Logo';
 import { navItemsStyles, getNavTextStyle, getIconStyle } from '../../styles/SidebarStyle';
 
 
-const drawerWidth = 340;
-
 const Sidebar = () => {
+    const [isCollapsed, setIsCollapsed] = useState(true);
+    const currentWidth = isCollapsed ? SIDEBAR_COLLAPSED_WIDTH : SIDEBAR_WIDTH;
     const location = useLocation();
     const theme = useTheme();
     const isSettingSelected = location.pathname === '/settings';
@@ -19,9 +19,9 @@ const Sidebar = () => {
             variant='permanent'
             anchor="left"
             sx={{
-                width: drawerWidth,
+                width: currentWidth,
                 flexShrink: 0,
-                [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box', display: 'flex', flexDirection: 'column' },
+                [`& .MuiDrawer-paper`]: { width: currentWidth, boxSizing: 'border-box', display: 'flex', flexDirection: 'column' },
             }} >
 
             <Toolbar sx={{
@@ -68,14 +68,14 @@ const Sidebar = () => {
                                     component={Link}
                                     to={item.path}
                                     selected={isSelected}
-                                    sx={navItemsStyles(isSelected, theme)}
+                                    sx={navItemsStyles(isSelected, theme, isCollapsed)}
                                 >
-                                    <ListItemIcon sx={getIconStyle(isSelected, theme)}>
+                                    <ListItemIcon sx={getIconStyle(isSelected, theme,isCollapsed)}>
                                         <IconComponent />
                                     </ListItemIcon>
                                     <ListItemText
                                         primary={item.text}
-                                        sx={getNavTextStyle(isSelected, theme)}
+                                        sx={getNavTextStyle(isSelected, theme, isCollapsed)}
                                     />
                                 </ListItemButton>
                             </ListItem>
@@ -90,12 +90,12 @@ const Sidebar = () => {
                         component={Link}
                         to="/settings"
                         selected={isSettingSelected}
-                        sx={navItemsStyles(isSettingSelected, theme)}
+                        sx={navItemsStyles(isSettingSelected, theme, isCollapsed)}
                     >
-                        <ListItemIcon sx={getIconStyle(isSettingSelected, theme)}>
+                        <ListItemIcon sx={getIconStyle(isSettingSelected, theme, isCollapsed)}>
                             <SidebarIcons.Settings />
                         </ListItemIcon>
-                        <ListItemText primary="Settings" sx={getNavTextStyle(isSettingSelected, theme)} />
+                        <ListItemText primary="Settings" sx={getNavTextStyle(isSettingSelected, theme, isCollapsed)} />
                     </ListItemButton>
                 </ListItem>
             </List>
