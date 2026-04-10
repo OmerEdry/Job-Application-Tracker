@@ -1,10 +1,8 @@
-import * as React from 'react';
-import IconButton from '@mui/material/IconButton';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
+import { useState, startTransition } from 'react';
+import { Box, IconButton, Menu, MenuItem, MenuList, ListItemIcon, Typography } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { Typography, ListItemIcon } from '@mui/material';
 import { MenuIcons } from '../../assets/icons';
+import EditJobDialog from './EditJobDialog';
 
 
 const MENU_OPTIONS = [
@@ -13,28 +11,41 @@ const MENU_OPTIONS = [
     { key: 'delete', label: 'Delete', color: 'error.main' },
 ];
 
-export default function JobMenu() {
-    const [anchorEl, setAnchorEl] = React.useState(null);
-    const open = Boolean(anchorEl);
+export default function JobMenu({ job }) {
+    // Menu State
+    const [anchorEl, setAnchorEl] = useState(null);
+    const isMenuOpen = Boolean(anchorEl);
 
-    const handleClick = (event) => {
-        event.stopPropagation();
-        setAnchorEl(event.currentTarget);
+    // Dialog State
+    const [activeDialog, setActiveDialog] = useState(null);
+
+    // Menu Handlers
+    const handleOpenMenu = (event) => setAnchorEl(event.currentTarget);
+    const handleCloseMenu = () => setAnchorEl(null);
+
+    // Dialog Handlers
+    const handleOpenDialog = (dialogName) => {
+        handleCloseMenu();
+        startTransition(() => {
+            setActiveDialog(dialogName);
+        });
     };
 
-    const handleClose = () => {
-        setAnchorEl(null);
+    const handleCloseDialog = () => {
+        setActiveDialog(null);
     };
 
     return (
-        <React.Fragment>
+        <Box>
             <IconButton
-                aria-label="job menu"
+                variant="contained"
                 id="job-menu-button"
-                aria-controls={open ? 'job-menu-button' : undefined}
-                aria-expanded={open ? 'true' : undefined}
+                onClick={handleOpenMenu}
+                aria-label="job menu"
+                aria-controls={isMenuOpen ? 'job-menu-button' : undefined}
+                aria-expanded={isMenuOpen ? 'true' : undefined}
                 aria-haspopup="true"
-                onClick={handleClick}
+
                 sx={{ '&:focus': { outline: 'none' } }}
             >
                 <MoreVertIcon />
@@ -43,25 +54,39 @@ export default function JobMenu() {
             <Menu
                 id="job-menu"
                 anchorEl={anchorEl}
-                open={open}
-                onClose={handleClose}
+                open={isMenuOpen}
+                onClose={handleCloseMenu}
             >
 
                 {MENU_OPTIONS.map((option) => (
                     <MenuItem
                         key={option.key}
-                        onClick={handleClose}
+                        onClick={() => handleOpenDialog(option.key)}
                         sx={{ color: option.color }}
                     >
                         <ListItemIcon sx={{ color: 'inherit', minWidth: 36 }}>
                             {MenuIcons[option.key]}
                         </ListItemIcon>
-                        <Typography variant="subtitle1" color="inherit">
+                        <Typography variant='subtitle1' color="inherit">
                             {option.label}
                         </Typography>
                     </MenuItem>
                 ))}
             </Menu>
-        </React.Fragment>
+
+            <EditJobDialog
+                isOpen={activeDialog === 'edit'}
+                onClose={handleCloseDialog}
+                job={job}
+            />
+            {/* <MoveJobDialog
+                open={activeDialog === 'move'}
+                onClose={() => setActiveDialog(null)}
+            />
+            <DeleteJobDialog
+                open={activeDialog === 'delete'}
+                onClose={() => setActiveDialog(null)}
+            /> */}
+        </Box>
     )
 }
