@@ -1,0 +1,100 @@
+import { Autocomplete, FormLabel, TextField } from "@mui/material";
+import { styled } from '@mui/material/styles';
+
+
+
+
+export default function InputField({ field, value, onChange, disabled }) {
+    const { name, label, placeholder, type, required, options, multiple, freeSolo, limitTags } = field;
+
+
+    switch (type) {
+        case 'autocomplete':
+            return (
+                <Autocomplete
+                    multiple={multiple}
+                    freeSolo={freeSolo}
+                    limitTags={2}
+                    size='small'
+                    options={options || []}
+                    value={value !== undefined ? value : (multiple ? [] : null)}
+                    onChange={(event, newValue) => onChange(name, newValue)}
+                    disabled={disabled}
+
+                    renderInput={(params) => (
+                        <TextField
+                            {...params}
+                            label={placeholder}
+                            required={required}
+                            size='small'
+                            fullWidth
+                            sx={{
+                                '& .MuiFormLabel-asterisk': {
+                                    display: 'none',
+                                },
+                            }}
+                            slotProps={{
+                                inputLabel: {
+                                    sx: {
+                                        '&:not(.MuiInputLabel-shrink)': {
+                                            transform: 'translate(14px, 7px) scale(1)',
+                                        }
+                                    }
+                                },
+                            }}
+                        />
+                    )}
+                    slotProps={{
+                        popper: {
+                            placement: 'bottom-start',
+                            modifiers: [{ name: 'flip', enabled: false }]
+                        },
+                        inputLabel: { required: false },
+                    }}
+                />
+            );
+
+        case 'date':
+            retrun(
+                <DatePicker
+                    label={label}
+                    value={value || null}
+                    onChange={(newValue) => onChange(name, newValue)}
+                    disabled={disabled}
+                    slotProps={{
+                        textField: {
+                            fullWidth: true,
+                            size: 'small',
+                            required: required
+                        },
+                    }}
+                    sx={{
+                        '& .MuiFormLabel-asterisk': {
+                            display: 'none',
+                        },
+                    }}
+                />
+            );
+
+        case 'text':
+            return (
+                <TextField
+                    fullWidth
+                    size="small"
+                    label={placeholder}
+                    name={name}
+                    value={value || ''}
+                    onChange={(event) => onChange(name, event.target.value)}
+                    disabled={disabled}
+                    required={required}
+                    variant="outlined"
+
+                    sx={{
+                        '& .MuiFormLabel-asterisk': {
+                            display: 'none',
+                        },
+                    }}
+                />
+            );
+    };
+};
