@@ -4,6 +4,8 @@ import { SvgIcon } from '@mui/material';
 import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
 import FileCopyOutlinedIcon from '@mui/icons-material/FileCopyOutlined';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import WarningAmberIcon from '@mui/icons-material/WarningAmber';
+
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 
 const IconWrapper = ({ icon, ...props }) => (
@@ -129,5 +131,15 @@ export const TimeIcon = (props) => (
             fontSize: '18px',
             ...props.sx
         }}
+    />
+);
+
+export const FollowUpIcon = (props) => (
+    <WarningAmberIcon 
+        {...props} 
+        sx={{ 
+            fontSize: '24px',
+            ...props.sx 
+        }} 
     />
 );

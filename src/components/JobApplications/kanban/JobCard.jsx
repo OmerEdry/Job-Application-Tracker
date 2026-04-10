@@ -1,10 +1,9 @@
-import { Box, CardActions, Typography, CardHeader, Avatar, CardContent, CardActionArea } from '@mui/material';
+import { Box, CardActions, Typography, CardHeader, Avatar, CardContent, CardActionArea, Tooltip } from '@mui/material';
 import BaseKanbanCard from "./BaseKanbanCard";
 import SkillTag from "./SkillTag";
-import { getRelativeTime } from '../../../utils/helpers';
-import { TimeIcon } from "../../../assets/icons";
+import { getRelativeTime, isFollowUpRecommended } from '../../../utils/helpers';
+import { TimeIcon, FollowUpIcon } from "../../../assets/icons";
 import JobMenu from '../jobMenu';
-
 
 const JobCard = ({ job }) => {
     return (
@@ -34,12 +33,38 @@ const JobCard = ({ job }) => {
             </CardContent>
 
             {/* Footer: Time since added, follow-up alert, info */}
-            <CardActions sx={{ px: 2 }}>
-                <TimeIcon sx={{ color: 'text.secondary', fontSize: '18px' }} />
-                <Typography variant="subtitle3" sx={{ color: 'text.secondary', }}>
-                    {getRelativeTime(job.createdAt)}
-                </Typography>
+            <CardActions sx={{ px: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                    <TimeIcon sx={{ color: 'text.secondary', fontSize: '18px' }} />
+                    <Typography variant="subtitle3" sx={{ color: 'text.secondary' }}>
+                        {getRelativeTime(job.createdAt)}
+                    </Typography>
+                </Box>
 
+                {isFollowUpRecommended(job.createdAt) && (
+                    <Tooltip
+                        title="Follow Up Recommended"
+                        arrow
+                        placement="bottom"
+                        slotProps={{
+                            tooltip: {
+                                sx: {
+                                    bgcolor: 'alert.main',
+                                    padding: '6px 18px',
+                                    fontWeight: 700,
+                                    fontSize: '13.71px',
+                                },
+                            },
+                            arrow: {
+                                sx: { color: 'alert.main' },
+                            },
+                        }}
+                    >
+                        <Box sx={{ display: 'flex' }}>
+                            <FollowUpIcon sx={{ color: 'alert.main' }} />
+                        </Box>
+                    </Tooltip>
+                )}
             </CardActions>
         </BaseKanbanCard >
     )
