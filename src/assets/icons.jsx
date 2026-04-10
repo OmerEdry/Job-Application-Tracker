@@ -6,6 +6,7 @@ import FileCopyOutlinedIcon from '@mui/icons-material/FileCopyOutlined';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 
 const IconWrapper = ({ icon, ...props }) => (
     <Icon
@@ -83,7 +84,6 @@ const ListIcon = (props) => (
 );
 
 
-
 export const KanbanHeadersIcons = {
     Wishlist: <WishlistIcon />,
     Applied: <AppliedIcon />,
@@ -103,18 +103,34 @@ export const SidebarIcons = {
 
 
 
+const ArrowRightIcon = (props) => (
+    <Icon icon='mdi:arrow-right' {...props} />
+
+);
+
+const DeleteIcon = (props) => (
+    <Icon icon='mdi:garbage-can-outline' {...props} />
+);
+
+export const MenuIcons = {
+    edit: <EditOutlinedIcon />,
+    move: <ArrowRightIcon />,
+    delete: <DeleteIcon />
+};
+
+
 export const ToggleViewIcons = {
     ListView: ListIcon,
     KanbanView: BlocksIcon,
 };
 
 export const TimeIcon = (props) => (
-    <AccessTimeIcon 
-        {...props} 
-        sx={{ 
+    <AccessTimeIcon
+        {...props}
+        sx={{
             fontSize: '18px',
-            ...props.sx 
-        }} 
+            ...props.sx
+        }}
     />
 );
 

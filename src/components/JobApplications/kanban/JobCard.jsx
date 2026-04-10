@@ -1,8 +1,9 @@
-import { Box, Typography, Tooltip } from '@mui/material';
+import { Box, CardActions, Typography, CardHeader, Avatar, CardContent, CardActionArea, Tooltip } from '@mui/material';
 import BaseKanbanCard from "./BaseKanbanCard";
 import SkillTag from "./SkillTag";
 import { getRelativeTime, isFollowUpRecommended } from '../../../utils/helpers';
 import { TimeIcon, FollowUpIcon } from "../../../assets/icons";
+import JobMenu from '../jobMenu';
 
 const JobCard = ({ job }) => {
     return (
@@ -10,72 +11,35 @@ const JobCard = ({ job }) => {
             sx={(theme) => ({
                 background: theme.gradients[job.status],
                 border: 0,
-                display: 'flex',
-                flexDirection: 'column',
-                gap: 1.5,
-                p: 2
             })}
         >
             {/* Header: Company info */}
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                {/*Logo*/}
-                <Box
-                    component="img"
-                    src={job.companyLogo}
-                    alt={job.companyName}
-                    sx={{
-                        width: 40,
-                        height: 40,
-                        borderRadius: '8px',
-                        bgcolor: 'transparent',
-                        objectFit: 'contain',
-                        flexShrink: 0,
-                        p: 0.5
-                    }}
-                    onError={(e) => {
-                        e.target.onerror = null;
-                        e.target.src = `https://www.google.com/s2/favicons?domain=${job.companyName.toLowerCase().replace(/\s+/g, '')}.com&sz=128`;
-                    }}
-                />
-                {/*Job info*/}
-                <Box sx={{ display: 'flex', flexDirection: 'column', minWidth: 0, gap: 0.5 }}>
-                    <Typography variant="jobCardCompany">
-                        {job.companyName}
-                    </Typography>
+            <CardHeader
+                avatar={<Avatar src={job.companyLogo} aria-label="Company Logo" sx={{ bgColor: 'transparent', }} />}
 
-                    <Typography variant="jobCardInfo" noWrap>
-                        {job.jobTitle}{job.location ? `, ${job.location}` : ''}
-                    </Typography>
-                </Box>
-            </Box>
+                action={<JobMenu />}
 
-            {/* Body: Skill Tags */}
-            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
-                {job.tags?.map((tag) => (
+                title={<Typography variant="h4">{job.companyName}</Typography>}
+
+                subheader={`${job.jobTitle}, ${job.location || job.workType}`}
+            />
+
+            {/* Content: Tags */}
+            <CardContent sx={{ display: 'flex', flexDirection: 'column', }}>
+                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>{job.tags?.map((tag) => (
                     <SkillTag key={tag} label={tag} />
                 ))}
-            </Box>
+                </Box>
+            </CardContent>
 
-            {/* Footer: Time stamps */}
-            <Box sx={{
-                mt: 'auto',
-                pt: 2,
-                display: 'flex',
-                alignItems: 'center',
-                gap: 0.5
-            }}>
-
-                <TimeIcon sx={{ color: 'text.secondary', fontSize: '18px' }} />
-
-                <Typography
-                    variant="jobCardInfo"
-                    sx={{
-                        color: 'text.secondary',
-                        lineHeight: 1
-                    }}
-                >
-                    {getRelativeTime(job.createdAt)}
-                </Typography>
+            {/* Footer: Time since added, follow-up alert, info */}
+            <CardActions sx={{ px: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                    <TimeIcon sx={{ color: 'text.secondary', fontSize: '18px' }} />
+                    <Typography variant="subtitle3" sx={{ color: 'text.secondary' }}>
+                        {getRelativeTime(job.createdAt)}
+                    </Typography>
+                </Box>
 
                 {isFollowUpRecommended(job.createdAt) && (
                     <Tooltip
@@ -92,17 +56,16 @@ const JobCard = ({ job }) => {
                                 },
                             },
                             arrow: {
-                                sx: {
-                                    color: 'alert.main',
-                                },
-                            }
-                        }} >
-                            <Box sx={{ display: 'flex', ml: 1, }}>
-                                <FollowUpIcon sx={{ color: 'alert.main' }} />
-                            </Box>
+                                sx: { color: 'alert.main' },
+                            },
+                        }}
+                    >
+                        <Box sx={{ display: 'flex' }}>
+                            <FollowUpIcon sx={{ color: 'alert.main' }} />
+                        </Box>
                     </Tooltip>
                 )}
-        </Box>
+            </CardActions>
         </BaseKanbanCard >
     )
 }
