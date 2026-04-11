@@ -1,16 +1,75 @@
-# React + Vite
+# 🚀 NextStep | Job Application Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+NextStep is a professional tool designed to help developers manage and track their job application journey. It replaces fragmented spreadsheets with a coordinated Kanban interface, focusing on intuitive data visualization and a seamless developer experience.
 
-Currently, two official plugins are available:
+> **Note:** 🏗️ This project is currently in **Phase 1 (Frontend & Architecture)**. It uses a structured Mock Data layer designed for a smooth transition to backend integration.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## ✨ Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* **Kanban Board:** Automatically categorizes job applications by status (Wishlist, Applied, Interviewing, Offer).
+* **Job Application Details:** Displays company logos, job metadata (location, work type), and technology tags.
+* **Global Notification System:** Context-aware alerts for user actions and automated warnings for jobs that haven't been updated recently.
+* **Modular Form Architecture:** Uses a reusable BaseForm engine to handle both adding and editing jobs, ensuring a consistent UI and DRY code.
+* **Responsive Layout:** Includes a collapsible sidebar and flexible grid system built with Material UI (MUI).
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠 Tech Stack
+
+* **Framework:** React 18 (Vite)
+* **UI Library:** Material UI 6 (MUI)
+* **State Management:** Context API
+* **Date Logic:** Day.js
+* **Styling:** Styled-components and MUI Theme customization
+
+---
+
+## 📂 Project Structure
+
+```text
+src/
+├── assets/          # Custom SVG icons and brand assets
+├── components/      # Modular UI components:
+│   ├── layout/      # App shell (Sidebar, Header, MainLayout)
+│   ├── JobApps/     # Kanban board and job-management logic
+│   └── ui/          # Reusable components (BaseForm, Notifications)
+├── context/         # Global state management
+├── mockJobs/        # Data simulation and JSON structures
+├── styles/          # MUI Theme and styled-component definitions
+└── utils/           # Helper functions and configurations (Routes, Kanban, Sidebar)
+```
+
+---
+
+## ⚙️ Getting Started
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/sharon011/Job-Applications-Management-tool.git
+```
+
+### 2. Install dependencies
+```bash
+npm install
+```
+
+### 3. Run the development server
+```bash
+npm run dev
+```
+
+---
+## 🤝 Collaboration & Workflow
+
+This project was developed using professional software development standards:
+* **Feature Branching:** Every new feature was developed on a dedicated branch to keep the `main` branch stable.
+* **Pull Requests & Code Reviews:** All changes were merged via PRs, including peer code reviews to ensure code quality and maintainability.
+* **Git Standards:** Clear commit messages and organized version control management.
+---
+
+## 👥 Team Members
+**Omer Edry** - [GitHub](https://github.com/OmerEdry)
+
+**Sharon Anderman** - [GitHub](https://github.com/sharon011)
