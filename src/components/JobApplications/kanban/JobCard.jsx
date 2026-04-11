@@ -17,7 +17,7 @@ const JobCard = ({ job }) => {
             <CardHeader
                 avatar={<Avatar src={job.companyLogo} aria-label="Company Logo" sx={{ bgColor: 'transparent', }} />}
 
-                action={<JobMenu />}
+                action={<JobMenu job={job} />}
 
                 title={<Typography variant="h4">{job.companyName}</Typography>}
 

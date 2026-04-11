@@ -1,3 +1,4 @@
+import { VerticalAlignCenter } from '@mui/icons-material';
 import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
@@ -29,7 +30,7 @@ const theme = createTheme({
     interviewing: { main: '#FAB005' },
     offer: { main: '#22E656' },
 
-    alert: { 
+    alert: {
       main: '#FA5252',
     },
 
@@ -58,7 +59,7 @@ const theme = createTheme({
     //non gradient text tilte usage
 
     h1: {
-      fontFamily: '"Space Grotesk", "sans-serif"',
+      fontFamily: '"Space Grotesk", sans-serif',
       fontWeight: 700,
       fontSize: '1.5rem',
       letterSpacing: 0,
@@ -66,7 +67,7 @@ const theme = createTheme({
     },
 
     h2: {
-      fontFamily: '"Space Grotesk", "sans-serif"',
+      fontFamily: '"Space Grotesk", sans-serif',
       fontWeight: 700,
       fontSize: '1.25rem',
       letterSpacing: 0,
@@ -74,7 +75,7 @@ const theme = createTheme({
     },
 
     h3: {
-      fontFamily: '"Space Grotesk", "sans-serif"',
+      fontFamily: '"Space Grotesk", sans-serif',
       fontWeight: 700,
       fontSize: '1.125rem',
       letterSpacing: 0,
@@ -83,14 +84,14 @@ const theme = createTheme({
 
 
     h4: {
-      fontFamily: '"Space Grotesk", "sans-serif"',
+      fontFamily: '"Space Grotesk", sans-serif',
       fontWeight: 700,
       fontSize: '1rem',
       letterSpacing: 0,
       lineHeight: 1,
     },
     h5: {
-      fontFamily: '"Space Grotesk", "sans-serif"',
+      fontFamily: '"Space Grotesk", sans-serif',
       fontWeight: 500,
       fontSize: '0.875rem',
       letterSpacing: 0,
@@ -98,7 +99,7 @@ const theme = createTheme({
     },
 
     subtitle1: {
-      fontFamily: '"Inter", "sans-serif"',
+      fontFamily: '"Inter", sans-serif',
       fontWeight: 400,
       fontSize: '1.25rem',
       letterSpacing: 0,
@@ -106,7 +107,7 @@ const theme = createTheme({
     },
 
     subtitle2: {
-      fontFamily: '"Inter", "sans-serif"',
+      fontFamily: '"Inter", sans-serif',
       fontWeight: 400,
       fontSize: '1rem',
       letterSpacing: 0,
@@ -114,7 +115,7 @@ const theme = createTheme({
     },
 
     subtitle3: {
-      fontFamily: '"Inter", "sans-serif"',
+      fontFamily: '"Inter", sans-serif',
       fontWeight: 400,
       fontSize: '0.875rem',
       letterSpacing: 0,
@@ -134,10 +135,23 @@ const theme = createTheme({
       fontSize: '1rem',
       letterSpacing: 0,
       lineHeight: 1,
-
-
-
     },
+
+    input: {
+
+      fontFamily: '"Inter", sans-serif',
+      fontWeight: 600,
+      fontSize: '1rem',
+    },
+
+    menuItemDefault: {
+      fontFamily: '"Roboto", sans-serif',
+      fontWeight: 400,
+      fontSize: '1rem',
+      lineHeight: 1.5,
+      letterSpacing: 0.15,
+    },
+
     jobCardCompany: {
       fontFamily: '"Space Grotesk", sans-serif',
       fontWeight: 700,
@@ -154,6 +168,7 @@ const theme = createTheme({
       color: 'text.primary',
       display: 'block',
     },
+
   },
 
   gradients: {
@@ -207,7 +222,18 @@ const theme = createTheme({
           margin: 0,
         }
       }
-    }
+    },
+
+    MuiOutlinedInput: {
+      styleOverrides: {
+        input: {
+          fontFamily: '"Inter", sans-serif',
+          fontWeight: 400,
+          fontSize: '1rem',
+          color: 'theme.palette.text.primary',
+        }
+      }
+    },
   },
 
 },
