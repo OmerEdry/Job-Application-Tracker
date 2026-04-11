@@ -1,6 +1,7 @@
 import React from 'react';
 import { Snackbar, Alert, Slide, Box, Typography } from '@mui/material';
 import { useNotification } from '../../context/NotificationContext';
+import { NotificationIcons } from '../../assets/icons';
 
 const STATUS_TITLES = {
     success: 'Success',
@@ -28,6 +29,7 @@ const GlobalNotification = () => {
                 onClose={hideNotification}
                 severity={severity}
                 variant="standard" 
+                icon={NotificationIcons[severity]}
                 sx={{ 
                     width: '488px',         
                     minHeight: '90px',      
@@ -39,9 +41,14 @@ const GlobalNotification = () => {
                     alignItems: 'center',
         
                     '& .MuiAlert-icon': {
-                        fontSize: '32px',
+                        padding: 0,
                         marginRight: '15px',
-                        color: (theme) => theme.notification?.[severity] || 'inherit'
+                        display: 'flex',
+                        alignItems: 'center',
+                        '& svg': {
+                            width: '32px',
+                            height: 'auto'
+                        }
                     },
         
                     '& .MuiAlert-action': {
