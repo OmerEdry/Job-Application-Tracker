@@ -65,6 +65,7 @@ npm run dev
 
 This project was developed using professional software development standards:
 * **Feature Branching:** Every new feature was developed on a dedicated branch to keep the `main` branch stable.
+* **Figma-to-Code:** Strict adherence to UI requirements and design specs to ensure a pixel-perfect implementation.
 * **Pull Requests & Code Reviews:** All changes were merged via PRs, including peer code reviews to ensure code quality and maintainability.
 * **Git Standards:** Clear commit messages and organized version control management.
 ---
