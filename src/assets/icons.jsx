@@ -4,6 +4,8 @@ import { SvgIcon } from '@mui/material';
 import WorkOutlineIcon from '@mui/icons-material/WorkOutline';
 import FileCopyOutlinedIcon from '@mui/icons-material/FileCopyOutlined';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import ChevronLeft from '@mui/icons-material/ChevronLeft';
+import ChevronRight from '@mui/icons-material/ChevronRight';
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
@@ -96,9 +98,12 @@ export const KanbanHeadersIcons = {
 export const SidebarIcons = {
     Job: WorkOutlineIcon,
     CV: FileCopyOutlinedIcon,
+    SideBarOpen: ChevronRight,
+    SideBarClose: ChevronLeft,
     Settings: SolarSettingsIcon,
     Spark: PhosphorSparkIcon,
-    Archive: ArchiveIcon
+    Archive: ArchiveIcon,
+
 };
 
 
