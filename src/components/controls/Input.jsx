@@ -1,5 +1,5 @@
-import { Autocomplete, FormLabel, TextField } from "@mui/material";
-import { styled } from '@mui/material/styles';
+import { Autocomplete, TextField } from "@mui/material";
+import { DatePicker } from "@mui/x-date-pickers";
 
 
 
@@ -14,7 +14,7 @@ export default function InputField({ field, value, onChange, disabled }) {
                 <Autocomplete
                     multiple={multiple}
                     freeSolo={freeSolo}
-                    limitTags={2}
+                    limitTags={limitTags}
                     size='small'
                     options={options || []}
                     value={value !== undefined ? value : (multiple ? [] : null)}
@@ -55,7 +55,7 @@ export default function InputField({ field, value, onChange, disabled }) {
             );
 
         case 'date':
-            retrun(
+            return (
                 <DatePicker
                     label={label}
                     value={value || null}

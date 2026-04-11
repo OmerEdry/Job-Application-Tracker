@@ -12,7 +12,7 @@ export default function BaseForm({
 
     useEffect(() => {
         setFormData(initialValues || {});
-    }, [initialValues]);
+    }, [initialValues, isOpen],);
 
     const handleChange = (name, value) => {
         setFormData((prev) => ({ ...prev, [name]: value }));

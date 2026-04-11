@@ -17,8 +17,7 @@ export default function EditJobDialog({ isOpen, onClose, job }) {
     ];
 
     const handleSave = async (formData) => {
-
-        const isNewSkill = !skillOptions.includes(formData.skill);
+        const isNewSkill = !uniqueSkills.includes(formData.skill);
 
         if (isNewSkill) {
             console.log(`"${formData.skill}" is a new skill`);
