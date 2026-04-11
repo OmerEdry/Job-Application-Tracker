@@ -3,6 +3,7 @@ import { Box, IconButton, Menu, MenuItem, MenuList, ListItemIcon, Typography } f
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { MenuIcons } from '../../assets/icons';
 import EditJobDialog from './EditJobDialog';
+import DeleteJobDialog from './DeleteJobDialog';
 
 
 const MENU_OPTIONS = [
@@ -80,13 +81,15 @@ export default function JobMenu({ job }) {
                 job={job}
             />
             {/* <MoveJobDialog
-                open={activeDialog === 'move'}
+                isOpen={activeDialog === 'move'}
                 onClose={() => setActiveDialog(null)}
             />
+            */}
             <DeleteJobDialog
-                open={activeDialog === 'delete'}
-                onClose={() => setActiveDialog(null)}
-            /> */}
+                isOpen={activeDialog === 'delete'}
+                onClose={handleCloseDialog}
+                job={job}
+            />
         </Box>
     )
 }
