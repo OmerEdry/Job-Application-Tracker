@@ -57,7 +57,6 @@ export default function InputField({ field, value, onChange, disabled }) {
         case 'date':
             return (
                 <DatePicker
-                    label={label}
                     value={value || null}
                     onChange={(newValue) => onChange(name, newValue)}
                     disabled={disabled}

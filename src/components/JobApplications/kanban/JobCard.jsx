@@ -3,7 +3,7 @@ import BaseKanbanCard from "./BaseKanbanCard";
 import SkillTag from "./SkillTag";
 import { getRelativeTime, isFollowUpRecommended } from '../../../utils/helpers';
 import { TimeIcon, FollowUpIcon } from "../../../assets/icons";
-import JobMenu from '../jobMenu';
+import JobMenu from '../JobMenu';
 
 const JobCard = ({ job }) => {
     return (
