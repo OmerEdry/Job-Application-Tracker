@@ -4,7 +4,8 @@ import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 
 export default function DeleteJobDialog({ isOpen, onClose, job, isLoading }) {
 
-    const handleDelete = async (job) => {
+    const handleDelete = async (e) => {
+       e.preventDefault()
         console.log("Delete accepted")
         onClose();
     }
