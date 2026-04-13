@@ -5,7 +5,6 @@ import { AddIcon } from '#@/assets/icons';
 
 const HeaderCard = ({ header }) => {
     const themeColorPath = `${header.name.toLowerCase()}.main`;
-    console.log(themeColorPath);
 
     return (
         <BaseKanbanCard
@@ -30,7 +29,7 @@ const HeaderCard = ({ header }) => {
                 action={
 
                     <IconButton aria-label="add task"
-                        sx={{ color: "inherit", '&:focus:not(:focus-visible)': { outline: 'none' } }}>
+                        sx={{ color: "inherit", }}>
                         <AddIcon />
                     </IconButton>
                 }
