@@ -1,6 +1,5 @@
 import { uniqueJobs, uniqueSkills } from "../../mockJobs/mockJobs";
 
-
 const COMPANY_NAME = { name: 'companyName', label: 'Company Name', placeholder: 'Select company', type: 'autocomplete', freeSolo: true, options: uniqueJobs, required: true };
 const COMPANY_LOGO = { name: 'companyLogo', label: 'Company Logo', type: 'text', required: false };
 const JOB_TITLE = { name: 'jobTitle', label: 'Job Title', type: 'autocomplete', freeSolo: true, required: true };

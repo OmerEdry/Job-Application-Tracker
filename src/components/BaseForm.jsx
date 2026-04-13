@@ -5,14 +5,10 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import InputField from './controls/Input';
 
 export default function BaseForm({
-    isOpen, onClose, title, fields, initialValues, onSubmit, buttons, isLoading
+    isOpen, onClose, title, fields, initialValues, onSubmit, onSecondaryAction, buttons, isLoading
 }) {
 
     const [formData, setFormData] = useState(initialValues || {});
-
-    useEffect(() => {
-        setFormData(initialValues || {});
-    }, [initialValues, isOpen],);
 
     const handleChange = (name, value) => {
         setFormData((prev) => ({ ...prev, [name]: value }));
@@ -23,84 +19,70 @@ export default function BaseForm({
         onSubmit(formData);
     };
 
+
     if (!isOpen) return null;
 
     return (
-        <Dialog open={isOpen} onClose={onClose} fullWidth maxWidth="md">
-            <DialogTitle variant="h1">{title}</DialogTitle>
-            <form onSubmit={handleSubmit}>
-                <DialogContent>
-                    <Grid container spacing={2} sx={{ mt: 1 }}>
-                        {fields.map((field) => (
-                            <Grid key={`${field.name}-grid`} size={{ xs: 12, sm: 6 }}>
-                                <InputField
-                                    key={field.name}
-                                    field={field}
-                                    value={formData[field.name]}
-                                    onChange={handleChange}
-                                    disabled={isLoading}
-                                />
-                            </Grid>
-                        ))}
-                    </Grid>
-                </DialogContent>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <Dialog open={isOpen} onClose={onClose} fullWidth maxWidth="md">
+                <DialogTitle variant="h1">{title}</DialogTitle>
+                <form onSubmit={handleSubmit}>
 
-                <DialogActions sx={{ px: 3, pb: 3, pt: 1 }}>
-                    <Grid container spacing={2} sx={{ width: '100%', m: 0 }}>
-                        {buttons && buttons.length > 0 ? (
-                            buttons.map((btn, index) => (
-                                <Grid key={index} size={{ xs: 12, sm: 6 }}>
-                                    <Button
-                                        fullWidth
-                                        type={btn.type || 'button'}
-                                        onClick={btn.onClick}
-                                        disabled={isLoading || btn.disabled}
-                                        variant={btn.variant || 'contained'}
-                                        color={btn.color || 'primary'}
-                                        sx={btn.sx}
-                                    >
-                                        {btn.label}
-                                    </Button>
-                                </Grid>
-                            ))
-                        ) : (
-                            <>
-                                <Grid size={{ xs: 12, sm: 6 }}>
-                                    <Button
-                                        fullWidth
-                                        onClick={onClose}
+                    <DialogContent>
+                        <Grid container spacing={2} sx={{ mt: 1 }}>
+                            {fields.map((field) => (
+                                <Grid key={`${field.name}-grid`} size={{ xs: 12, sm: 6 }}>
+                                    <InputField
+                                        key={field.name}
+                                        field={field}
+                                        value={formData[field.name]}
+                                        onChange={handleChange}
                                         disabled={isLoading}
-                                        variant="outlined"
-                                        sx={{
-                                            borderColor: '#999999',
-                                            color: 'text.primary',
-                                        }}
-                                    >
-                                        Cancel
-                                    </Button>
+                                        label={field.label}
+                                        required={field.required}
+                                    />
                                 </Grid>
-                                <Grid size={{ xs: 12, sm: 6 }}>
-                                    <Button
-                                        fullWidth
-                                        type="submit"
-                                        disabled={isLoading}
-                                        variant="contained"
-                                        sx={{
-                                            background: (theme) => theme.gradients?.primary,
-                                            color: 'white',
-                                            '&:hover': {
-                                                opacity: 0.9
-                                            }
-                                        }}
-                                    >
-                                        {isLoading ? 'Saving...' : 'Save'}
-                                    </Button>
-                                </Grid>
-                            </>
-                        )}
-                    </Grid>
-                </DialogActions>
-            </form>
-        </Dialog>
+                            ))}
+                        </Grid>
+                    </DialogContent>
+
+                    <DialogActions sx={{ px: 3, pb: 3, pt: 1 }}>
+                        <Grid container spacing={2} sx={{ width: '100%', m: 0 }}>
+                            <Grid size={{ xs: 12, sm: 6 }}>
+                                <Button
+                                    fullWidth
+                                    onClick={onSecondaryAction || onClose}
+                                    disabled={isLoading}
+                                    variant="outlined"
+                                    sx={{
+                                        borderColor: '#999999',
+                                        color: 'text.primary',
+                                    }}
+                                >
+                                    {buttons.secondary}
+                                </Button>
+                            </Grid>
+                            <Grid size={{ xs: 12, sm: 6 }}>
+                                <Button
+                                    fullWidth
+                                    type="submit"
+                                    disabled={isLoading}
+                                    variant="contained"
+                                    sx={{
+                                        background: (theme) => theme.gradients?.primary,
+                                        color: 'white',
+                                        '&:hover': {
+                                            opacity: 0.9
+                                        }
+                                    }}
+                                >
+                                    {isLoading ? 'Saving...' : `${buttons.submit}`}
+                                </Button>
+                            </Grid>
+                        </Grid>
+                    </DialogActions>
+                </form>
+            </Dialog>
+        </LocalizationProvider >
     )
 }
