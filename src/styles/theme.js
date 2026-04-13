@@ -215,14 +215,6 @@ const theme = createTheme({
         },
       ],
     },
-    //Moved it inside 'components'. MUI will ignore this part otherwise.
-    MuiListItemText: {
-      styleOverrides: {
-        root: {
-          margin: 0,
-        }
-      }
-    },
 
     MuiOutlinedInput: {
       styleOverrides: {
@@ -234,9 +226,33 @@ const theme = createTheme({
         }
       }
     },
+
+    MuiPickersOutlinedInput: {
+      styleOverrides: {
+        root: {
+          fontFamily: '"Inter", sans-serif',
+          fontWeight: 400,
+          fontSize: '1rem',
+        },
+      },
+    },
+
+
+
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          textTransform: 'none',
+          boxShadow: 'none',
+          '&:hover': {
+            boxShadow: 'none',
+          },
+        },
+
+      }
+    }
   },
 
-},
-);
+});
 
 export default theme;
