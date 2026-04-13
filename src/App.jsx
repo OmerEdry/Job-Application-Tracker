@@ -5,17 +5,21 @@ import MainLayout from './components/layout/MainLayout';
 import { useRoutes } from 'react-router-dom';
 import { routes } from './utils/routesConfig';
 import IconStyle from './styles/IconStyle';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 function App() {
   const routing = useRoutes(routes);
 
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <IconStyle />
-      <MainLayout>
-        {routing}
-      </MainLayout>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <CssBaseline />
+        <IconStyle />
+        <MainLayout>
+          {routing}
+        </MainLayout>
+      </LocalizationProvider>
     </ThemeProvider>
   );
 }

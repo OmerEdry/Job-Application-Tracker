@@ -15,6 +15,7 @@ const NEXT_INTERVIEW_DATE = { name: 'nextInterviewDate', label: 'Interview Date'
 const ROUND = { name: 'round', label: 'Round', type: 'text', };
 const ANSWER_DEADLINE = { name: 'answerDeadline', label: 'Answer Deadline', type: 'date' };
 const OFFER_AMOUNT = { name: 'offerAmount', label: 'Offer Amount', type: 'text' };
+const NOTES = { name: 'notes', label: 'Notes', type: 'text' };
 
 
 export const STATUSES = ['Wishlist', 'Applied', 'Interviewing', 'Offer'];

@@ -3,6 +3,7 @@ import { Box, IconButton, Menu, MenuItem, MenuList, ListItemIcon, Typography } f
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { MenuIcons } from '../../assets/icons';
 import EditJobDialog from './EditJobDialog';
+import MoveJobDialog from './MoveJobDialog';
 
 
 const MENU_OPTIONS = [
@@ -46,7 +47,7 @@ export default function JobMenu({ job }) {
                 aria-expanded={isMenuOpen ? 'true' : undefined}
                 aria-haspopup="true"
 
-                sx={{ '&:focus': { outline: 'none' } }}
+
             >
                 <MoreVertIcon />
             </IconButton>
@@ -79,10 +80,12 @@ export default function JobMenu({ job }) {
                 onClose={handleCloseDialog}
                 job={job}
             />
-            {/* <MoveJobDialog
-                open={activeDialog === 'move'}
+            <MoveJobDialog
+                isOpen={activeDialog === 'move'}
                 onClose={() => setActiveDialog(null)}
+                job={job}
             />
+            {/*
             <DeleteJobDialog
                 open={activeDialog === 'delete'}
                 onClose={() => setActiveDialog(null)}
