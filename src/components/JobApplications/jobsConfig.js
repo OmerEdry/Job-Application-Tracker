@@ -16,7 +16,6 @@ const ANSWER_DEADLINE = { name: 'answerDeadline', label: 'Answer Deadline', type
 const OFFER_AMOUNT = { name: 'offerAmount', label: 'Offer Amount', type: 'text' };
 const NOTES = { name: 'notes', label: 'Notes', type: 'text' };
 
-
 export const STATUSES = ['Wishlist', 'Applied', 'Interviewing', 'Offer'];
 
 export const STATUS_FIELDS_CONFIG = {
@@ -27,4 +26,42 @@ export const STATUS_FIELDS_CONFIG = {
     Applied: [APPLIED_DATE, PLATFORM],
     Interviewing: [NEXT_INTERVIEW_DATE, ROUND],
     Offer: [ANSWER_DEADLINE, OFFER_AMOUNT]
+};
+
+export const capitalize = (str) => {
+    if (!str || typeof str !== 'string') return '';
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+};
+
+export const getAccumulatedFields = (status) => {
+    const normalizedStatus = capitalize(status);
+    const index = STATUSES.indexOf(normalizedStatus);
+
+    if (index === -1) return STATUS_FIELDS_CONFIG[normalizedStatus] || [];
+
+    let fields = [];
+    for (let i = 0; i <= index; i++) {
+        const stage = STATUSES[i];
+        if (STATUS_FIELDS_CONFIG[stage]) {
+            fields = [...fields, ...STATUS_FIELDS_CONFIG[stage]];
+        }
+    }
+    return fields;
+};
+
+export const getFieldsBetweenStatuses = (currentStatus, newStatus) => {
+    if (!newStatus) return [];
+    const currentIndex = STATUSES.indexOf(capitalize(currentStatus));
+    const newIndex = STATUSES.indexOf(capitalize(newStatus));
+
+    if (newIndex <= currentIndex) return [];
+
+    let fields = [];
+    for (let i = currentIndex + 1; i <= newIndex; i++) {
+        const stage = STATUSES[i];
+        if (STATUS_FIELDS_CONFIG[stage]) {
+            fields = [...fields, ...STATUS_FIELDS_CONFIG[stage]];
+        }
+    }
+    return fields;
 };

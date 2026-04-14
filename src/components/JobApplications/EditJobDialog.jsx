@@ -1,17 +1,17 @@
-import { uniqueSkills, uniqueJobs } from "../../mockJobs/mockJobs"; //Repalce with api/get when moving to database, and save it as a state
+import { uniqueSkills } from "../../mockJobs/mockJobs"; //Replace with api/get when moving to DB
 import BaseForm from "../BaseForm";
-import { EDIT_JOB_FIELDS } from "./jobsConfig";
-
-
+import { getAccumulatedFields } from "./jobsConfig";
 
 export default function EditJobDialog({ isOpen, onClose, job }) {
+    const fields = getAccumulatedFields(job?.status);
+
     const handleSave = async (formData) => {
         const isNewSkill = !uniqueSkills.includes(formData.skill);
 
         if (isNewSkill) {
             console.log(`"${formData.skill}" is a new skill`);
         } else {
-            console.log("Existing skill seleceted");
+            console.log("Existing skill selected");
         }
 
         console.log("Final job before saving edits:", formData);
@@ -23,8 +23,8 @@ export default function EditJobDialog({ isOpen, onClose, job }) {
             key={`${job?.id}-${isOpen ? 'open' : 'closed'}`}
             isOpen={isOpen}
             onClose={onClose}
-            fields={EDIT_JOB_FIELDS}
-            initialValues={job}
+            fields={fields}
+            initialValues={job || {}}
             title="Edit Job"
             onSubmit={handleSave}
             buttons={{ submit: 'Save Edits', secondary: 'Cancel' }}
