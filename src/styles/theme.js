@@ -178,6 +178,17 @@ const theme = createTheme({
     interviewing: 'linear-gradient( #FFEACC, #FAFAF2)',
     offer: 'linear-gradient( #D8FFD6, #F2FAF3)',
   },
+  
+  alertShadows: {
+    alert: '0px 5px 20px 0px rgba(0, 0, 0, 0.25)',
+  },
+
+  notification: {
+    success: '#22E656',
+    error: '#FA5252',
+    warning: '#FAB005',
+    info: '#1976D2',//not used atm but will crash if not addressed 
+  },
 
   components: {
     MuiTypography: {
