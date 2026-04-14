@@ -80,11 +80,12 @@ export default function JobMenu({ job }) {
                 onClose={handleCloseDialog}
                 job={job}
             />
-            {/* <MoveJobDialog
+            <MoveJobDialog
                 isOpen={activeDialog === 'move'}
-                onClose={() => setActiveDialog(null)}
+                onClose={handleCloseDialog}
+                job={job}
             />
-            */}
+
             <DeleteJobDialog
                 isOpen={activeDialog === 'delete'}
                 onClose={handleCloseDialog}

@@ -9,7 +9,6 @@ export default function DeleteJobDialog({ isOpen, onClose, job, isLoading }) {
         onClose();
     }
 
-    if (!isOpen) return null;
 
     return (
         <Dialog
@@ -36,7 +35,7 @@ export default function DeleteJobDialog({ isOpen, onClose, job, isLoading }) {
             <form onSubmit={handleDelete} >
                 <DialogContent>
                     <Typography variant='subtitle1'>You are about to delete {job.companyName} - {job.jobTitle}</Typography>
-                    <Typography variant='subtitle3'>You willl still be able to See this application through the Archive Page</Typography>
+                    <Typography variant='subtitle3'>You will still be able to See this application through the Archive Page</Typography>
                 </DialogContent>
 
                 <DialogActions sx={{ justifyContent: 'center' }}>
