@@ -1,8 +1,9 @@
 import { useState, startTransition } from 'react';
-import { Box, IconButton, Menu, MenuItem, MenuList, ListItemIcon, Typography } from '@mui/material';
+import { Box, IconButton, Menu, MenuItem, ListItemIcon, Typography } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { MenuIcons } from '../../assets/icons';
 import EditJobDialog from './EditJobDialog';
+import MoveJobDialog from './MoveJobDialog';
 import DeleteJobDialog from './DeleteJobDialog';
 
 
@@ -47,7 +48,7 @@ export default function JobMenu({ job }) {
                 aria-expanded={isMenuOpen ? 'true' : undefined}
                 aria-haspopup="true"
 
-                sx={{ '&:focus': { outline: 'none' } }}
+
             >
                 <MoreVertIcon />
             </IconButton>

@@ -27,11 +27,6 @@ const HeaderCard = ({ header }) => {
                     sx={{
                         padding: '8px 16px',
                         height: '100%',
-                        '& .MuiCardHeader-content': {
-                            display: 'flex',
-                            alignItems: 'center',
-                            height: '100%',
-                        }
                     }}
                     avatar={header.icon}
                     title={header.name}
@@ -40,7 +35,7 @@ const HeaderCard = ({ header }) => {
                         <IconButton
                             aria-label="add job"
                             onClick={handleOpenAddJob}
-                            sx={{ color: "inherit", '&:focus:not(:focus-visible)': { outline: 'none' } }}>
+                            sx={{ color: "inherit", }}>
                             <AddIcon />
                         </IconButton>
                     }

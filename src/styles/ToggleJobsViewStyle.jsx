@@ -21,7 +21,7 @@ export const ToggleGroupStyles = {
         textTransform: 'none',
         transition: 'all 0.2s ease',
         whiteSpace: 'nowrap',
-        '&:focus:not(:focus-visible)': { outline: 'none' },
+
 
         "& .MuiTypography-root": {
             fontFamily: '"Space Grotesk", sans-serif',
@@ -32,7 +32,7 @@ export const ToggleGroupStyles = {
 
         "&.Mui-selected": {
             backgroundColor: 'background.paper',
-            '&:focus:not(:focus-visible)': { outline: 'none' },
+
 
             "& .MuiTypography-root": {
                 fontWeight: 700,

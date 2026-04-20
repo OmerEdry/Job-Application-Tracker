@@ -10,13 +10,58 @@ const JOB_URL = { name: 'jobUrl', label: 'Job URL', type: 'text', required: fals
 const TAGS = { name: 'tags', label: 'Tags', placeholder: 'Max 5', type: 'autocomplete', multiple: true, freeSolo: true, limitTags: 2, options: uniqueSkills, };
 const APPLIED_DATE = { name: 'appliedDate', label: 'Applied Date', type: 'date', required: true };
 const PLATFORM = { name: 'platform', label: 'Platform', type: 'text', };
+const NEXT_INTERVIEW_DATE = { name: 'nextInterviewDate', label: 'Interview Date', type: 'date', required: true };
+const ROUND = { name: 'round', label: 'Round', type: 'text', };
+const ANSWER_DEADLINE = { name: 'answerDeadline', label: 'Answer Deadline', type: 'date' };
+const OFFER_AMOUNT = { name: 'offerAmount', label: 'Offer Amount', type: 'text' };
+const NOTES = { name: 'notes', label: 'Notes', type: 'text' };
 
+export const STATUSES = ['Wishlist', 'Applied', 'Interviewing', 'Offer'];
 
+export const STATUS_FIELDS_CONFIG = {
+    Wishlist: [
+        COMPANY_NAME, COMPANY_LOGO, JOB_TITLE, LOCATION,
+        WORK_TYPE, STATUS, JOB_URL, TAGS
+    ],
+    Applied: [APPLIED_DATE, PLATFORM],
+    Interviewing: [NEXT_INTERVIEW_DATE, ROUND],
+    Offer: [ANSWER_DEADLINE, OFFER_AMOUNT]
+};
 
-export const ADD_JOB_FIELDS = [
-    COMPANY_NAME, COMPANY_LOGO, JOB_TITLE, LOCATION, WORK_TYPE, STATUS, JOB_URL, TAGS, APPLIED_DATE, PLATFORM
-];
+export const capitalize = (str) => {
+    if (!str || typeof str !== 'string') return '';
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+};
 
-export const EDIT_JOB_FIELDS = [
-    COMPANY_NAME, COMPANY_LOGO, JOB_TITLE, LOCATION, WORK_TYPE, STATUS, JOB_URL, TAGS
-];
+export const getAccumulatedFields = (status) => {
+    const normalizedStatus = capitalize(status);
+    const index = STATUSES.indexOf(normalizedStatus);
+
+    if (index === -1) return STATUS_FIELDS_CONFIG[normalizedStatus] || [];
+
+    let fields = [];
+    for (let i = 0; i <= index; i++) {
+        const stage = STATUSES[i];
+        if (STATUS_FIELDS_CONFIG[stage]) {
+            fields = [...fields, ...STATUS_FIELDS_CONFIG[stage]];
+        }
+    }
+    return fields;
+};
+
+export const getFieldsBetweenStatuses = (currentStatus, newStatus) => {
+    if (!newStatus) return [];
+    const currentIndex = STATUSES.indexOf(capitalize(currentStatus));
+    const newIndex = STATUSES.indexOf(capitalize(newStatus));
+
+    if (newIndex <= currentIndex) return [];
+
+    let fields = [];
+    for (let i = currentIndex + 1; i <= newIndex; i++) {
+        const stage = STATUSES[i];
+        if (STATUS_FIELDS_CONFIG[stage]) {
+            fields = [...fields, ...STATUS_FIELDS_CONFIG[stage]];
+        }
+    }
+    return fields;
+};

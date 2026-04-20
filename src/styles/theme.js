@@ -48,7 +48,12 @@ const theme = createTheme({
     text: {
       primary: '#191919',
       secondary: '#98A2B3',
+      primaryButton: '#FFFFFF',
+      secondaryButton: '#3A3A3A'
     },
+
+    buttonBorder: { secondary: '#999999' },
+
 
     divider: '#e0e0e0',
 
@@ -178,16 +183,13 @@ const theme = createTheme({
     interviewing: 'linear-gradient( #FFEACC, #FAFAF2)',
     offer: 'linear-gradient( #D8FFD6, #F2FAF3)',
   },
-  
-  alertShadows: {
-    alert: '0px 5px 20px 0px rgba(0, 0, 0, 0.25)',
-  },
 
+  alertShadows: { alert: '0px 5px 20px 0px rgba(0, 0, 0, 0.25)', },
   notification: {
     success: '#22E656',
     error: '#FA5252',
     warning: '#FAB005',
-    info: '#1976D2',//not used atm but will crash if not addressed 
+    info: '#1976D2',
   },
 
   components: {
@@ -226,14 +228,6 @@ const theme = createTheme({
         },
       ],
     },
-    //Moved it inside 'components'. MUI will ignore this part otherwise.
-    MuiListItemText: {
-      styleOverrides: {
-        root: {
-          margin: 0,
-        }
-      }
-    },
 
     MuiOutlinedInput: {
       styleOverrides: {
@@ -245,9 +239,33 @@ const theme = createTheme({
         }
       }
     },
+
+    MuiPickersOutlinedInput: {
+      styleOverrides: {
+        root: {
+          fontFamily: '"Inter", sans-serif',
+          fontWeight: 400,
+          fontSize: '1rem',
+        },
+      },
+    },
+
+
+
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          textTransform: 'none',
+          boxShadow: 'none',
+          '&:hover': {
+            boxShadow: 'none',
+          },
+        },
+
+      }
+    }
   },
 
-},
-);
+});
 
 export default theme;

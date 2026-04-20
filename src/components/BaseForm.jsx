@@ -1,91 +1,86 @@
-import { useState, useEffect } from 'react';
-import { Typography, Grid, Dialog, DialogTitle, DialogContent, DialogActions, Button, FormLabel } from "@mui/material";
-import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import InputField from './controls/Input';
+import { useState, useEffect } from "react";
+import { Box, Grid, Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material";
+import SecondaryButton from './controls/SecondaryButton';
+import PrimaryButton from "./controls/PrimaryButton";
+import InputField from "./controls/Input";
+
+const DEFAULT_VALUES = {};
 
 export default function BaseForm({
-    isOpen, onClose, title, fields, initialValues, onSubmit, onSecondaryAction, buttons, isLoading
+    isOpen,
+    onClose,
+    title,
+    fields = [],
+    initialValues = DEFAULT_VALUES,
+    onSubmit,
+    onSecondaryAction,
+    buttons = { submit: 'Save', secondary: 'Cancel' },
+    children
 }) {
+    const [formData, setFormData] = useState(initialValues);
 
-    const [formData, setFormData] = useState(initialValues || {});
+    useEffect(() => {
+        if (isOpen) setFormData(initialValues);
+    }, [initialValues, isOpen]);
 
-    const handleChange = (name, value) => {
+    const handleInputChange = (name, value) => {
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        onSubmit(formData);
+        if (onSubmit) onSubmit(formData);
     };
 
-
-    if (!isOpen) return null;
+    const handleSecondary = () => {
+        if (onSecondaryAction) {
+            onSecondaryAction(formData);
+        }
+        onClose();
+    };
 
     return (
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <Dialog open={isOpen} onClose={onClose} fullWidth maxWidth="md">
-                <DialogTitle variant="h1">{title}</DialogTitle>
-                <form onSubmit={handleSubmit}>
+        <Dialog
+            open={isOpen}
+            onClose={onClose}
+            fullWidth
+            maxWidth='md'
+            slotProps={{
+                paper: {
+                    sx: {
+                        borderRadius: '15px',
+                        elevation: 0,
+                        boxShadow: 'none'
+                    }
+                }
+            }}
+        >
+            <Box component='form' onSubmit={handleSubmit} sx={{ px: 1 }}>
+                <DialogTitle variant='h1' sx={{ pt: 4, pb: 3 }}>
+                    {title}
+                </DialogTitle>
 
-                    <DialogContent>
-                        <Grid container spacing={2} sx={{ mt: 1 }}>
-                            {fields.map((field) => (
-                                <Grid key={`${field.name}-grid`} size={{ xs: 12, sm: 6 }}>
-                                    <FormLabel required={field.required} sx={{ mb: 1, display: 'block', color: 'text.primary' }}>
-                                        <Typography variant='input'>
-                                            {field.label}
-                                        </Typography>
-                                    </FormLabel>
-                                    <InputField
-                                        key={field.name}
-                                        field={field}
-                                        value={formData[field.name]}
-                                        onChange={handleChange}
-                                        disabled={isLoading}
-                                    />
-                                </Grid>
-                            ))}
-                        </Grid>
-                    </DialogContent>
+                <DialogContent>
+                    <Grid container spacing={3}>
+                        {children}
 
-                    <DialogActions sx={{ px: 3, pb: 3, pt: 1 }}>
-                        <Grid container spacing={2} sx={{ width: '100%', m: 0 }}>
-                            <Grid size={{ xs: 12, sm: 6 }}>
-                                <Button
-                                    fullWidth
-                                    onClick={onSecondaryAction || onClose}
-                                    disabled={isLoading}
-                                    variant="outlined"
-                                    sx={{
-                                        borderColor: '#999999',
-                                        color: 'text.primary',
-                                    }}
-                                >
-                                    {buttons.secondary}
-                                </Button>
+                        {fields.map((field) => (
+                            <Grid key={field.name} size={{ xs: 6 }}>
+                                <InputField
+                                    field={field}
+                                    value={formData[field.name]}
+                                    onChange={handleInputChange}
+                                />
                             </Grid>
-                            <Grid size={{ xs: 12, sm: 6 }}>
-                                <Button
-                                    fullWidth
-                                    type="submit"
-                                    disabled={isLoading}
-                                    variant="contained"
-                                    sx={{
-                                        background: (theme) => theme.gradients?.primary,
-                                        color: 'white',
-                                        '&:hover': {
-                                            opacity: 0.9
-                                        }
-                                    }}
-                                >
-                                    {isLoading ? 'Saving...' : `${buttons.submit}`}
-                                </Button>
-                            </Grid>
-                        </Grid>
-                    </DialogActions>
-                </form>
-            </Dialog>
-        </LocalizationProvider >
-    )
+                        ))}
+                    </Grid>
+                </DialogContent>
+
+                <DialogActions sx={{ px: 3, pb: 4, gap: 2 }}>
+                    <SecondaryButton onClick={handleSecondary} label={buttons.secondary} />
+                    <PrimaryButton type="submit" label={buttons.submit} />
+                </DialogActions>
+            </Box>
+        </Dialog>
+    );
 }

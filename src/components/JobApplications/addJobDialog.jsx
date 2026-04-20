@@ -1,23 +1,18 @@
-import { uniqueSkills, uniqueJobs } from "../../mockJobs/mockJobs"; //Repalce with api/get when moving to database, and save it as a state
 import BaseForm from "../BaseForm";
-import { ADD_JOB_FIELDS } from "./jobsConfig";
-
-
+import { getAccumulatedFields } from "./jobsConfig";
 
 export default function AddJobDialog({ isOpen, onClose, status }) {
-
-
-    const buttons = { submit: 'Add Job', secondary: 'Save As Draft' };
+    const fields = getAccumulatedFields(status);
 
     const handleSave = async (formData) => {
-        // TODO create new job object and add it to corrosponding stack
-        console.log("Final job before saving edits:", formData);
+        // TODO create new job object and add it to corresponding stack
+        console.log("Final job before saving:", formData);
         onClose();
     };
 
     const handleSaveDraft = async (formData) => {
         // TODO add draft functionality
-        console.log("Final job before saving draft edits:", formData);
+        console.log("Final job before saving draft:", formData);
         onClose();
     }
 
@@ -26,13 +21,11 @@ export default function AddJobDialog({ isOpen, onClose, status }) {
             key={`${status}-${isOpen ? 'open' : 'closed'}`}
             isOpen={isOpen}
             onClose={onClose}
-            fields={ADD_JOB_FIELDS}
+            fields={fields}
             title="Add New Job"
-            submitLabel='Add Job'
-            cancelLabel='Save As Draft'
             onSubmit={handleSave}
             onSecondaryAction={handleSaveDraft}
-            buttons={buttons}
+            buttons={{ submit: 'Add Job', secondary: 'Save As Draft' }}
         />
     );
 }

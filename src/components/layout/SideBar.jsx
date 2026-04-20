@@ -224,8 +224,6 @@ const Sidebar = () => {
                             fontSize: !open ? '30px' : '25px'
                         },
                         '&:focus, &:active, &.Mui-focusVisible': {
-                            outline: 'none',
-                            boxShadow: 'none',
                             backgroundColor: 'transparent',
                         },
                     }}
