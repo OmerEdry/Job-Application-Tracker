@@ -2,6 +2,7 @@ import { useState, useMemo } from "react";
 import { Typography, Grid, FormLabel, Autocomplete, TextField } from "@mui/material";
 import { STATUSES, capitalize, getFieldsBetweenStatuses } from "./jobsConfig";
 import BaseForm from "../BaseForm";
+import { useNotification } from "../../context/NotificationContext";
 
 const getDefaultNewStatus = (currentStatus) => {
     if (currentStatus === 'Offer') return 'Interviewing';
@@ -14,6 +15,8 @@ export default function MoveJobDialog({ isOpen, onClose, job = {}, onSave }) {
     const currentStatus = STATUSES.includes(normalizedJobStatus) ? normalizedJobStatus : STATUSES[0];
     const [newStatus, setNewStatus] = useState(() => getDefaultNewStatus(currentStatus));
 
+    const { showNotification } = useNotification();
+
     const extraFields = useMemo(() => {
         return getFieldsBetweenStatuses(currentStatus, newStatus);
     }, [currentStatus, newStatus]);
@@ -25,10 +28,16 @@ export default function MoveJobDialog({ isOpen, onClose, job = {}, onSave }) {
             status: newStatus.toLowerCase()
         };
 
-        if (onSave) {
-            onSave(updateJob);
+        try {
+            if (onSave) {
+                onSave(updateJob);
+                showNotification(`Successfully moved ${job.companyName} To ${newStatus}`, "success");
+                onClose();
+            }
+        } catch (error) {
+            console.error('Error saving job:', error);
+            showNotification(`Failed to move ${job.companyName} To ${newStatus}`, "error");
         }
-        onClose();
     };
 
     return (
