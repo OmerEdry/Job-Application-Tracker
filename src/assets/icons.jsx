@@ -85,6 +85,37 @@ const ListIcon = (props) => (
     <IconWrapper icon="mdi:format-list-bulleted" {...props} />
 );
 
+export const SuccessNotificationIcon = () => (
+    <svg width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fillRule="evenodd" clipRule="evenodd" d="M22.5 45C25.4547 45 28.3806 44.418 31.1104 43.2873C33.8402 42.1566 36.3206 40.4992 38.4099 38.4099C40.4992 36.3206 42.1566 33.8402 43.2873 31.1104C44.418 28.3806 45 25.4547 45 22.5C45 19.5453 44.418 16.6194 43.2873 13.8896C42.1566 11.1598 40.4992 8.67942 38.4099 6.5901C36.3206 4.50078 33.8402 2.84344 31.1104 1.71271C28.3806 0.581979 25.4547 -4.40291e-08 22.5 0C16.5326 8.89208e-08 10.8097 2.37053 6.5901 6.5901C2.37053 10.8097 0 16.5326 0 22.5C0 28.4674 2.37053 34.1903 6.5901 38.4099C10.8097 42.6295 16.5326 45 22.5 45ZM21.92 31.6L34.42 16.6L30.58 13.4L19.83 26.2975L14.2675 20.7325L10.7325 24.2675L18.2325 31.7675L20.1675 33.7025L21.92 31.6Z" fill="#0BA634"/>
+    </svg>
+);
+
+export const ErrorNotificationIcon = () => (
+    <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fillRule="evenodd" clipRule="evenodd" d="M25 0C38.805 0 50 11.1949 50 25C50 38.805 38.805 50 25 50C11.1949 50 0 38.805 0 25C0 11.1949 11.1949 0 25 0ZM30.7325 15.7324L25 21.4651L19.2675 15.7327L15.7325 19.2676L21.465 25L15.7325 30.7325L19.2675 34.2675L25 28.535L30.7325 34.2675L34.2675 30.7325L28.535 25L34.2675 19.2675L30.7325 15.7324Z" fill="#C83737"/>
+    </svg>
+);
+
+export const WarningNotificationIcon = () => (
+    <svg width="53" height="46" viewBox="0 0 53 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 45.475L26.25 0L52.5 45.475H0ZM48.175 42.975L26.25 5L4.325 42.975H48.175ZM25 27.975V17.975H27.5V27.975H25ZM25 32.975H27.5V37.975H25V32.975Z" fill="#CD900E"/>
+    </svg>
+);
+const InfoIcon = () => (
+    <svg width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="22.5" cy="22.5" r="22.5" fill="#1976D2"/>
+        <rect x="21" y="18" width="3" height="15" rx="1.5" fill="white"/>
+        <circle cx="22.5" cy="13" r="2" fill="white"/>
+    </svg>
+);
+
+export const NotificationIcons = {
+    success: <SuccessNotificationIcon />,
+    error: <ErrorNotificationIcon />,
+    warning: <WarningNotificationIcon />,
+    info: <InfoIcon />
+};
 
 export const KanbanHeadersIcons = {
     Wishlist: <WishlistIcon />,
@@ -92,8 +123,6 @@ export const KanbanHeadersIcons = {
     Interviewing: <InterviewingIcon />,
     Offer: <OfferIcon />,
 };
-
-
 
 export const SidebarIcons = {
     Job: WorkOutlineIcon,

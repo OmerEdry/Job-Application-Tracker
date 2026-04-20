@@ -7,20 +7,26 @@ import { routes } from './utils/routesConfig';
 import IconStyle from './styles/IconStyle';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { NotificationProvider } from './context/NotificationContext';
+import GlobalNotification from './components/ui/GlobalNotification';
+
 
 function App() {
   const routing = useRoutes(routes);
 
   return (
-    <ThemeProvider theme={theme}>
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <CssBaseline />
-        <IconStyle />
-        <MainLayout>
-          {routing}
-        </MainLayout>
-      </LocalizationProvider>
-    </ThemeProvider>
+    <NotificationProvider>
+      <ThemeProvider theme={theme}>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <CssBaseline />
+          <IconStyle />
+          <MainLayout>
+            {routing}
+          </MainLayout>
+        </LocalizationProvider>
+        <GlobalNotification />
+      </ThemeProvider>
+    </NotificationProvider>
   );
 }
 

@@ -1,9 +1,10 @@
 import { useState, startTransition } from 'react';
-import { Box, IconButton, Menu, MenuItem, MenuList, ListItemIcon, Typography } from '@mui/material';
+import { Box, IconButton, Menu, MenuItem, ListItemIcon, Typography } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { MenuIcons } from '../../assets/icons';
 import EditJobDialog from './EditJobDialog';
 import MoveJobDialog from './MoveJobDialog';
+import DeleteJobDialog from './DeleteJobDialog';
 
 
 const MENU_OPTIONS = [
@@ -82,14 +83,15 @@ export default function JobMenu({ job }) {
             />
             <MoveJobDialog
                 isOpen={activeDialog === 'move'}
-                onClose={() => setActiveDialog(null)}
+                onClose={handleCloseDialog}
                 job={job}
             />
-            {/*
+
             <DeleteJobDialog
-                open={activeDialog === 'delete'}
-                onClose={() => setActiveDialog(null)}
-            /> */}
+                isOpen={activeDialog === 'delete'}
+                onClose={handleCloseDialog}
+                job={job}
+            />
         </Box>
     )
 }

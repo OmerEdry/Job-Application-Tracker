@@ -48,7 +48,12 @@ const theme = createTheme({
     text: {
       primary: '#191919',
       secondary: '#98A2B3',
+      primaryButton: '#FFFFFF',
+      secondaryButton: '#3A3A3A'
     },
+
+    buttonBorder: { secondary: '#999999' },
+
 
     divider: '#e0e0e0',
 
@@ -177,6 +182,14 @@ const theme = createTheme({
     applied: 'linear-gradient( #FFD3D3, #FAF6F2)',
     interviewing: 'linear-gradient( #FFEACC, #FAFAF2)',
     offer: 'linear-gradient( #D8FFD6, #F2FAF3)',
+  },
+
+  alertShadows: { alert: '0px 5px 20px 0px rgba(0, 0, 0, 0.25)', },
+  notification: {
+    success: '#22E656',
+    error: '#FA5252',
+    warning: '#FAB005',
+    info: '#1976D2',
   },
 
   components: {
