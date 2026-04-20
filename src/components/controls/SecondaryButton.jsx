@@ -11,10 +11,10 @@ export default function SecondaryButton({ onClick, label, disabled, }) {
             sx={{
                 textTransform: 'none',
                 borderRadius: '8px',
-                borderColor: '#999999',
+                borderColor: 'buttonBorder.secondary'
             }}
         >
-            <Typography variant='subtitle1' color='#3A3A3A'>
+            <Typography variant='subtitle1' color='text.secondaryButton'>
                 {label}
             </Typography>
         </Button>

@@ -12,7 +12,7 @@ export default function PrimaryButton({ label, isLoading, }) {
             sx={{
                 background: (theme) => theme.gradients?.primary,
                 borderRadius: '8px',
-                color: '#FFFFFF',
+                color: 'text.primaryButton',
                 '&:hover': {
                     opacity: 0.9
                 }
