@@ -85,6 +85,7 @@ export default function JobMenu({ job }) {
                 isOpen={activeDialog === 'move'}
                 onClose={handleCloseDialog}
                 job={job}
+                onSave={(updatedJob) => console.log('Updated Job:', updatedJob)}
             />
 
             <DeleteJobDialog
