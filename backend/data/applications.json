@@ -1,105 +1,454 @@
-[
-  {
-    "id": 1,
-    "companyName": "Google",
-    "companyLogo": "https://www.google.com/s2/favicons?domain=google.com&sz=256",
-    "jobTitle": "Full Stack Developer",
-    "jobUrl": "https://technova.com/careers/frontend-developer",
-    "location": "Tel Aviv, Israel",
-    "workType": "on site",
-    "status": "wishlist",
-    "tags": ["Rest API", "React", "Node.js", "Full Stack Development", "MongoDB"],
-    "createdAt": "2026-02-23T09:30:00.000z",
-    "updatedAt": "2026-02-23T09:30:00.000z",
-    "notes": "referred by G.Yafit"
-  },
-  {
-    "id": 2,
-    "companyName": "Spotify",
-    "companyLogo": "https://www.google.com/s2/favicons?domain=spotify.com&sz=256",
-    "jobTitle": "Frontend Engineer Intern",
-    "location": "",
-    "workType": "Remote",
-    "status": "wishlist",
-    "tags": ["Remote", "React", "HTML5", "Software Engineering", "TypeScript"],
-    "createdAt": "2026-02-21T09:30:00.000z",
-    "updatedAt": "2026-02-22T10:34:00.000z"
-  },
-  {
-    "id": 3,
-    "companyName": "Discord",
-    "companyLogo": "https://www.google.com/s2/favicons?domain=discord.com&sz=256",
-    "jobTitle": "Software Engineering Intern",
-    "location": "Tel Aviv, Israel",
-    "workType": "on site",
-    "status": "wishlist",
-    "tags": ["UI/UX", "Vue", "PostgreSQL", "Amazon Web Services", "Java"],
-    "createdAt": "2026-02-17T09:30:00.000z",
-    "updatedAt": "2026-02-27T09:30:00.000z"
-  },
-  {
-    "id": 4,
-    "companyName": "Youtube",
-    "companyLogo": "https://www.google.com/s2/favicons?domain=youtube.com&sz=256",
-    "jobTitle": "Full Stack Developer",
-    "location": "",
-    "workType": "Remote",
-    "status": "wishlist",
-    "tags": ["Rest API", "React", "Node.js", "Full Stack Development", "MongoDB"],
-    "createdAt": "2026-02-11T09:30:00.000z",
-    "updatedAt": "2026-02-17T09:30:00.000z"
-  },
-  {
-    "id": 5,
-    "companyName": "Amazon",
-    "companyLogo": "https://www.google.com/s2/favicons?domain=amazon.com&sz=256",
-    "jobTitle": "Full Stack Developer",
-    "location": "Netanya, Israel",
-    "workType": "on site",
-    "status": "applied",
-    "tags": ["Redis", "React", "HTML5", "Software Engineering", "TypeScript"],
-    "createdAt": "2026-02-13T09:30:00.000z",
-    "updatedAt": "2026-02-15T09:30:00.000z",
-    "appliedDate": "2026-02-13T09:30:00.000z",
-    "notes": "referred by G.Yafit"
-  },
-  {
-    "id": 6,
-    "companyName": "Tiktok",
-    "companyLogo": "https://www.google.com/s2/favicons?domain=tiktok.com&sz=256",
-    "jobTitle": "Software Engineer",
-    "workType": "Remote",
-    "status": "applied",
-    "tags": ["Remote", "Angular", "Spring Boot", "Full Stack Development", "Rest API"],
-    "createdAt": "2026-02-01T09:30:00.000z",
-    "updatedAt": "2026-02-01T09:30:00.000z",
-    "appliedDate": "2026-02-01T09:30:00.000z"
-  },
-  {
-    "id": 7,
-    "companyName": "Apple",
-    "companyLogo": "https://www.google.com/s2/favicons?domain=apple.com&sz=256",
-    "jobTitle": "Full Stack Developer",
-    "location": "Rehovot, Israel",
-    "workType": "on site",
-    "status": "interviewing",
-    "tags": ["Kubernetes", "React", "Azure", "Microservices", "Node.js"],
-    "createdAt": "2026-02-23T09:30:00.000z",
-    "updatedAt": "2026-02-23T09:30:00.000z",
-    "appliedDate": "2026-02-23T09:30:00.000z"
-  },
-  {
-    "id": 8,
-    "companyName": "Apple",
-    "companyLogo": "https://www.google.com/s2/favicons?domain=x.com&sz=256",
-    "jobTitle": "Full Stack Developer",
-    "workType": "Remote",
-    "status": "interviewing",
-    "tags": ["Kubernetes", "React", "Azure", "Microservices", "Node.js"],
-    "createdAt": "2026-01-01T09:30:00.000z",
-    "updatedAt": "2026-02-01T09:30:00.000z",
-    "appliedDate": "2026-01-01T09:30:00.000z",
-    "answerDeadline": "2026-02-28T23:59:59.000z",
-    "offerAmount": 32000
-  }
-]
+{
+  "app_status": [
+    {
+      "id": 1,
+      "name": "wishlist",
+      "sort_order": 0
+    },
+    {
+      "id": 2,
+      "name": "applied",
+      "sort_order": 1
+    },
+    {
+      "id": 3,
+      "name": "interviewing",
+      "sort_order": 2
+    },
+    {
+      "id": 4,
+      "name": "offer",
+      "sort_order": 3
+    },
+    {
+      "id": 5,
+      "name": "rejected",
+      "sort_order": 4
+    }
+  ],
+  "companies": [
+    {
+      "id": 1,
+      "name": "Google",
+      "logo_url": "https://www.google.com/s2/favicons?domain=google.com&sz=256"
+    },
+    {
+      "id": 2,
+      "name": "Spotify",
+      "logo_url": "https://www.google.com/s2/favicons?domain=spotify.com&sz=256"
+    },
+    {
+      "id": 3,
+      "name": "Discord",
+      "logo_url": "https://www.google.com/s2/favicons?domain=discord.com&sz=256"
+    },
+    {
+      "id": 4,
+      "name": "Youtube",
+      "logo_url": "https://www.google.com/s2/favicons?domain=youtube.com&sz=256"
+    },
+    {
+      "id": 5,
+      "name": "Amazon",
+      "logo_url": "https://www.google.com/s2/favicons?domain=amazon.com&sz=256"
+    },
+    {
+      "id": 6,
+      "name": "Tiktok",
+      "logo_url": "https://www.google.com/s2/favicons?domain=tiktok.com&sz=256"
+    },
+    {
+      "id": 7,
+      "name": "Apple",
+      "logo_url": "https://www.google.com/s2/favicons?domain=apple.com&sz=256"
+    },
+    {
+      "id": 8,
+      "name": "Netflix",
+      "logo_url": "https://www.google.com/s2/favicons?domain=netflix.com&sz=256"
+    },
+    {
+      "id": 9,
+      "name": "Nvidia",
+      "logo_url": "https://www.google.com/s2/favicons?domain=nvidia.com&sz=256"
+    }
+  ],
+  "job_applications": [
+    {
+      "id": 1,
+      "company_id": 1,
+      "title": "Full Stack Developer",
+      "url": "https://technova.com/careers/frontend-developer",
+      "location": "Tel Aviv, Israel",
+      "work_type": "on_site",
+      "status_id": 1,
+      "created_at": "2026-02-23T09:30:00.000Z",
+      "updated_at": "2026-02-23T09:30:00.000Z",
+      "notes": "referred by G.Yafit"
+    },
+    {
+      "id": 2,
+      "company_id": 2,
+      "title": "Frontend Engineer Intern",
+      "url": "",
+      "location": "",
+      "work_type": "remote",
+      "status_id": 1,
+      "created_at": "2026-02-21T09:30:00.000Z",
+      "updated_at": "2026-02-21T09:30:00.000Z",
+      "notes": ""
+    },
+    {
+      "id": 3,
+      "company_id": 3,
+      "title": "Software Engineering Intern",
+      "url": "",
+      "location": "",
+      "work_type": "remote",
+      "status_id": 1,
+      "created_at": "2026-02-22T10:34:00.000Z",
+      "updated_at": "2026-02-22T10:34:00.000Z",
+      "notes": ""
+    },
+    {
+      "id": 4,
+      "company_id": 4,
+      "title": "Full Stack Developer",
+      "url": "",
+      "location": "",
+      "work_type": "remote",
+      "status_id": 1,
+      "created_at": "2026-02-11T09:30:00.000Z",
+      "updated_at": "2026-02-11T09:30:00.000Z",
+      "notes": ""
+    },
+    {
+      "id": 5,
+      "company_id": 5,
+      "title": "Full Stack Developer",
+      "url": "",
+      "location": "Netanya, Israel",
+      "work_type": "on_site",
+      "status_id": 2,
+      "created_at": "2026-02-13T09:30:00.000Z",
+      "updated_at": "2026-02-15T09:30:00.000Z",
+      "notes": "referred by G.Yafit"
+    },
+    {
+      "id": 6,
+      "company_id": 6,
+      "title": "Software Engineer",
+      "url": "",
+      "location": "",
+      "work_type": "remote",
+      "status_id": 2,
+      "created_at": "2026-02-01T09:30:00.000Z",
+      "updated_at": "2026-02-01T09:30:00.000Z",
+      "notes": ""
+    },
+    {
+      "id": 7,
+      "company_id": 7,
+      "title": "Full Stack Developer",
+      "url": "",
+      "location": "Rehovot, Israel",
+      "work_type": "on_site",
+      "status_id": 3,
+      "created_at": "2026-02-23T09:30:00.000Z",
+      "updated_at": "2026-02-23T09:30:00.000Z",
+      "notes": ""
+    },
+    {
+      "id": 8,
+      "company_id": 7,
+      "title": "Full Stack Developer",
+      "url": "",
+      "location": "",
+      "work_type": "remote",
+      "status_id": 3,
+      "created_at": "2026-01-01T09:30:00.000Z",
+      "updated_at": "2026-02-01T09:30:00.000Z",
+      "notes": ""
+    },
+    {
+      "id": 9,
+      "company_id": 8,
+      "title": "Backend Engineer",
+      "url": "",
+      "location": "Tel Aviv",
+      "work_type": "hybrid",
+      "status_id": 2,
+      "created_at": "2026-06-07T21:53:13.099Z",
+      "updated_at": "2026-06-07T21:53:13.100Z",
+      "notes": "Applied through a friend reference"
+    },
+    {
+      "id": 10,
+      "company_id": 9,
+      "title": "Core Dev",
+      "url": "",
+      "location": "",
+      "work_type": "hybrid",
+      "status_id": 4,
+      "created_at": "2026-06-07T21:58:11.090Z",
+      "updated_at": "2026-06-07T21:58:11.090Z",
+      "notes": ""
+    },
+    {
+      "id": 11,
+      "company_id": 1,
+      "title": "AI Researcher",
+      "url": "",
+      "location": "Tel Aviv",
+      "work_type": "on_site",
+      "status_id": 1,
+      "created_at": "2026-06-07T21:58:19.657Z",
+      "updated_at": "2026-06-07T21:58:19.657Z",
+      "notes": ""
+    },
+    {
+      "id": 12,
+      "company_id": 8,
+      "title": "Backend Engineer",
+      "url": "",
+      "location": "Tel Aviv",
+      "work_type": "hybrid",
+      "status_id": 2,
+      "created_at": "2026-06-07T21:58:23.128Z",
+      "updated_at": "2026-06-07T21:58:23.129Z",
+      "notes": "Applied through a friend reference"
+    }
+  ],
+  "application_applied_details": [
+    {
+      "id": 1,
+      "application_id": 5,
+      "applied_date": "2026-02-13",
+      "platform": ""
+    },
+    {
+      "id": 2,
+      "application_id": 6,
+      "applied_date": "2026-02-01",
+      "platform": ""
+    },
+    {
+      "id": 3,
+      "application_id": 7,
+      "applied_date": "2026-02-23",
+      "platform": ""
+    },
+    {
+      "id": 4,
+      "application_id": 8,
+      "applied_date": "2026-01-01",
+      "platform": ""
+    }
+  ],
+  "application_interviewing_details": [],
+  "application_offer_details": [
+    {
+      "id": 1,
+      "application_id": 10,
+      "answer_deadline": "2026-07-01T23:59:59.000Z",
+      "offer_amount": 35000
+    }
+  ],
+  "application_tags": [
+    {
+      "id": 1,
+      "application_id": 1,
+      "tag": "Rest API"
+    },
+    {
+      "id": 2,
+      "application_id": 1,
+      "tag": "React"
+    },
+    {
+      "id": 3,
+      "application_id": 1,
+      "tag": "Node.js"
+    },
+    {
+      "id": 4,
+      "application_id": 1,
+      "tag": "Full Stack Development"
+    },
+    {
+      "id": 5,
+      "application_id": 1,
+      "tag": "MongoDB"
+    },
+    {
+      "id": 6,
+      "application_id": 2,
+      "tag": "HTML5"
+    },
+    {
+      "id": 7,
+      "application_id": 2,
+      "tag": "Software Engineering"
+    },
+    {
+      "id": 8,
+      "application_id": 2,
+      "tag": "TypeScript"
+    },
+    {
+      "id": 9,
+      "application_id": 3,
+      "tag": "UI/UX"
+    },
+    {
+      "id": 10,
+      "application_id": 3,
+      "tag": "Vue"
+    },
+    {
+      "id": 11,
+      "application_id": 3,
+      "tag": "PostgreSQL"
+    },
+    {
+      "id": 12,
+      "application_id": 3,
+      "tag": "Amazon Web Services"
+    },
+    {
+      "id": 13,
+      "application_id": 3,
+      "tag": "Java"
+    },
+    {
+      "id": 14,
+      "application_id": 4,
+      "tag": "Rest API"
+    },
+    {
+      "id": 15,
+      "application_id": 4,
+      "tag": "React"
+    },
+    {
+      "id": 16,
+      "application_id": 4,
+      "tag": "Node.js"
+    },
+    {
+      "id": 17,
+      "application_id": 4,
+      "tag": "Full Stack Development"
+    },
+    {
+      "id": 18,
+      "application_id": 4,
+      "tag": "MongoDB"
+    },
+    {
+      "id": 19,
+      "application_id": 5,
+      "tag": "Redis"
+    },
+    {
+      "id": 20,
+      "application_id": 5,
+      "tag": "React"
+    },
+    {
+      "id": 21,
+      "application_id": 5,
+      "tag": "HTML5"
+    },
+    {
+      "id": 22,
+      "application_id": 5,
+      "tag": "Software Engineering"
+    },
+    {
+      "id": 23,
+      "application_id": 5,
+      "tag": "TypeScript"
+    },
+    {
+      "id": 24,
+      "application_id": 6,
+      "tag": "Remote"
+    },
+    {
+      "id": 25,
+      "application_id": 6,
+      "tag": "Angular"
+    },
+    {
+      "id": 26,
+      "application_id": 6,
+      "tag": "Spring Boot"
+    },
+    {
+      "id": 27,
+      "application_id": 6,
+      "tag": "Full Stack Development"
+    },
+    {
+      "id": 28,
+      "application_id": 6,
+      "tag": "Rest API"
+    },
+    {
+      "id": 29,
+      "application_id": 7,
+      "tag": "Kubernetes"
+    },
+    {
+      "id": 30,
+      "application_id": 7,
+      "tag": "React"
+    },
+    {
+      "id": 31,
+      "application_id": 7,
+      "tag": "Azure"
+    },
+    {
+      "id": 32,
+      "application_id": 7,
+      "tag": "Microservices"
+    },
+    {
+      "id": 33,
+      "application_id": 7,
+      "tag": "Node.js"
+    },
+    {
+      "id": 34,
+      "application_id": 9,
+      "tag": "Node.js"
+    },
+    {
+      "id": 35,
+      "application_id": 9,
+      "tag": "Express"
+    },
+    {
+      "id": 36,
+      "application_id": 9,
+      "tag": "REST API"
+    },
+    {
+      "id": 37,
+      "application_id": 12,
+      "tag": "Node.js"
+    },
+    {
+      "id": 38,
+      "application_id": 12,
+      "tag": "Express"
+    },
+    {
+      "id": 39,
+      "application_id": 12,
+      "tag": "REST API"
+    }
+  ]
+}

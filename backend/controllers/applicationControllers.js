@@ -3,35 +3,144 @@ const path = require('path');
 
 const dataPath = path.join(__dirname, '../data/applications.json');
 
-/**
- * @desc    Get all job applications
- * @route   GET /api/applications
- * @access  Public
- */
-const getAllApplications = (req, res) => {
-    
+// Helper function to read the DB
+const readDB = (callback) => {
     fs.readFile(dataPath, 'utf8', (err, data) => {
-        if (err) {
-            console.error('Error reading data file:', err);
-            return res.status(500).json({ 
-                message: 'Internal Server Error', 
-                error: 'Could not retrieve job applications' 
-            });
-        }
-        
+        if (err) return callback(err, null);
         try {
-            const applications = JSON.parse(data);
-            res.status(200).json(applications);
-        } catch (parseError) {
-            console.error('Error parsing JSON:', parseError);
-            res.status(500).json({ 
-                message: 'Internal Server Error', 
-                error: 'Data corruption detected' 
-            });
+            callback(null, JSON.parse(data));
+        } catch (pErr) {
+            callback(pErr, null);
         }
     });
 };
 
+// Helper function to write to the DB
+const writeDB = (data, callback) => {
+    fs.writeFile(dataPath, JSON.stringify(data, null, 2), 'utf8', callback);
+};
+
+/**
+ * @desc    Get all job applications (Enriched for Frontend UI comfort)
+ * @route   GET /api/applications
+ * @access  Public
+ */
+const getAllApplications = (req, res) => {
+    readDB((err, db) => {
+        if (err) return res.status(500).json({ message: 'Internal Server Error' });
+
+        //making combined table as object 
+        const enrichedApplications = db.job_applications.map(app => {
+            const company = db.companies.find(c => c.id === app.company_id) || {};
+            const status = db.app_status.find(s => s.id === app.status_id) || {};
+            const appliedDetails = db.application_applied_details.find(d => d.application_id === app.id) || null;
+            const interviewDetails = db.application_interviewing_details.find(d => d.application_id === app.id) || null;
+            const offerDetails = db.application_offer_details.find(d => d.application_id === app.id) || null;
+            const tags = db.application_tags.filter(t => t.application_id === app.id).map(t => t.tag);
+
+            return {
+                ...app,
+                companyName: company.name || '',
+                companyLogo: company.logo_url || '',
+                statusName: status.name || '',
+                appliedDetails,
+                interviewDetails,
+                offerDetails,
+                tags
+            };
+        });
+
+        res.status(200).json(enrichedApplications);
+    });
+};
+
+/**
+ * @desc    Create a new job application adhering to ERD Relational Schema
+ * @route   POST /api/applications
+ * @access  Public
+ */
+const createApplication = (req, res) => {
+    const { companyName, title, work_type, status_id, url, location, notes, tags, offer_amount, answer_deadline } = req.body;
+
+    // NOT NULL Validation
+    if (!companyName || !title || !status_id || !work_type) {
+        return res.status(400).json({ message: 'Validation Error', error: 'Company name, title, status_id, and work_type are required.' });
+    }
+
+    // ENUM Validation for work_type
+    const allowedWorkTypes = ['remote', 'on_site', 'hybrid'];
+    if (!allowedWorkTypes.includes(work_type)) {
+        return res.status(400).json({ message: 'Validation Error', error: 'work_type must be remote, on_site, or hybrid.' });
+    }
+
+    // CHECK Validation for offer_amount
+    if (offer_amount !== undefined && offer_amount !== null && offer_amount < 0) {
+        return res.status(400).json({ message: 'Validation Error', error: 'offer_amount must be greater than or equal to 0.' });
+    }
+
+    readDB((err, db) => {
+        if (err) return res.status(500).json({ message: 'Internal Server Error' });
+
+        // Handle Company (Find existing or create new)
+        let company = db.companies.find(c => c.name.toLowerCase() === companyName.toLowerCase());
+        if (!company) {
+            const nextCompanyId = db.companies.length > 0 ? Math.max(...db.companies.map(c => c.id)) + 1 : 1;
+            company = {
+                id: nextCompanyId,
+                name: companyName,
+                logo_url: `https://www.google.com/s2/favicons?domain=${companyName.toLowerCase().replace(/\s+/g, '')}.com&sz=256`
+            };
+            db.companies.push(company);
+        }
+
+        // Create the Core Job Application record
+        const nextAppId = db.job_applications.length > 0 ? Math.max(...db.job_applications.map(a => a.id)) + 1 : 1;
+        const newApplication = {
+            id: nextAppId,
+            company_id: company.id,
+            title,
+            url: url || "",
+            location: location || "",
+            work_type,
+            status_id: Number(status_id),
+            created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString(),
+            notes: notes || ""
+        };
+        db.job_applications.push(newApplication);
+
+        // Handle optional Offer Details (only for 'statusID=4/'offer')
+        if (Number(status_id) === 4 && (offer_amount || answer_deadline)) {
+            const nextOfferId = db.application_offer_details.length > 0 ? Math.max(...db.application_offer_details.map(o => o.id)) + 1 : 1;
+            db.application_offer_details.push({
+                id: nextOfferId,
+                application_id: nextAppId,
+                answer_deadline: answer_deadline || null,
+                offer_amount: offer_amount ? Number(offer_amount) : null
+            });
+        }
+
+        // Handle Tags relation
+        if (tags && Array.isArray(tags)) {
+            tags.forEach(tagText => {
+                const nextTagId = db.application_tags.length > 0 ? Math.max(...db.application_tags.map(t => t.id)) + 1 : 1;
+                db.application_tags.push({
+                    id: nextTagId,
+                    application_id: nextAppId, //using the id from the core job creation earlier(Foreign key connection)
+                    tag: tagText
+                });
+            });
+        }
+
+        // Save everything back to the DB
+        writeDB(db, (writeErr) => {
+            if (writeErr) return res.status(500).json({ message: 'Internal Server Error' });
+            res.status(201).json(newApplication);
+        });
+    });
+};
+
 module.exports = {
-    getAllApplications
+    getAllApplications,
+    createApplication
 };
