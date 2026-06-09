@@ -75,3 +75,24 @@ DELETE http://localhost:5000/api/applications/999
 
 ### Test 7: Delete an Existing Application (Expecting 200 OK & Cascade Delete)
 DELETE http://localhost:5000/api/applications/1
+
+### Test 8: Update a Non-Existent Application (Expecting 404 Not Found)
+PUT http://localhost:5000/api/applications/999
+Content-Type: application/json
+
+{
+  "title": "Senior Software Engineer"
+}
+
+###
+
+### Test 9: Update Core Details of an Existing Application (Expecting 200 OK)
+PUT http://localhost:5000/api/applications/2
+Content-Type: application/json
+
+{
+  "title": "Full Stack Developer (React & Node)",
+  "location": "Tel Aviv (Hybrid)",
+  "work_type": "hybrid",
+  "notes": "Updated notes during testing step A."
+}

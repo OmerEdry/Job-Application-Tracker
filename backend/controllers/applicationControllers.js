@@ -174,8 +174,59 @@ const deleteApplication = (req, res) => {
     });
 };
 
+/**
+ * @desc    Update a job application and its related entities
+ * @route   PUT /api/applications/:id
+ * @access  Public
+ */
+const updateApplication = (req, res) => {
+    const appId = Number(req.params.id);
+    const { companyName, title, work_type, status_id, url, location, notes, tags, offer_amount, answer_deadline } = req.body;
+
+    // validations 
+    const allowedWorkTypes = ['remote', 'on_site', 'hybrid'];
+    if (work_type && !allowedWorkTypes.includes(work_type)) {
+        return res.status(400).json({ message: 'Validation Error', error: 'work_type must be remote, on_site, or hybrid.' });
+    }
+
+    if (offer_amount !== undefined && offer_amount !== null && offer_amount < 0) {
+        return res.status(400).json({ message: 'Validation Error', error: 'offer_amount must be greater than or equal to 0.' });
+    }
+
+    readDB((err, db) => {
+        if (err) return res.status(500).json({ message: 'Internal Server Error' });
+
+        const appIndex = db.job_applications.findIndex(app => app.id === appId);
+        if (appIndex === -1) {
+            return res.status(404).json({ message: 'Update Error', error: `Application with ID ${appId} not found.` });
+        }
+
+        const currentApp = db.job_applications[appIndex];
+        
+        db.job_applications[appIndex] = {
+            ...currentApp,
+            title: title || currentApp.title,
+            url: url !== undefined ? url : currentApp.url,
+            location: location !== undefined ? location : currentApp.location,
+            work_type: work_type || currentApp.work_type,
+            status_id: status_id !== undefined ? Number(status_id) : currentApp.status_id,
+            notes: notes !== undefined ? notes : currentApp.notes,
+            updated_at: new Date().toISOString()
+        };
+
+        // TODO (companys,TAGS,offer detalis..)
+
+
+        writeDB(db, (writeErr) => {
+            if (writeErr) return res.status(500).json({ message: 'Internal Server Error' });
+            res.status(200).json(db.job_applications[appIndex]);
+        });
+    });
+}
+
 module.exports = {
     getAllApplications,
     createApplication,
-    deleteApplication
+    deleteApplication,
+    updateApplication
 };
