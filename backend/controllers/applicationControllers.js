@@ -140,7 +140,42 @@ const createApplication = (req, res) => {
     });
 };
 
+/**
+ * @desc    Delete a job application and all its related ERD entities
+ * @route   DELETE /api/applications/:id
+ * @access  Public
+ */
+const deleteApplication = (req, res) => {
+    const appId = Number(req.params.id);
+
+    readDB((err, db) => {
+        if (err) return res.status(500).json({ message: 'Internal Server Error' });
+        
+        // check if the job is existing 
+        const appExists = db.job_applications.some(app => app.id === appId);
+        if (!appExists) {
+            return res.status(404).json({ message: 'Delete Error', error: `Application with ID ${appId} not found.` });
+        }
+
+        // remove job from core jobs table
+        db.job_applications = db.job_applications.filter(app => app.id !== appId);
+
+        // remove all linked tables (according the ERD)
+        db.application_tags = db.application_tags.filter(t => t.application_id !== appId);
+        db.application_applied_details = db.application_applied_details.filter(d => d.application_id !== appId);
+        db.application_interviewing_details = db.application_interviewing_details.filter(d => d.application_id !== appId);
+        db.application_offer_details = db.application_offer_details.filter(d => d.application_id !== appId);
+
+        
+        writeDB(db, (writeErr) => {
+            if (writeErr) return res.status(500).json({ message: 'Internal Server Error' });
+            res.status(200).json({ message: `Application ${appId} and all its relations deleted successfully.` });
+        });
+    });
+};
+
 module.exports = {
     getAllApplications,
-    createApplication
+    createApplication,
+    deleteApplication
 };

@@ -67,3 +67,11 @@ Content-Type: application/json
   "status_id": 4,
   "offer_amount": -1200
 }
+
+### Test 6: Delete a Non-Existent Application (Expecting 404 Not Found)
+DELETE http://localhost:5000/api/applications/999
+
+###
+
+### Test 7: Delete an Existing Application (Expecting 200 OK & Cascade Delete)
+DELETE http://localhost:5000/api/applications/1
