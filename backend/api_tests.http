@@ -86,13 +86,18 @@ Content-Type: application/json
 
 ###
 
-### Test 9: Update Core Details of an Existing Application (Expecting 200 OK)
+### Test 9: Complete Relational Update (Core, Company, Tags, and Offer Details)
 PUT http://localhost:5000/api/applications/2
 Content-Type: application/json
 
 {
-  "title": "Full Stack Developer (React & Node)",
-  "location": "Tel Aviv (Hybrid)",
+  "title": "Senior DevOps & Infrastructure Engineer",
+  "companyName": "Apple",
+  "location": "Herzliya (Hybrid)",
   "work_type": "hybrid",
-  "notes": "Updated notes during testing step A."
+  "status_id": 4,
+  "notes": "Everything updated perfectly in one giant request.",
+  "tags": ["DevOps", "Docker", "AWS"],
+  "offer_amount": 32000,
+  "answer_deadline": "2026-07-01"
 }

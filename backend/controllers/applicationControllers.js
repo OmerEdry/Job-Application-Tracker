@@ -214,7 +214,55 @@ const updateApplication = (req, res) => {
             updated_at: new Date().toISOString()
         };
 
-        // TODO (companys,TAGS,offer detalis..)
+        if (companyName) {
+            let company = db.companies.find(c => c.name.toLowerCase() === companyName.toLowerCase());
+            
+            if (!company) {
+                const nextCompanyId = db.companies.length > 0 ? Math.max(...db.companies.map(c => c.id)) + 1 : 1;
+                company = {
+                    id: nextCompanyId,
+                    name: companyName,
+                    logo_url: `https://www.google.com/s2/favicons?domain=${companyName.toLowerCase().replace(/\s+/g, '')}.com&sz=256`
+                };
+                db.companies.push(company);
+            }
+            db.job_applications[appIndex].company_id = company.id;
+        }
+
+        if (tags && Array.isArray(tags)) {
+            db.application_tags = db.application_tags.filter(t => t.application_id !== appId);
+
+            tags.forEach(tagText => {
+                const nextTagId = db.application_tags.length > 0 ? Math.max(...db.application_tags.map(t => t.id)) + 1 : 1;
+                db.application_tags.push({
+                    id: nextTagId,
+                    application_id: appId,
+                    tag: tagText
+                });
+            });
+        }
+
+        if (Number(db.job_applications[appIndex].status_id) === 4) {
+            const offerIndex = db.application_offer_details.findIndex(o => o.application_id === appId);
+
+            if (offerIndex !== -1) {
+                db.application_offer_details[offerIndex] = {
+                    ...db.application_offer_details[offerIndex],
+                    answer_deadline: answer_deadline !== undefined ? answer_deadline : db.application_offer_details[offerIndex].answer_deadline,
+                    offer_amount: offer_amount !== undefined ? (offer_amount ? Number(offer_amount) : null) : db.application_offer_details[offerIndex].offer_amount
+                };
+            } else if (offer_amount || answer_deadline) {
+                const nextOfferId = db.application_offer_details.length > 0 ? Math.max(...db.application_offer_details.map(o => o.id)) + 1 : 1;
+                db.application_offer_details.push({
+                    id: nextOfferId,
+                    application_id: appId,
+                    answer_deadline: answer_deadline || null,
+                    offer_amount: offer_amount ? Number(offer_amount) : null
+                });
+            }
+        } else {
+            db.application_offer_details = db.application_offer_details.filter(o => o.application_id !== appId);
+        }
 
 
         writeDB(db, (writeErr) => {
