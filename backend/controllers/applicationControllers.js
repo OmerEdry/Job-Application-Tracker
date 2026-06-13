@@ -36,6 +36,12 @@ const groupBy = (array, key, valueSelector = (item) => item) => array.reduce((ac
     return acc;
 }, {});
 
+//helper to safely calculate the next ID for any table array
+const getNextId = (tableArray) => {
+    if (!tableArray || tableArray.length === 0) return 1;
+    return Math.max(...tableArray.map(item => item.id)) + 1;
+}
+
 /**
  * @desc    Get all job applications with enriched relational data
  * @route   GET /api/applications
@@ -103,7 +109,7 @@ const createApplication = (req, res) => {
         // Handle Company (Find existing or create new)
         let company = db.companies.find(c => c.name.toLowerCase() === companyName.toLowerCase());
         if (!company) {
-            const nextCompanyId = db.companies.length > 0 ? Math.max(...db.companies.map(c => c.id)) + 1 : 1;
+            const nextCompanyId = getNextId(db.companies);
             company = {
                 id: nextCompanyId,
                 name: companyName,
@@ -113,7 +119,7 @@ const createApplication = (req, res) => {
         }
 
         // Create the Core Job Application record
-        const nextAppId = db.job_applications.length > 0 ? Math.max(...db.job_applications.map(a => a.id)) + 1 : 1;
+        const nextAppId = getNextId(db.job_applications);
         const newApplication = {
             id: nextAppId,
             company_id: company.id,
@@ -130,7 +136,7 @@ const createApplication = (req, res) => {
 
         // Handle optional Offer Details (only for 'statusID=4/'offer')
         if (Number(status_id) === 4 && (offer_amount || answer_deadline)) {
-            const nextOfferId = db.application_offer_details.length > 0 ? Math.max(...db.application_offer_details.map(o => o.id)) + 1 : 1;
+            const nextOfferId = getNextId(db.application_offer_details);
             db.application_offer_details.push({
                 id: nextOfferId,
                 application_id: nextAppId,
@@ -141,13 +147,14 @@ const createApplication = (req, res) => {
 
         // Handle Tags relation
         if (tags && Array.isArray(tags)) {
+            let currentTagId = getNextId(db.application_tags);
             tags.forEach(tagText => {
-                const nextTagId = db.application_tags.length > 0 ? Math.max(...db.application_tags.map(t => t.id)) + 1 : 1;
                 db.application_tags.push({
-                    id: nextTagId,
-                    application_id: nextAppId, //using the id from the core job creation earlier(Foreign key connection)
+                    id: currentTagId,
+                    application_id: nextAppId, 
                     tag: tagText
                 });
+                currentTagId++; 
             });
         }
 
@@ -251,7 +258,7 @@ const updateApplication = (req, res) => {
             let company = companyByNameMap[companyName.toLowerCase()];
             
             if (!company) {
-                const nextCompanyId = db.companies.length > 0 ? Math.max(...db.companies.map(c => c.id)) + 1 : 1;
+                const nextCompanyId = getNextId(db.companies);
                 company = {
                     id: nextCompanyId,
                     name: companyName,
@@ -264,15 +271,16 @@ const updateApplication = (req, res) => {
 
         if (tags && Array.isArray(tags)) {
             db.application_tags = db.application_tags.filter(t => t.application_id !== appId);
-            let currentTagId = db.application_tags.length > 0 ? Math.max(...db.application_tags.map(t => t.id)) : 0;
+            
+            let currentTagId = getNextId(db.application_tags);
 
             tags.forEach(tagText => {
-                currentTagId++;
                 db.application_tags.push({
                     id: currentTagId,
                     application_id: appId,
                     tag: tagText
                 });
+                currentTagId++; 
             });
         }
 
@@ -286,7 +294,7 @@ const updateApplication = (req, res) => {
                     offer_amount: offer_amount !== undefined ? (offer_amount ? Number(offer_amount) : null) : db.application_offer_details[offerIndex].offer_amount
                 };
             } else if (offer_amount || answer_deadline) {
-                const nextOfferId = db.application_offer_details.length > 0 ? Math.max(...db.application_offer_details.map(o => o.id)) + 1 : 1;
+                const nextOfferId = getNextId(db.application_offer_details);
                 db.application_offer_details.push({
                     id: nextOfferId,
                     application_id: appId,
