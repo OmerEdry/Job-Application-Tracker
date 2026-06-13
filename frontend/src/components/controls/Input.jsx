@@ -19,6 +19,11 @@ export default function InputField({ field, value, onChange }) {
                     limitTags={limitTags}
                     value={currentValue}
                     onChange={(event, newValue) => onChange(name, newValue)}
+                    onInputChange={(event, newInputValue) => {
+                        if (freeSolo && !multiple) {
+                            onChange(name, newInputValue);
+                        }
+                    }}
                     renderInput={(params) => (
                         <TextField
                             {...params}
