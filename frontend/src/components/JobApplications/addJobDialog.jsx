@@ -1,13 +1,21 @@
 import BaseForm from "../BaseForm";
 import { getAccumulatedFields } from "./jobsConfig";
+import { createApplication } from "../../utils/apiService";
 
 export default function AddJobDialog({ isOpen, onClose, status }) {
     const fields = getAccumulatedFields(status);
 
     const handleSave = async (formData) => {
-        // TODO create new job object and add it to corresponding stack
-        console.log("Final job before saving:", formData);
-        onClose();
+        console.log("Raw formData directly from BaseForm:", formData);
+        console.log("Current status passed to dialog:", status);
+        
+        try {
+            await createApplication(formData, status);
+            onClose();
+        } catch (error) {
+            console.error("Failed to save job:", error.message);
+            alert(`Error: ${error.message}`);
+        }
     };
 
     const handleSaveDraft = async (formData) => {
