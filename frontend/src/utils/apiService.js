@@ -27,3 +27,28 @@ export const createApplication = async (formData, status) => {
 
     return await response.json();
 };
+
+/**
+ * Sends a PUT request to update an existing job application
+ * @param {string|number} id - The ID of the job to update
+ * @param {Object} formData - The updated data from the React form
+ * @param {string} status - The current status string from the UI
+ */
+export const updateApplication = async (id, formData, status) => {
+    const mappedData = mapFormToBackend(formData, status);
+
+    const response = await fetch(`${BASE_URL}/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(mappedData),
+    });
+
+    if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to update application');
+    }
+
+    return await response.json();
+};
