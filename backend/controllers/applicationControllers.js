@@ -20,8 +20,24 @@ const writeDB = (data, callback) => {
     fs.writeFile(dataPath, JSON.stringify(data, null, 2), 'utf8', callback);
 };
 
+// Helper to index an array into a hashmap for 1-to-1 relationships (e.g., companies, statuses)
+const indexBy = (array, key) => array.reduce((acc, item) => {
+    acc[item[key]] = item;
+    return acc;
+}, {});
+
+// Helper to group an array into a hashmap of arrays for 1-to-many relationships (e.g., tags)
+const groupBy = (array, key, valueSelector = (item) => item) => array.reduce((acc, item) => {
+    const groupKey = item[key];
+    if (!acc[groupKey]) {
+        acc[groupKey] = [];
+    }
+    acc[groupKey].push(valueSelector(item));
+    return acc;
+}, {});
+
 /**
- * @desc    Get all job applications (Enriched for Frontend UI comfort)
+ * @desc    Get all job applications with enriched relational data
  * @route   GET /api/applications
  * @access  Public
  */
@@ -29,24 +45,27 @@ const getAllApplications = (req, res) => {
     readDB((err, db) => {
         if (err) return res.status(500).json({ message: 'Internal Server Error' });
 
-        //making combined table as object 
+        // 1. Create Hashmaps upfront 
+        const companyMap = indexBy(db.companies, 'id');
+        const statusMap = indexBy(db.app_status, 'id');
+        const appliedMap = indexBy(db.application_applied_details, 'application_id');
+        const interviewMap = indexBy(db.application_interviewing_details, 'application_id');
+        const offerMap = indexBy(db.application_offer_details, 'application_id');
+        const tagsMap = groupBy(db.application_tags, 'application_id', (t) => t.tag);
+
         const enrichedApplications = db.job_applications.map(app => {
-            const company = db.companies.find(c => c.id === app.company_id) || {};
-            const status = db.app_status.find(s => s.id === app.status_id) || {};
-            const appliedDetails = db.application_applied_details.find(d => d.application_id === app.id) || null;
-            const interviewDetails = db.application_interviewing_details.find(d => d.application_id === app.id) || null;
-            const offerDetails = db.application_offer_details.find(d => d.application_id === app.id) || null;
-            const tags = db.application_tags.filter(t => t.application_id === app.id).map(t => t.tag);
+            const company = companyMap[app.company_id] || {};
+            const status = statusMap[app.status_id] || {};
 
             return {
                 ...app,
                 companyName: company.name || '',
                 companyLogo: company.logo_url || '',
                 statusName: status.name || '',
-                appliedDetails,
-                interviewDetails,
-                offerDetails,
-                tags
+                appliedDetails: appliedMap[app.id] || null,
+                interviewDetails: interviewMap[app.id] || null,
+                offerDetails: offerMap[app.id] || null,
+                tags: tagsMap[app.id] || []
             };
         });
 
