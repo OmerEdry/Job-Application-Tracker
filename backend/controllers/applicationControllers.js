@@ -180,10 +180,20 @@ const deleteApplication = (req, res) => {
         db.job_applications = db.job_applications.filter(app => app.id !== appId);
 
         // remove all linked tables (according the ERD)
+        // remove Tags (1 - Many)
         db.application_tags = db.application_tags.filter(t => t.application_id !== appId);
-        db.application_applied_details = db.application_applied_details.filter(d => d.application_id !== appId);
-        db.application_interviewing_details = db.application_interviewing_details.filter(d => d.application_id !== appId);
-        db.application_offer_details = db.application_offer_details.filter(d => d.application_id !== appId);
+
+        // remove app details (1-1)
+        const appliedIdx = db.application_applied_details.findIndex(d => d.application_id === appId);
+        if (appliedIdx !== -1) db.application_applied_details.splice(appliedIdx, 1);
+
+        // remove interview details (1-1)
+        const interviewIdx = db.application_interviewing_details.findIndex(d => d.application_id === appId);
+        if (interviewIdx !== -1) db.application_interviewing_details.splice(interviewIdx, 1);
+
+        // remove offer data (1-1)
+        const offerIdx = db.application_offer_details.findIndex(d => d.application_id === appId);
+        if (offerIdx !== -1) db.application_offer_details.splice(offerIdx, 1);
 
         
         writeDB(db, (writeErr) => {
@@ -234,7 +244,11 @@ const updateApplication = (req, res) => {
         };
 
         if (companyName) {
-            let company = db.companies.find(c => c.name.toLowerCase() === companyName.toLowerCase());
+            const companyByNameMap = db.companies.reduce((acc, c) => {
+                acc[c.name.toLowerCase()] = c;
+                return acc;
+            }, {});
+            let company = companyByNameMap[companyName.toLowerCase()];
             
             if (!company) {
                 const nextCompanyId = db.companies.length > 0 ? Math.max(...db.companies.map(c => c.id)) + 1 : 1;
@@ -250,11 +264,12 @@ const updateApplication = (req, res) => {
 
         if (tags && Array.isArray(tags)) {
             db.application_tags = db.application_tags.filter(t => t.application_id !== appId);
+            let currentTagId = db.application_tags.length > 0 ? Math.max(...db.application_tags.map(t => t.id)) : 0;
 
             tags.forEach(tagText => {
-                const nextTagId = db.application_tags.length > 0 ? Math.max(...db.application_tags.map(t => t.id)) + 1 : 1;
+                currentTagId++;
                 db.application_tags.push({
-                    id: nextTagId,
+                    id: currentTagId,
                     application_id: appId,
                     tag: tagText
                 });
