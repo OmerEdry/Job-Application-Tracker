@@ -58,8 +58,9 @@ const getAllApplications = (req, res) => {
         const interviewMap = indexBy(db.application_interviewing_details, 'application_id');
         const offerMap = indexBy(db.application_offer_details, 'application_id');
         const tagsMap = groupBy(db.application_tags, 'application_id', (t) => t.tag);
+        const activeApplications = db.job_applications.filter(app => app.isDeleted !== true);
 
-        const enrichedApplications = db.job_applications.map(app => {
+        const enrichedApplications = activeApplications.map(app => {
             const company = companyMap[app.company_id] || {};
             const status = statusMap[app.status_id] || {};
 
@@ -130,7 +131,8 @@ const createApplication = (req, res) => {
             status_id: Number(status_id),
             created_at: new Date().toISOString(),
             updated_at: new Date().toISOString(),
-            notes: notes || ""
+            notes: notes || "",
+            isDeleted: false
         };
         db.job_applications.push(newApplication);
 
@@ -177,35 +179,17 @@ const deleteApplication = (req, res) => {
     readDB((err, db) => {
         if (err) return res.status(500).json({ message: 'Internal Server Error' });
         
-        // check if the job is existing 
-        const appExists = db.job_applications.some(app => app.id === appId);
-        if (!appExists) {
+        const appIndex = db.job_applications.findIndex(app => app.id === appId);
+        if (appIndex === -1) {
             return res.status(404).json({ message: 'Delete Error', error: `Application with ID ${appId} not found.` });
         }
 
-        // remove job from core jobs table
-        db.job_applications = db.job_applications.filter(app => app.id !== appId);
+        db.job_applications[appIndex].isDeleted = true;
+        db.job_applications[appIndex].updated_at = new Date().toISOString();
 
-        // remove all linked tables (according the ERD)
-        // remove Tags (1 - Many)
-        db.application_tags = db.application_tags.filter(t => t.application_id !== appId);
-
-        // remove app details (1-1)
-        const appliedIdx = db.application_applied_details.findIndex(d => d.application_id === appId);
-        if (appliedIdx !== -1) db.application_applied_details.splice(appliedIdx, 1);
-
-        // remove interview details (1-1)
-        const interviewIdx = db.application_interviewing_details.findIndex(d => d.application_id === appId);
-        if (interviewIdx !== -1) db.application_interviewing_details.splice(interviewIdx, 1);
-
-        // remove offer data (1-1)
-        const offerIdx = db.application_offer_details.findIndex(d => d.application_id === appId);
-        if (offerIdx !== -1) db.application_offer_details.splice(offerIdx, 1);
-
-        
         writeDB(db, (writeErr) => {
             if (writeErr) return res.status(500).json({ message: 'Internal Server Error' });
-            res.status(200).json({ message: `Application ${appId} and all its relations deleted successfully.` });
+            res.status(200).json({ message: `Application ${appId} soft-deleted successfully.` });
         });
     });
 };
