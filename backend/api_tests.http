@@ -1,0 +1,103 @@
+### Test 1: Create a Valid Job Application (New Company & Tags)
+POST http://localhost:5000/api/applications
+Content-Type: application/json
+
+{
+  "companyName": "Netflix",
+  "title": "Backend Engineer",
+  "work_type": "hybrid",
+  "status_id": 2,
+  "location": "Tel Aviv",
+  "tags": ["Node.js", "Express", "REST API"],
+  "notes": "Applied through a friend reference"
+}
+
+###
+
+### Test 2: Create Application for an EXISTING Company (Should reuse company_id: 1)
+POST http://localhost:5000/api/applications
+Content-Type: application/json
+
+{
+  "companyName": "Google",
+  "title": "AI Researcher",
+  "work_type": "on_site",
+  "status_id": 1,
+  "location": "Tel Aviv"
+}
+
+###
+
+### Test 3: Create an OFFER Application (Should populate application_offer_details)
+POST http://localhost:5000/api/applications
+Content-Type: application/json
+
+{
+  "companyName": "Nvidia",
+  "title": "Core Dev",
+  "work_type": "hybrid",
+  "status_id": 4,
+  "offer_amount": 35000,
+  "answer_deadline": "2026-07-01T23:59:59.000Z"
+}
+
+###
+
+### Test 4: Trigger Work Type Validation Error (Expecting 400 Bad Request)
+POST http://localhost:5000/api/applications
+Content-Type: application/json
+
+{
+  "companyName": "Meta",
+  "title": "Product QA",
+  "work_type": "invalid_work_type_here",
+  "status_id": 1
+}
+
+###
+
+### Test 5: Trigger Negative Offer Amount Error (Expecting 400 Bad Request)
+POST http://localhost:5000/api/applications
+Content-Type: application/json
+
+{
+  "companyName": "Microsoft",
+  "title": "Support Engineer",
+  "work_type": "remote",
+  "status_id": 4,
+  "offer_amount": -1200
+}
+
+### Test 6: Delete a Non-Existent Application (Expecting 404 Not Found)
+DELETE http://localhost:5000/api/applications/999
+
+###
+
+### Test 7: Delete an Existing Application (Expecting 200 OK & Cascade Delete)
+DELETE http://localhost:5000/api/applications/1
+
+### Test 8: Update a Non-Existent Application (Expecting 404 Not Found)
+PUT http://localhost:5000/api/applications/999
+Content-Type: application/json
+
+{
+  "title": "Senior Software Engineer"
+}
+
+###
+
+### Test 9: Complete Relational Update (Core, Company, Tags, and Offer Details)
+PUT http://localhost:5000/api/applications/2
+Content-Type: application/json
+
+{
+  "title": "Senior DevOps & Infrastructure Engineer",
+  "companyName": "Apple",
+  "location": "Herzliya (Hybrid)",
+  "work_type": "hybrid",
+  "status_id": 4,
+  "notes": "Everything updated perfectly in one giant request.",
+  "tags": ["DevOps", "Docker", "AWS"],
+  "offer_amount": 32000,
+  "answer_deadline": "2026-07-01"
+}
