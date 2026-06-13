@@ -229,6 +229,14 @@ const updateApplication = (req, res) => {
         return res.status(400).json({ message: 'Validation Error', error: 'offer_amount must be greater than or equal to 0.' });
     }
 
+    if (companyName !== undefined && (companyName === null || companyName.trim().length === 0)) {
+        return res.status(400).json({ message: 'Validation Error', error: 'Company name cannot be empty.' });
+    }
+
+    if (title !== undefined && (title === null || title.trim().length === 0)) {
+        return res.status(400).json({ message: 'Validation Error', error: 'Title cannot be empty.' });
+    }
+
     readDB((err, db) => {
         if (err) return res.status(500).json({ message: 'Internal Server Error' });
 
