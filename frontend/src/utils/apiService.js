@@ -52,3 +52,23 @@ export const updateApplication = async (id, formData, status) => {
 
     return await response.json();
 };
+
+/**
+ * Sends a DELETE request to remove a job application by its ID
+ * @param {string|number} id - The ID of the job to delete
+ */
+export const deleteApplication = async (id) => {
+    const response = await fetch(`${BASE_URL}/${id}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    });
+
+    if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to delete application');
+    }
+
+    return await response.json();
+};
