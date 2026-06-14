@@ -73,7 +73,8 @@ export const mapBackendToBoard = (backendJobs) => {
             status: formattedStatus,
             jobTitle: job.title,
             workType: displayWorkType,
-            companyName: job.companyName || job.company || "Unknown"
+            companyName: job.companyName || job.company || "Unknown",
+            createdAt: job.created_at || job.createdAt
         };
     });
 };
