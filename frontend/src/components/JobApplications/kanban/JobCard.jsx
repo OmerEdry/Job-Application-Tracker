@@ -5,7 +5,7 @@ import { getRelativeTime, isFollowUpRecommended } from '../../../utils/helpers';
 import { TimeIcon, FollowUpIcon } from "../../../assets/icons";
 import JobMenu from '../JobMenu';
 
-const JobCard = ({ job }) => {
+const JobCard = ({ job, onRefresh }) => {
     return (
         <BaseKanbanCard
             sx={(theme) => ({
@@ -17,7 +17,7 @@ const JobCard = ({ job }) => {
             <CardHeader
                 avatar={<Avatar src={job.companyLogo} aria-label="Company Logo" sx={{ bgColor: 'transparent', }} />}
 
-                action={<JobMenu job={job} />}
+                action={<JobMenu job={job} onRefresh={onRefresh} />}
 
                 title={<Typography variant="h4">{job.companyName}</Typography>}
 

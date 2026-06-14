@@ -6,17 +6,18 @@ export default function EditJobDialog({ isOpen, onClose, job, onRefresh }) {
     const fields = getAccumulatedFields(job?.status);
 
     const handleSave = async (formData) => {
-        try {
-            await updateApplication(job.id, formData, job?.status);
-            if (onRefresh) {
-                await onRefresh();
-            }
-            onClose();
-        } catch (error) {
-            console.error("Failed to update job:", error.message);
-            alert(`Error: ${error.message}`);
-        }
-    };
+    try {
+        const updatedStatus = formData.status || job?.status;
+        await updateApplication(job.id, formData, updatedStatus);
+        if (onRefresh) {
+            await onRefresh();
+        } 
+        onClose();
+    } catch (error) {
+        console.error("Failed to update job:", error.message);
+        alert(`Error: ${error.message}`);
+    }
+};
 
     return (
         <BaseForm

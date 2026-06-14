@@ -13,7 +13,7 @@ const MENU_OPTIONS = [
     { key: 'delete', label: 'Delete', color: 'error.main' },
 ];
 
-export default function JobMenu({ job }) {
+export default function JobMenu({ job, onRefresh }) {
     // Menu State
     const [anchorEl, setAnchorEl] = useState(null);
     const isMenuOpen = Boolean(anchorEl);
@@ -80,18 +80,21 @@ export default function JobMenu({ job }) {
                 isOpen={activeDialog === 'edit'}
                 onClose={handleCloseDialog}
                 job={job}
+                onRefresh={onRefresh}
             />
             <MoveJobDialog
                 isOpen={activeDialog === 'move'}
                 onClose={handleCloseDialog}
                 job={job}
                 onSave={(updatedJob) => console.log('Updated Job:', updatedJob)}
+                onRefresh={onRefresh}
             />
 
             <DeleteJobDialog
                 isOpen={activeDialog === 'delete'}
                 onClose={handleCloseDialog}
                 job={job}
+                onRefresh={onRefresh}
             />
         </Box>
     )
