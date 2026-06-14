@@ -15,15 +15,15 @@ NextStep is a professional tool designed to help developers manage and track the
 ---
 ## 🛠️ Tech Stack
 ### 💻Frontend
-* **Framework:** React 18 (Vite)
-* **UI Library:** Material UI 6 (MUI)
-* **State Management:** Context API & Axios
-* **Date Logic:** Day.js
+* **Framework:** React 18 (Vite) utilizing Context API for global state management.
+* **UI Library:** Material UI 6 (MUI) with dynamic responsive layouts (Collapsible Sidebar, Kanban Grid).
+* **Networking:** Axios integration for centralized API calls, handling asynchronous lifecycle actions (CRUD).
+* **Data Layer:** Client-side adapters for data normalization, handling relational data formatting and relative time rendering.
 
 ### 🗄️ Backend
-* **Runtime:** Node.js
-* **Framework:** Express
-* **Database:** Relational DB with structural entity adapters [🔗ERD](https://dbdiagram.io/d/Copy-of-DB-Design-Final-6a2e80a19340ecc065925300)
+* **Runtime & Framework:** Node.js & Express API server built with clean route-controller separation.
+* **Database & Architecture:**  Relational DB mapping using JSON-based storage for structured entity management [🔗ERD](https://dbdiagram.io/d/Copy-of-DB-Design-Final-6a2e80a19340ecc065925300)
+* **Data Constraints** Implemented strict backend data validation, input serialization and logical soft-deletes.
 ---
 
 ## 📂 Project Structure
