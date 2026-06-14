@@ -75,76 +75,43 @@
   ],
   "job_applications": [
     {
-      "id": 1,
-      "company_id": 1,
-      "title": "Full Stack Developer",
-      "url": "https://technova.com/careers/frontend-developer",
-      "location": "Tel Aviv, Israel",
-      "work_type": "on_site",
-      "status_id": 1,
-      "created_at": "2026-02-23T09:30:00.000Z",
-      "updated_at": "2026-02-23T09:30:00.000Z",
-      "notes": "referred by G.Yafit"
-    },
-    {
-      "id": 2,
-      "company_id": 2,
-      "title": "Frontend Engineer Intern",
-      "url": "",
-      "location": "",
-      "work_type": "remote",
-      "status_id": 1,
-      "created_at": "2026-02-21T09:30:00.000Z",
-      "updated_at": "2026-02-21T09:30:00.000Z",
-      "notes": ""
-    },
-    {
       "id": 3,
       "company_id": 3,
       "title": "Software Engineering Intern",
       "url": "",
-      "location": "",
+      "location": "Remote",
       "work_type": "remote",
       "status_id": 1,
-      "created_at": "2026-02-22T10:34:00.000Z",
-      "updated_at": "2026-02-22T10:34:00.000Z",
-      "notes": ""
+      "created_at": "2026-06-13T10:34:00.000Z",
+      "updated_at": "2026-06-13T10:34:00.000Z",
+      "notes": "First item on my wishlist!",
+      "isDeleted": false
     },
     {
       "id": 4,
-      "company_id": 4,
+      "company_id": 1,
       "title": "Full Stack Developer",
       "url": "",
-      "location": "",
+      "location": "Tel Aviv",
       "work_type": "remote",
-      "status_id": 1,
-      "created_at": "2026-02-11T09:30:00.000Z",
-      "updated_at": "2026-02-11T09:30:00.000Z",
-      "notes": ""
-    },
-    {
-      "id": 5,
-      "company_id": 5,
-      "title": "Full Stack Developer",
-      "url": "",
-      "location": "Netanya, Israel",
-      "work_type": "on_site",
       "status_id": 2,
-      "created_at": "2026-02-13T09:30:00.000Z",
-      "updated_at": "2026-02-15T09:30:00.000Z",
-      "notes": "referred by G.Yafit"
+      "created_at": "2026-06-11T09:30:00.000Z",
+      "updated_at": "2026-06-14T09:39:07.932Z",
+      "notes": "Spoke with the team lead.",
+      "isDeleted": false
     },
     {
       "id": 6,
       "company_id": 6,
       "title": "Software Engineer",
       "url": "",
-      "location": "",
+      "location": "Remote",
       "work_type": "remote",
       "status_id": 2,
-      "created_at": "2026-02-01T09:30:00.000Z",
-      "updated_at": "2026-02-01T09:30:00.000Z",
-      "notes": ""
+      "created_at": "2026-06-09T09:30:00.000Z",
+      "updated_at": "2026-06-14T09:25:44.606Z",
+      "notes": "Scalability and video stream architecture system.",
+      "isDeleted": false
     },
     {
       "id": 7,
@@ -154,95 +121,76 @@
       "location": "Rehovot, Israel",
       "work_type": "on_site",
       "status_id": 3,
-      "created_at": "2026-02-23T09:30:00.000Z",
-      "updated_at": "2026-02-23T09:30:00.000Z",
-      "notes": ""
-    },
-    {
-      "id": 8,
-      "company_id": 7,
-      "title": "Full Stack Developer",
-      "url": "",
-      "location": "",
-      "work_type": "remote",
-      "status_id": 3,
-      "created_at": "2026-01-01T09:30:00.000Z",
-      "updated_at": "2026-02-01T09:30:00.000Z",
-      "notes": ""
-    },
-    {
-      "id": 9,
-      "company_id": 8,
-      "title": "Backend Engineer",
-      "url": "",
-      "location": "Tel Aviv",
-      "work_type": "hybrid",
-      "status_id": 2,
-      "created_at": "2026-06-07T21:53:13.099Z",
-      "updated_at": "2026-06-07T21:53:13.100Z",
-      "notes": "Applied through a friend reference"
+      "created_at": "2026-06-05T09:30:00.000Z",
+      "updated_at": "2026-06-05T09:30:00.000Z",
+      "notes": "Technical coding interview scheduled for next week.",
+      "isDeleted": false
     },
     {
       "id": 10,
       "company_id": 9,
       "title": "Core Dev",
       "url": "",
-      "location": "",
+      "location": "Tel Aviv",
       "work_type": "hybrid",
       "status_id": 4,
-      "created_at": "2026-06-07T21:58:11.090Z",
-      "updated_at": "2026-06-07T21:58:11.090Z",
-      "notes": ""
+      "created_at": "2026-06-01T21:58:11.090Z",
+      "updated_at": "2026-06-14T10:08:37.192Z",
+      "notes": "Official offer received! Reviewing contract terms.",
+      "isDeleted": false
     },
     {
-      "id": 11,
-      "company_id": 1,
-      "title": "AI Researcher",
-      "url": "",
-      "location": "Tel Aviv",
-      "work_type": "on_site",
-      "status_id": 1,
-      "created_at": "2026-06-07T21:58:19.657Z",
-      "updated_at": "2026-06-07T21:58:19.657Z",
-      "notes": ""
-    },
-    {
-      "id": 12,
+      "id": 13,
       "company_id": 8,
       "title": "Backend Engineer",
       "url": "",
       "location": "Tel Aviv",
       "work_type": "hybrid",
+      "status_id": 3,
+      "created_at": "2026-06-13T20:02:11.493Z",
+      "updated_at": "2026-06-14T10:05:44.744Z",
+      "notes": "Applied through an internal friend reference.",
+      "isDeleted": false
+    },
+    {
+      "id": 19,
+      "company_id": 2,
+      "title": "Best Full Stack Role",
+      "url": "",
+      "location": "TLV",
+      "work_type": "hybrid",
+      "status_id": 1,
+      "created_at": "2026-06-14T07:21:26.324Z",
+      "updated_at": "2026-06-14T07:21:26.324Z",
+      "notes": "Highly interested in the player infrastructure backend.",
+      "isDeleted": false
+    },
+    {
+      "id": 21,
+      "company_id": 2,
+      "title": "Frontend Developer",
+      "url": "",
+      "location": "NYC",
+      "work_type": "on_site",
       "status_id": 2,
-      "created_at": "2026-06-07T21:58:23.128Z",
-      "updated_at": "2026-06-07T21:58:23.129Z",
-      "notes": "Applied through a friend reference"
+      "created_at": "2026-04-14T09:25:00.001Z",
+      "updated_at": "2026-04-14T10:05:03.719Z",
+      "notes": "Applied directly through the company portal.",
+      "isDeleted": false
     }
   ],
   "application_applied_details": [
     {
-      "id": 1,
-      "application_id": 5,
-      "applied_date": "2026-02-13",
-      "platform": ""
-    },
-    {
       "id": 2,
       "application_id": 6,
-      "applied_date": "2026-02-01",
-      "platform": ""
+      "applied_date": "2026-06-09",
+      "platform": "LinkedIn"
     },
     {
       "id": 3,
       "application_id": 7,
-      "applied_date": "2026-02-23",
-      "platform": ""
-    },
-    {
-      "id": 4,
-      "application_id": 8,
-      "applied_date": "2026-01-01",
-      "platform": ""
+      "applied_date": "2026-06-05",
+      "platform": "Company Site"
     }
   ],
   "application_interviewing_details": [],
@@ -255,46 +203,6 @@
     }
   ],
   "application_tags": [
-    {
-      "id": 1,
-      "application_id": 1,
-      "tag": "Rest API"
-    },
-    {
-      "id": 2,
-      "application_id": 1,
-      "tag": "React"
-    },
-    {
-      "id": 3,
-      "application_id": 1,
-      "tag": "Node.js"
-    },
-    {
-      "id": 4,
-      "application_id": 1,
-      "tag": "Full Stack Development"
-    },
-    {
-      "id": 5,
-      "application_id": 1,
-      "tag": "MongoDB"
-    },
-    {
-      "id": 6,
-      "application_id": 2,
-      "tag": "HTML5"
-    },
-    {
-      "id": 7,
-      "application_id": 2,
-      "tag": "Software Engineering"
-    },
-    {
-      "id": 8,
-      "application_id": 2,
-      "tag": "TypeScript"
-    },
     {
       "id": 9,
       "application_id": 3,
@@ -313,87 +221,7 @@
     {
       "id": 12,
       "application_id": 3,
-      "tag": "Amazon Web Services"
-    },
-    {
-      "id": 13,
-      "application_id": 3,
-      "tag": "Java"
-    },
-    {
-      "id": 14,
-      "application_id": 4,
-      "tag": "Rest API"
-    },
-    {
-      "id": 15,
-      "application_id": 4,
-      "tag": "React"
-    },
-    {
-      "id": 16,
-      "application_id": 4,
-      "tag": "Node.js"
-    },
-    {
-      "id": 17,
-      "application_id": 4,
-      "tag": "Full Stack Development"
-    },
-    {
-      "id": 18,
-      "application_id": 4,
-      "tag": "MongoDB"
-    },
-    {
-      "id": 19,
-      "application_id": 5,
-      "tag": "Redis"
-    },
-    {
-      "id": 20,
-      "application_id": 5,
-      "tag": "React"
-    },
-    {
-      "id": 21,
-      "application_id": 5,
-      "tag": "HTML5"
-    },
-    {
-      "id": 22,
-      "application_id": 5,
-      "tag": "Software Engineering"
-    },
-    {
-      "id": 23,
-      "application_id": 5,
-      "tag": "TypeScript"
-    },
-    {
-      "id": 24,
-      "application_id": 6,
-      "tag": "Remote"
-    },
-    {
-      "id": 25,
-      "application_id": 6,
-      "tag": "Angular"
-    },
-    {
-      "id": 26,
-      "application_id": 6,
-      "tag": "Spring Boot"
-    },
-    {
-      "id": 27,
-      "application_id": 6,
-      "tag": "Full Stack Development"
-    },
-    {
-      "id": 28,
-      "application_id": 6,
-      "tag": "Rest API"
+      "tag": "AWS"
     },
     {
       "id": 29,
@@ -421,34 +249,54 @@
       "tag": "Node.js"
     },
     {
-      "id": 34,
-      "application_id": 9,
+      "id": 56,
+      "application_id": 6,
+      "tag": "Remote"
+    },
+    {
+      "id": 57,
+      "application_id": 6,
+      "tag": "Angular"
+    },
+    {
+      "id": 58,
+      "application_id": 6,
+      "tag": "Spring Boot"
+    },
+    {
+      "id": 63,
+      "application_id": 4,
+      "tag": "Rest API"
+    },
+    {
+      "id": 64,
+      "application_id": 4,
+      "tag": "React"
+    },
+    {
+      "id": 65,
+      "application_id": 4,
       "tag": "Node.js"
     },
     {
-      "id": 35,
-      "application_id": 9,
-      "tag": "Express"
+      "id": 67,
+      "application_id": 4,
+      "tag": "MongoDB"
     },
     {
-      "id": 36,
-      "application_id": 9,
-      "tag": "REST API"
+      "id": 68,
+      "application_id": 21,
+      "tag": "TypeScript"
     },
     {
-      "id": 37,
-      "application_id": 12,
+      "id": 69,
+      "application_id": 13,
       "tag": "Node.js"
     },
     {
-      "id": 38,
-      "application_id": 12,
-      "tag": "Express"
-    },
-    {
-      "id": 39,
-      "application_id": 12,
-      "tag": "REST API"
+      "id": 70,
+      "application_id": 13,
+      "tag": "HTML5"
     }
   ]
 }
