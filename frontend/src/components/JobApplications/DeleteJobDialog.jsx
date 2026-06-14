@@ -1,10 +1,9 @@
-
 import { Box, Stack, Button, Dialog, DialogActions, DialogContent, DialogTitle, Typography } from "@mui/material";
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import { useNotification } from "../../context/NotificationContext";
 import { deleteApplication } from "../../utils/apiService";
 
-export default function DeleteJobDialog({ isOpen, onClose, job, isLoading }) {
+export default function DeleteJobDialog({ isOpen, onClose, job, isLoading, onRefresh }) {
     const { showNotification } = useNotification();
 
     const handleDelete = async (e) => {
@@ -15,6 +14,10 @@ export default function DeleteJobDialog({ isOpen, onClose, job, isLoading }) {
         try {
             await deleteApplication(job.id);
             const company = job.companyName || job.company || "Unknown";
+            if (onRefresh) {
+                await onRefresh();
+            }
+
             showNotification(`Successfully deleted ${company} from board`, "success");
             onClose();
         } catch (error) {
@@ -22,8 +25,6 @@ export default function DeleteJobDialog({ isOpen, onClose, job, isLoading }) {
             showNotification(`Failed to delete ${company}: ${error.message}`, "error");
         }
     };
-
-
 
     return (
         <Dialog
@@ -94,5 +95,4 @@ export default function DeleteJobDialog({ isOpen, onClose, job, isLoading }) {
             </form>
         </Dialog >
     )
-
 };

@@ -7,7 +7,7 @@ import { useState } from 'react';
 
 
 
-const HeaderCard = ({ header }) => {
+const HeaderCard = ({ header, onRefresh }) => {
     const themeColorPath = `${header.name.toLowerCase()}.main`;
 
     const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
@@ -63,6 +63,7 @@ const HeaderCard = ({ header }) => {
                 isOpen={isAddDialogOpen}
                 onClose={handleCloseAddJob}
                 status={header.name}
+                onRefresh={onRefresh}
             />
         </>
     )

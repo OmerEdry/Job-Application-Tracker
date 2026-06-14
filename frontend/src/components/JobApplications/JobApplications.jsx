@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import ToggleJobsView from "./ToggleJobsView";
 import KanbanBoard from "./kanban/KanbanBoard";
 import { Box } from "@mui/material";
@@ -11,20 +11,20 @@ export const JobApplications = () => {
     const [jobs, setJobs] = useState([]);
     const { showNotification } = useNotification();
 
-    useEffect(() => {
-        const loadJobs = async () => {
-            try {
-                const rawJobs = await fetchApplications();
-                const adaptedJobs = mapBackendToBoard(rawJobs);
-                setJobs(adaptedJobs);
-            } catch (error) {
-                console.error("Failed to load jobs:", error);
-                showNotification("Failed to load job applications from server", "error");
-            }
-        };
-
-        loadJobs();
+    const loadJobs = useCallback(async () => {
+        try {
+            const rawJobs = await fetchApplications();
+            const adaptedJobs = mapBackendToBoard(rawJobs);
+            setJobs(adaptedJobs);
+        } catch (error) {
+            console.error("Failed to load jobs:", error);
+            showNotification("Failed to load job applications from server", "error");
+        }
     }, [showNotification]);
+
+   useEffect(() => {
+        loadJobs();
+    }, [loadJobs]);
 
     const handleToggleView = (event, newView) => {
         if (newView !== null) {
@@ -48,7 +48,7 @@ export const JobApplications = () => {
             }}>
             <ToggleJobsView view={view} onToggleView={handleToggleView} />
             {view === 'kanbanView' ? (
-                <KanbanBoard jobsData={jobs} />
+                <KanbanBoard jobsData={jobs} onRefresh={loadJobs} />
             ) : (
                 <Box sx={{ height: '100%' }}>List View Placeholder</Box>
             )}

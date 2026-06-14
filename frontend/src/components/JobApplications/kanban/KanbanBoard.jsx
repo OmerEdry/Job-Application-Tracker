@@ -2,10 +2,7 @@ import { Box, } from '@mui/material';
 import KanbanColumn from './KanbanColumn';
 import { Headers } from '#@/utils/kanbanConfig';
 
-
-
-
-const KanbanBoard = ({ jobsData }) => {
+const KanbanBoard = ({ jobsData, onRefresh }) => {
     return (
         <Box
             sx={{
@@ -21,6 +18,7 @@ const KanbanBoard = ({ jobsData }) => {
                     key={head.name}
                     header={head}
                     jobCards={jobsData.filter(job => job.status == head.name.toLowerCase())}
+                    onRefresh={onRefresh} 
                 />
             ))}
         </Box>

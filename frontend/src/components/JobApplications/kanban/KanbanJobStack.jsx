@@ -1,8 +1,7 @@
 import { Stack } from '@mui/material';
 import JobCard from './JobCard';
 
-
-const KanbanJobStack = ({ children }) => {
+const KanbanJobStack = ({ children, onRefresh }) => {
     return (
         <Stack sx={{
             flexGrow: 1, overflow: 'auto', gap: 2,
@@ -14,7 +13,9 @@ const KanbanJobStack = ({ children }) => {
                 children.map(job => (
                     <JobCard
                         key={job.id}
-                        job={job} />
+                        job={job} 
+                        onRefresh={onRefresh}
+                    />
                 ))
             }
         </Stack >

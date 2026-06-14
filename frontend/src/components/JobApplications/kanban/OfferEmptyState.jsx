@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 import OfferEmptyPic from '../../../assets/Pictures/OfferEmptyPic.png';
 
-const OfferEmptyState = () => {
+const OfferEmptyState = ({ onRefresh }) => {
     return (
         <Box sx={{ 
             display: 'flex', 

@@ -16,10 +16,18 @@ export const mapFormToBackend = (formData, status) => {
     const normalizedStatus = status ? status.toLowerCase() : 'wishlist';
     const statusId = statusMap[normalizedStatus];
 
+    let rawWorkType = formData.workType;
+    let formattedWorkType = undefined;
+    
+    if (rawWorkType && typeof rawWorkType === 'string') {
+        const lower = rawWorkType.toLowerCase();
+        formattedWorkType = lower === 'on site' ? 'on_site' : lower;
+    }
+
     return {
         companyName: formData.companyName,
         title: formData.jobTitle,
-        work_type: (formData.workType && typeof formData.workType === 'string') ? formData.workType.toLowerCase() : undefined,
+        work_type: formattedWorkType,
         url: formData.jobUrl || "",
         location: formData.location || "",
         notes: formData.notes || "",
@@ -36,7 +44,6 @@ export const mapFormToBackend = (formData, status) => {
 export const mapBackendToBoard = (backendJobs) => {
     if (!Array.isArray(backendJobs)) return [];
 
-    // מילון תרגום קשיח ומדויק מזהה הסטטוס של הבקנד למחרוזת lowercase כמו במוק
     const idToStatusMap = {
         1: 'wishlist',
         2: 'applied',
@@ -46,13 +53,11 @@ export const mapBackendToBoard = (backendJobs) => {
     };
 
     return backendJobs.map(job => {
-        // 1. נרמול ה-work_type בדיוק למה שהכרטיס מכיר
         let displayWorkType = job.work_type;
         if (job.work_type === 'on_site') displayWorkType = 'on site';
         if (job.work_type === 'remote') displayWorkType = 'Remote';
         if (job.work_type === 'hybrid') displayWorkType = 'Hybrid';
 
-        // 2. 🔹 קביעת הסטטוס המדויק ב-lowercase (מתאים ל-KanbanBoard שלכם)
         let formattedStatus = idToStatusMap[job.status_id];
 
         if (!formattedStatus && job.status) {
@@ -60,14 +65,14 @@ export const mapBackendToBoard = (backendJobs) => {
         }
 
         if (!formattedStatus) {
-            formattedStatus = 'wishlist'; // פולבק
+            formattedStatus = 'wishlist';
         }
 
         return {
             ...job,
-            status: formattedStatus,    // 🔹 'wishlist', 'applied' וכו' באותיות קטנות!
-            jobTitle: job.title,        // מתרגם מ-title ל-jobTitle בשביל הכרטיסייה
-            workType: displayWorkType,  // מתרגם מ-work_type ל-workType
+            status: formattedStatus,
+            jobTitle: job.title,
+            workType: displayWorkType,
             companyName: job.companyName || job.company || "Unknown"
         };
     });
