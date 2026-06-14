@@ -22,7 +22,7 @@ NextStep is a professional tool designed to help developers manage and track the
 
 ### 🗄️ Backend
 * **Runtime & Framework:** Node.js & Express API server built with clean route-controller separation.
-* **Database & Architecture:**  Relational DB mapping using JSON-based storage for structured entity management [🔗ERD](https://dbdiagram.io/d/Copy-of-DB-Design-Final-6a2e80a19340ecc065925300)
+* **Database & Architecture:** Relational JSON storage mapping Entities (Applications, Companies, Tags) [🔗ERD](https://dbdiagram.io/d/Copy-of-DB-Design-Final-6a2e80a19340ecc065925300)
 * **Data Constraints** Implemented strict backend data validation, input serialization and logical soft-deletes.
 ---
 
