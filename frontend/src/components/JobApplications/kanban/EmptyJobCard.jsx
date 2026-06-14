@@ -1,6 +1,5 @@
 import BaseKanbanCard from "./BaseKanbanCard";
 import { Typography, Box } from '@mui/material';
- 
 
 const getDashedBorder = (color) => {
     const svg = `%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='10' ry='10' stroke='${encodeURIComponent(color)}' stroke-width='2' stroke-dasharray='16%2c 16' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e`;
@@ -13,7 +12,7 @@ const EMPTY_COLUMN_MESSAGES = {
     interviewing: "Drag Your First Interview Here!",
 };
 
-const EmptyJobCard = ({ status, icon }) => {
+const EmptyJobCard = ({ status, icon, onRefresh }) => {
     const message = EMPTY_COLUMN_MESSAGES[status];
 
     return (

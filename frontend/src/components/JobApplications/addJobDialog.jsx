@@ -2,7 +2,7 @@ import BaseForm from "../BaseForm";
 import { getAccumulatedFields } from "./jobsConfig";
 import { createApplication } from "../../utils/apiService";
 
-export default function AddJobDialog({ isOpen, onClose, status }) {
+export default function AddJobDialog({ isOpen, onClose, status, onRefresh }) {
     const fields = getAccumulatedFields(status);
 
     const handleSave = async (formData) => {
@@ -11,6 +11,11 @@ export default function AddJobDialog({ isOpen, onClose, status }) {
         
         try {
             await createApplication(formData, status);
+
+            if (onRefresh) {
+                await onRefresh();
+            }
+            
             onClose();
         } catch (error) {
             console.error("Failed to save job:", error.message);
