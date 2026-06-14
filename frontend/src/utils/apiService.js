@@ -72,3 +72,23 @@ export const deleteApplication = async (id) => {
 
     return await response.json();
 };
+
+/**
+ * Fetches all job applications from the backend
+ * @returns {Promise<Array>} List of job applications
+ */
+export const fetchApplications = async () => {
+    const response = await fetch(`${BASE_URL}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    });
+
+    if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to fetch applications');
+    }
+
+    return await response.json();
+};
