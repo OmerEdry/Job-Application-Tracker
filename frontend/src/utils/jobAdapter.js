@@ -36,17 +36,40 @@ export const mapFormToBackend = (formData, status) => {
 export const mapBackendToBoard = (backendJobs) => {
     if (!Array.isArray(backendJobs)) return [];
 
+    // מילון תרגום קשיח ומדויק מזהה הסטטוס של הבקנד למחרוזת lowercase כמו במוק
+    const idToStatusMap = {
+        1: 'wishlist',
+        2: 'applied',
+        3: 'interviewing',
+        4: 'offer',
+        5: 'rejected'
+    };
+
     return backendJobs.map(job => {
+        // 1. נרמול ה-work_type בדיוק למה שהכרטיס מכיר
         let displayWorkType = job.work_type;
-        if (job.work_type === 'on_site') displayWorkType = 'On site';
+        if (job.work_type === 'on_site') displayWorkType = 'on site';
         if (job.work_type === 'remote') displayWorkType = 'Remote';
         if (job.work_type === 'hybrid') displayWorkType = 'Hybrid';
 
+        // 2. 🔹 קביעת הסטטוס המדויק ב-lowercase (מתאים ל-KanbanBoard שלכם)
+        let formattedStatus = idToStatusMap[job.status_id];
+
+        if (!formattedStatus && job.status) {
+            formattedStatus = job.status.toLowerCase();
+        }
+
+        if (!formattedStatus) {
+            formattedStatus = 'wishlist'; // פולבק
+        }
+
         return {
             ...job,
-            jobTitle: job.title,
-            workType: displayWorkType,
-            companyName: job.companyName || job.company
+            status: formattedStatus,    // 🔹 'wishlist', 'applied' וכו' באותיות קטנות!
+            jobTitle: job.title,        // מתרגם מ-title ל-jobTitle בשביל הכרטיסייה
+            workType: displayWorkType,  // מתרגם מ-work_type ל-workType
+            companyName: job.companyName || job.company || "Unknown"
         };
     });
 };
+
